@@ -64,9 +64,12 @@ model Tournament {
   name        String
   region      String
   type        String
-  slug        String   @unique
+  slug        String
   description String
-  startDate   DateTime
+  hostName    String   @default("Krunker")
+  maxTeams    Int      @default(8)
+  startDate   DateTime @default("2023-11-06T21:54:55Z")
+  endDate     DateTime @default("2024-11-06T21:54:55Z")
   createdAt   DateTime @default(now())
 
   @@map("Tournaments")

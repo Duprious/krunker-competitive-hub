@@ -16,7 +16,7 @@ const TournamentCard: NextPage<TournamentCardProps> = ({name, startDate, region,
   const router = useRouter()
 
   return (
-    <div onClick={() => router.push(`/tournaments/${slug}`)} className="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cursor-pointer">
+    <div onClick={() => router.push(`/tournaments/${slug}`)} className="p-6 max-w-sm hover:shadow-xl transition duration-30 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cursor-pointer">
       <div className="flex items-center justify-between">
         <span className="text-sm font-light text-gray-500 dark:text-gray-400">
           {convertTime(startDate)}

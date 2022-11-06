@@ -1,6 +1,6 @@
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import krunkerEsportsImage from '../../../public/krunkeresports.png'
+import krunkerIcon from '../../../public/krunkericon.png'
 import React, { Fragment } from 'react'
 import Link from 'next/link'
 import { trpc } from '../../utils/trpc'
@@ -10,6 +10,7 @@ const Navbar = () => {
 
   const navigation = [
     { name: 'Home', href: '/home', current: false },
+    { name: 'Tournaments', href: '/tournaments', current: false },
   ]
 
   function classNames(...classes: string[]) {
@@ -39,12 +40,12 @@ const Navbar = () => {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="block h-8 w-auto lg:hidden"
-                    src={krunkerEsportsImage.src}
+                    src={krunkerIcon.src}
                     alt="TSchool"
                   />
                   <img
                     className="hidden h-8 w-auto lg:block"
-                    src={krunkerEsportsImage.src}
+                    src={krunkerIcon.src}
                     alt="TSchool"
                   />
                 </div>

@@ -1,3 +1,4 @@
+import { z } from "zod";
 import { router, protectedProcedure } from "../trpc";
 
 export const tournamentRouter = router({
@@ -5,5 +6,34 @@ export const tournamentRouter = router({
     .query(({ ctx }) => {
       const tournaments = ctx.prisma.tournament.findMany()
       return tournaments;
+    }),
+  addTournament: protectedProcedure
+    .input(
+      z.object({
+        name: z.string(),
+        description: z.string(),
+        hostName: z.string(),
+        startDate: z.date(),
+        endDate: z.date(),
+        maxTeams: z.number(),
+        region: z.string(),
+        type: z.string()
+      })
+    )
+    .mutation(({ ctx, input }) => {
+      const tournament = ctx.prisma.tournament.create({
+        data: {
+          name: input.name,
+          slug: input.name.toLowerCase().replace(/ /g, "-"),
+          description: input.description,
+          startDate: input.startDate,
+          endDate: input.endDate,
+          hostName: input.hostName,
+          maxTeams: input.maxTeams,
+          region: input.region,
+          type: input.type
+        }
+      })
+      return tournament;
     })
 });
