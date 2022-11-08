@@ -11,7 +11,7 @@ const Layout: NextPage<LayoutProps> = ({children}) => {
   return (
     <>
       <Head>
-        <title>Krunker Tournament Hub</title>
+        <title>Krunker Competitive Hub</title>
       </Head>
       <Navbar />
       {children}

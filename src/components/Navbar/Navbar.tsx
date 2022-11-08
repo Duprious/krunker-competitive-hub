@@ -11,6 +11,7 @@ const Navbar = () => {
   const navigation = [
     { name: 'Home', href: '/home', current: false },
     { name: 'Tournaments', href: '/tournaments', current: false },
+    { name: 'Players', href: '/players', current: false },
   ]
 
   function classNames(...classes: string[]) {
@@ -41,12 +42,12 @@ const Navbar = () => {
                   <img
                     className="block h-8 w-auto lg:hidden"
                     src={krunkerIcon.src}
-                    alt="TSchool"
+                    alt="Krunker Comp Icon"
                   />
                   <img
                     className="hidden h-8 w-auto lg:block"
                     src={krunkerIcon.src}
-                    alt="TSchool"
+                    alt="Krunker Comp Icon"
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
@@ -74,8 +75,8 @@ const Navbar = () => {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src={userData?.image?.toString()}
-                        alt="user image"
+                        src={userData?.image?.toString() || "https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif"}
+                        alt="User Image"
                         referrerPolicy='no-referrer'
                       />
                     </Menu.Button>
@@ -97,16 +98,6 @@ const Navbar = () => {
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Your Profile
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Settings
                           </a>
                         )}
                       </Menu.Item>

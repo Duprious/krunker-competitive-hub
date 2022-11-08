@@ -20,7 +20,7 @@ const AddTournamentForm = () => {
   const [tournamentStartDate, setTournamentStartDate] = useState(tomorrow.toLocaleDateString())
   const [tournamentEndDate, setTournamentEndDate] = useState(dayAfterTomorrow.toLocaleDateString())
   const [tournamentType, setTournamentType] = useState("4v4")
-  const [tournamentServer, setTournamentServer] = useState("EU | FRA")
+  const [tournamentServer, setTournamentServer] = useState("EU")
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -32,7 +32,7 @@ const AddTournamentForm = () => {
       maxTeams: tournamentMaxTeams,
       startDate: new Date(tournamentStartDate),
       endDate: new Date(tournamentEndDate),
-      region: tournamentServer,
+      region: tournamentServer.split(" ")[0] || "UKN",
       type: tournamentType,
     }, {
       onSuccess: () => {

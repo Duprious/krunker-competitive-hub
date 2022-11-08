@@ -47,7 +47,7 @@ const Tournaments: NextPage = () => {
             </div>
             <hr className="mt-6" />
           </div>
-          <div className='mt-4 flex justify-start md:justify-end mr-12'>
+          <div className='mt-4 flex justify-center md:justify-end md:mr-12'>
             <div className='w-32'>
               <Listbox value={selected} onChange={setSelected}>
                 <div className="relative mt-1">
@@ -111,6 +111,7 @@ const Tournaments: NextPage = () => {
                   region={tournament.region}
                   startDate={tournament.startDate.toString()}
                   type={tournament.type}
+                  hostName={tournament.hostName}
                   slug={tournament.slug}
                   />
                 </li>

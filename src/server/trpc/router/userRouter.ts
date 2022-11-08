@@ -10,5 +10,10 @@ export const userRouter = router({
         }
       })
       return user;
+    }),
+  getAllUsers: protectedProcedure
+    .query(({ ctx }) => {
+      const users = ctx.prisma.user.findMany();
+      return users;
     })
 });

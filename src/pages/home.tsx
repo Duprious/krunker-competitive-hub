@@ -16,9 +16,9 @@ const Home: NextPage = () => {
       slug: 'tournaments'
     },
     {
-      title: 'Users',
-      info: 'View all users',
-      slug: 'users'
+      title: 'Players',
+      info: 'View all players',
+      slug: 'players'
     },
     {
       title: 'Profile',
@@ -33,11 +33,11 @@ const Home: NextPage = () => {
         <section>
           <div className="pt-10">
             <div className="flex flex-col justify-between gap-8 md:flex-row">
-              <h1 className="text-center text-5xl font-semibold md:ml-8 md:text-start">
-                Welcome to the Krunker Tournament Hub
+              <h1 className="text-center text-5xl text-cyan-600 font-semibold md:ml-8 md:text-start">
+                Krunker Competitive Hub
               </h1>
               <div className="md:mr-8 mt-4 text-center text-lg dark:text-teal-500 font-medium text-gray-800">
-                {`${userData?.name} | ${userData?.role}`}
+                {`${userData?.name || "..."} | ${userData?.role || "..."}`}
               </div>
             </div>
             <hr className="mt-10" />
