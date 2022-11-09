@@ -19,8 +19,8 @@ const AddTournamentForm = () => {
   const [tournamentDescription, setTournamentDescription] = useState("")
   const [tournamentHostName, setTournamentHostName] = useState("")
   const [tournamentMaxTeams, setTournamentMaxTeams] = useState(8)
-  const [tournamentStartDate, setTournamentStartDate] = useState(tomorrow.toLocaleDateString())
-  const [tournamentEndDate, setTournamentEndDate] = useState(dayAfterTomorrow.toLocaleDateString())
+  const [tournamentStartDate, setTournamentStartDate] = useState(tomorrow)
+  const [tournamentEndDate, setTournamentEndDate] = useState(dayAfterTomorrow)
   const [tournamentType, setTournamentType] = useState("4v4")
   const [tournamentServer, setTournamentServer] = useState("EU")
 
@@ -37,8 +37,8 @@ const AddTournamentForm = () => {
       description: tournamentDescription,
       hostName: tournamentHostName,
       maxTeams: tournamentMaxTeams,
-      startDate: new Date(tournamentStartDate),
-      endDate: new Date(tournamentEndDate),
+      startDate: tournamentStartDate,
+      endDate: tournamentEndDate,
       region: tournamentServer.split(" ")[0] || "UKN",
       type: tournamentType,
     }, {
@@ -73,11 +73,11 @@ const AddTournamentForm = () => {
         </div>
         <div className="grid md:grid-cols-2 md:gap-6">
           <div className="relative z-0 mb-6 w-full group">
-            <input value={tournamentStartDate} onChange={(e) => setTournamentStartDate(e.target.value)} type="datetime-local" name="startDate" id="startDate" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+            <input value={tournamentStartDate.toISOString().substring(0, 16)} onChange={(e) => setTournamentStartDate(new Date(e.target.value))} type="datetime-local" name="startDate" id="startDate" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
             <label htmlFor="startDate" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Start Date</label>
           </div>
           <div className="relative z-0 mb-6 w-full group">
-            <input value={tournamentEndDate} onChange={(e) => setTournamentEndDate(e.target.value)} type="datetime-local" name="endDate" id="endDate" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+            <input value={tournamentEndDate.toISOString().substring(0, 16)} onChange={(e) => setTournamentEndDate(new Date(e.target.value))} type="datetime-local" name="endDate" id="endDate" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
             <label htmlFor="endDate" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">End Date</label>
           </div>
           <div className="relative z-0 mb-6 w-full group">
