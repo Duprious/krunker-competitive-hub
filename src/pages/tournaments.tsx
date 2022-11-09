@@ -8,11 +8,17 @@ import Layout from '../components/Layout'
 import { getServerAuthSession } from '../server/common/get-server-auth-session'
 import { trpc } from '../utils/trpc'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Toaster } from 'react-hot-toast'
 
 const Tournaments: NextPage = () => {
 
   const { data: tournamentData } = trpc.tournament.getTournaments.useQuery()
   const { data: userData } = trpc.user.getUser.useQuery()
+
+  tournamentData?.sort((a, b) => {
+    return new Date(a.startDate).valueOf() - new Date(b.startDate).valueOf();
+  });
+
 
   const filters = [
     { name: 'ALL' },
@@ -25,7 +31,7 @@ const Tournaments: NextPage = () => {
   ]
 
   const [selected, setSelected] = React.useState(filters[0])
-
+  
   return (
     <Layout>  
       <main className="container mx-auto flex min-h-screen flex-col justify-start p-4">
@@ -125,6 +131,7 @@ const Tournaments: NextPage = () => {
           </motion.div>
         </section>
       </main>
+      <Toaster />
     </Layout>
   )
 }
