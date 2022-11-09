@@ -1,9 +1,10 @@
-import { NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 import React, { useState, useEffect } from 'react'
 import PlayerCard from '../components/Cards/PlayerCard'
 import Layout from '../components/Layout'
 import { trpc } from '../utils/trpc'
 import { AnimatePresence, motion } from 'framer-motion'
+import { getServerAuthSession } from '../server/common/get-server-auth-session'
 
 const PlayersPage: NextPage = () => {
   
@@ -63,6 +64,21 @@ const PlayersPage: NextPage = () => {
       </main>
     </Layout>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getServerAuthSession(context)
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: { session },
+  };
 }
 
 export default PlayersPage
