@@ -1,7 +1,6 @@
 import { GetServerSideProps, type NextPage } from "next";
 import Head from "next/head";
 import { signIn } from "next-auth/react";
-
 import Image from "next/image";
 import krunkerEsportsImage from '../../public/krunkeresports.png'
 import { FaLock, FaDiscord } from 'react-icons/fa'

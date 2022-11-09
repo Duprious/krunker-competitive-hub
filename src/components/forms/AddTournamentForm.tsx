@@ -47,9 +47,8 @@ const AddTournamentForm = () => {
         toast.success("Tournament created")
       }
     })
-
   }
-
+  
   return (
     <>
       <form onSubmit={(e) => handleSubmit(e)}>

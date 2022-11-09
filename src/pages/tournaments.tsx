@@ -1,5 +1,3 @@
-import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline'
 import { GetServerSideProps, NextPage } from 'next'
 import Link from 'next/link'
 import React from 'react'
