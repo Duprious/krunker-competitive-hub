@@ -9,9 +9,9 @@ const AddTournamentForm = () => {
   const tournamentMutation = trpc.tournament.addTournament.useMutation()
   const { data: tournamentsData } = trpc.tournament.getTournaments.useQuery()
 
-  let today = new Date()
-  let tomorrow = new Date()
-  let dayAfterTomorrow = new Date()
+  const today = new Date()
+  const tomorrow = new Date()
+  const dayAfterTomorrow = new Date()
   tomorrow.setDate(today.getDate() + 1)
   dayAfterTomorrow.setDate(today.getDate() + 2)
 
@@ -48,7 +48,7 @@ const AddTournamentForm = () => {
       }
     })
   }
-  
+
   return (
     <>
       <form onSubmit={(e) => handleSubmit(e)}>
