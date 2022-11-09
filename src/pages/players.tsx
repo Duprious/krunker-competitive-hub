@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import PlayerCard from '../components/Cards/PlayerCard'
 import Layout from '../components/Layout'
 import { trpc } from '../utils/trpc'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const PlayersPage: NextPage = () => {
   
@@ -47,13 +48,17 @@ const PlayersPage: NextPage = () => {
           </div>
         </section>
         <section>
-          <ul className="grid gap-4 pt-10 sm:grid-cols-2 lg:grid-cols-3">
-            {searchData?.map((player) => (
-              <li key={player.id}>
-                <PlayerCard name={player.name} role={player.role} image={player.image?.toString()} id={player.id} />
-              </li>
-            ))}
-          </ul>
+          <motion.div layout>
+            <ul className="grid gap-4 pt-10 sm:grid-cols-2 lg:grid-cols-3">
+              <AnimatePresence>
+                {searchData?.map((player) => (
+                  <li key={player.id}>
+                    <PlayerCard name={player.name} role={player.role} image={player.image?.toString()} id={player.id} />
+                  </li>
+                ))}
+              </AnimatePresence>
+            </ul>
+          </motion.div>
         </section>
       </main>
     </Layout>

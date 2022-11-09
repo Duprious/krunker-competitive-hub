@@ -7,6 +7,7 @@ import TournamentCard from '../components/Cards/TournamentCard'
 import Layout from '../components/Layout'
 import { getServerAuthSession } from '../server/common/get-server-auth-session'
 import { trpc } from '../utils/trpc'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const Tournaments: NextPage = () => {
 
@@ -101,23 +102,27 @@ const Tournaments: NextPage = () => {
               </Listbox>
             </div>
           </div>
-          <ul className="grid gap-4 pt-10 md:grid-cols-2 xl:grid-cols-3">
-            {tournamentData?.map((tournament) => (
-              tournament.region.split(' ')[0] === selected?.name || selected?.name === 'ALL' ? (
-                <li key={tournament.id}>
-                  <TournamentCard
-                  name={tournament.name}
-                  description={tournament.description}
-                  region={tournament.region}
-                  startDate={tournament.startDate.toString()}
-                  type={tournament.type}
-                  hostName={tournament.hostName}
-                  slug={tournament.slug}
-                  />
-                </li>
-              ) : null
-            ))}
-          </ul>
+          <motion.div layout>
+            <ul className="grid gap-4 pt-10 md:grid-cols-2 xl:grid-cols-3">
+              <AnimatePresence> 
+                {tournamentData?.map((tournament) => (
+                  tournament.region.split(' ')[0] === selected?.name || selected?.name === 'ALL' ? (
+                    <li key={tournament.id}>
+                      <TournamentCard
+                      name={tournament.name}
+                      description={tournament.description}
+                      region={tournament.region}
+                      startDate={tournament.startDate.toString()}
+                      type={tournament.type}
+                      hostName={tournament.hostName}
+                      slug={tournament.slug}
+                      />
+                    </li>
+                  ) : null
+                  ))}
+              </AnimatePresence>
+            </ul>
+          </motion.div>
         </section>
       </main>
     </Layout>

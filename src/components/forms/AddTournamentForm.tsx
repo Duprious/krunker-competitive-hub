@@ -6,6 +6,7 @@ const AddTournamentForm = () => {
 
   const router = useRouter()
   const tournamentMutation = trpc.tournament.addTournament.useMutation()
+  const { data: tournamentsData } = trpc.tournament.getTournaments.useQuery()
 
   let today = new Date()
   let tomorrow = new Date()
@@ -24,6 +25,11 @@ const AddTournamentForm = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    if (tournamentsData?.find(tournament => tournament.name === tournamentName)) {
+      alert("Tournament with that name already exists")
+      return
+    }
     
     tournamentMutation.mutateAsync({
       name: tournamentName,
