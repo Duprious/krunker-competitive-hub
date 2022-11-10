@@ -11,20 +11,20 @@ const Login: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Krunker Tournament Hub</title>
-        <meta name="description" content="Find all Krunker tournaments" />
+        <title>Krunker Competitive Hub</title>
+        <meta name="description" content="All info on Comp Krunker here" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex min-h-screen flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <h1 className="text-center text-5xl font-bold text-indigo-500 md:text-6xl">
-        Krunker Tournament Hub
+        Krunker Competitive Hub
         </h1>
         <div className="w-full max-w-md space-y-8">
           <div className="pt-12 flex flex-col justify-center items-center">
             <Image
               className=""
               src={krunkerEsportsImage}
-              alt="Krunker Tournament Hub"
+              alt="Krunker Competitive Hub"
               width={250}
               height={250}
             />
