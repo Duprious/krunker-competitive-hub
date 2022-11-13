@@ -23,13 +23,13 @@ const Home: NextPage = () => {
     {
       title: 'Profile',
       info: 'View your profile and edit your information.',
-      slug: 'profile'
+      slug: `profile/${userData?.id}`
     }
   ]
 
   return (
     <Layout>
-      <main className="container mx-auto flex min-h-screen flex-col justify-start p-4">
+      <main className="container mx-auto flex flex-col justify-start p-4">
         <section>
           <div className="pt-10">
             <div className="flex flex-col justify-between gap-8 md:flex-row">

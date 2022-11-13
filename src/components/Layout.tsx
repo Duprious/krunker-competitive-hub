@@ -13,8 +13,10 @@ const Layout: NextPage<LayoutProps> = ({children}) => {
       <Head>
         <title>Krunker Competitive Hub</title>
       </Head>
-      <Navbar />
-      {children}
+      <div className='min-h-screen'>
+        <Navbar />
+        {children}
+      </div>
     </>
   )
 }
