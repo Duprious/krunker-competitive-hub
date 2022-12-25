@@ -15,7 +15,7 @@ const PlayerCard: NextPage<PlayerCardProps> = ({ name, role, image, id}) => {
 
   return (
     <motion.div layout animate={{ opacity: 1}} initial={{ opacity: 0 }} exit={{ opacity: 0}}>
-      <div onClick={() => router.push(`/player/${id}`)} className="bg-white dark:bg-gray-800 hover:shadow-xl transition duration-30 rounded-lg overflow-hidden cursor-pointer">
+      <div onClick={() => router.push(`/player/${id}`)} className="bg-white flex items-center dark:bg-gray-800 hover:shadow-xl transition duration-30 rounded-lg overflow-hidden cursor-pointer">
         <div className="p-4">
           <div className="flex items-center">
             <div className="flex-shrink-0">
