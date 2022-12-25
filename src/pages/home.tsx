@@ -33,7 +33,7 @@ const Home: NextPage = () => {
         <section>
           <div className="pt-10">
             <div className="flex flex-col justify-between gap-8 md:flex-row">
-              <h1 className="text-center text-5xl text-cyan-600 font-semibold md:ml-8 md:text-start">
+              <h1 className="text-center text-5xl text-[#DCF2FF]/80 font-semibold md:ml-8 md:text-start">
                 Krunker Competitive Hub
               </h1>
               <div className="md:mr-8 mt-4 text-center text-lg dark:text-teal-500 font-medium text-gray-800">
