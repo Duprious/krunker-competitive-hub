@@ -18,8 +18,6 @@ const PlayersPage: NextPage = () => {
     return a.role == "ADMIN" ? -1 : 1
   })
 
-  console.log(playersData)
-
   useEffect(() => {
     setSearchData(playersData)
   }, [playersData])
