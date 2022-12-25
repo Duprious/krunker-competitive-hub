@@ -11,9 +11,14 @@ const PlayersPage: NextPage = () => {
   const { data: playersData } = trpc.user.getAllUsers.useQuery()
   const [searchData, setSearchData] = useState(playersData)
 
-  playersData?.sort((a) => {
+  playersData?.sort((a, b) => {
+    if (a.role === b.role) {
+      return a.name! > b.name! ? 1 : -1
+    }
     return a.role == "ADMIN" ? -1 : 1
   })
+
+  console.log(playersData)
 
   useEffect(() => {
     setSearchData(playersData)
