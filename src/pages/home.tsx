@@ -45,8 +45,8 @@ const Home: NextPage = () => {
         </section>
         <section>
           <ul className="grid gap-4 pt-10 sm:grid-cols-2 lg:grid-cols-3">
-            {infoCards.map((infoCard, index) => (
-              <li key={index}>
+            {infoCards.map((infoCard) => (
+              <li key={infoCard.title}>
                 <InfoCard title={infoCard.title} info={infoCard.info} slug={infoCard.slug} />
               </li>
             ))}

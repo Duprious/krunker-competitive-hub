@@ -19,7 +19,7 @@ const Tournaments: NextPage = () => {
   tournamentData?.sort((a, b) => {
     return new Date(a.startDate).valueOf() - new Date(b.startDate).valueOf();
   });
-  
+
   return (
     <Layout>  
       <main className="container mx-auto flex flex-col justify-start p-4">

@@ -8,22 +8,22 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { SubmitHandler } from 'react-hook-form/dist/types'
 
 const addTournamentSchema = z
-    .object({
-      name: z.string().min(1, {message: "Tournament name is required"}).max(50, {message: "Tournament name can't exceed 50 letters"}),
-      description: z.string().min(8, {message: "Tournament description must be atleast 8 letters long" }).max(100, {message: "Tournament description can't exceed 100 letters"}),
-      hostName: z.string().min(1, {message: "Hostname is required"}).max(50, {message: "Hostname can't exceed 50 letters"}),
-      maxTeams: z.number().min(2, {message: "There's a minimum of 2 teams required"}).max(64, {message: "There's a maximum of 64 teams allowed"}),
-      dates: z.object({
-        startDate: z.preprocess((arg) => {
-          if (typeof arg == "string" || arg instanceof Date) return new Date(arg)
-        }, z.date().min(new Date(), {message: "Start date must be in the future"})),
-        endDate: z.preprocess((arg) => {
-          if (typeof arg == "string" || arg instanceof Date) return new Date(arg)
-        }, z.date().min(new Date(), {message: "Start date must be in the future"})),
-      }).refine(data => data.startDate < data.endDate, {message: "End date must be after the start date"}),
-      region: z.string(),
-      type: z.string(),
-    })
+  .object({
+    name: z.string().min(1, {message: "Tournament name is required"}).max(50, {message: "Tournament name can't exceed 50 letters"}),
+    description: z.string().min(8, {message: "Tournament description must be atleast 8 letters long" }).max(100, {message: "Tournament description can't exceed 100 letters"}),
+    hostName: z.string().min(1, {message: "Hostname is required"}).max(50, {message: "Hostname can't exceed 50 letters"}),
+    maxTeams: z.number().min(2, {message: "There's a minimum of 2 teams required"}).max(64, {message: "There's a maximum of 64 teams allowed"}),
+    dates: z.object({
+      startDate: z.preprocess((arg) => {
+        if (typeof arg == "string" || arg instanceof Date) return new Date(arg)
+      }, z.date().min(new Date(), {message: "Start date must be in the future"})),
+      endDate: z.preprocess((arg) => {
+        if (typeof arg == "string" || arg instanceof Date) return new Date(arg)
+      }, z.date().min(new Date(), {message: "Start date must be in the future"})),
+    }).refine(data => data.startDate < data.endDate, {message: "End date must be after the start date"}),
+    region: z.string(),
+    type: z.string(),
+  })
 
 type AddTournamentSchema = z.infer<typeof addTournamentSchema>
 
@@ -57,6 +57,9 @@ const AddTournamentForm = () => {
       onSuccess: () => {
         router.push('/tournaments')
         toast.success("Tournament created")
+      },
+      onError: () => {
+        toast.error("Couldn't add the tournament")
       }
     })
   };
