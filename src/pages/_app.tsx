@@ -14,7 +14,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <SessionProvider session={session}>
       <NextNProgress options={{ showSpinner: false, easing: 'ease'}} />
-        <div className="dark dark:bg-slate-700 dark:text-white">
+        <div className="dark dark:bg-gray-900 dark:text-white">
           <Component {...pageProps} />
         </div>
     </SessionProvider>
