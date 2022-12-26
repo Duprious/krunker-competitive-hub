@@ -13,7 +13,20 @@ const PlayersPage: NextPage = () => {
 
   playersData?.sort((a, b) => {
     if (a.role === b.role) {
-      return a.name! > b.name! ? 1 : -1
+      let aName = ""
+      let bName = ""
+      if (a.name == null) {
+        aName = ""
+      } else {
+        aName = a.name
+      }
+
+      if (b.name == null) {
+        bName = ""
+      } else {
+        bName = b.name
+      }
+      return aName > bName ? 1 : -1
     }
     return a.role == "ADMIN" ? -1 : 1
   })
