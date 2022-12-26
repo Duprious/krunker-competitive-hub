@@ -29,7 +29,7 @@ const Home: NextPage = () => {
     {
       title: 'Profile',
       info: 'View your profile and edit your information.',
-      slug: `profile/${userData?.id}`
+      slug: `player/${userData?.id}`
     }
   ]
 
