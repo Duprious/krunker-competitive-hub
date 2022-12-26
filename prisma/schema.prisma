@@ -77,6 +77,17 @@ model Tournament {
   @@map("Tournaments")
 }
 
+model KPCTeam {
+  id String @id @default(cuid())
+  teamName String
+  discordPlayerOne String
+  discordPlayerTwo String
+  ignPlayerOne String
+  ignPlayerTwo String
+  captain String @default("Player 1")
+  createdAt DateTime @default(now())
+}
+
 enum Role {
   ADMIN
   USER

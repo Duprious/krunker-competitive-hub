@@ -4,12 +4,18 @@ import { GetServerSideProps, NextPage } from 'next'
 import InfoCard from '../components/Cards/InfoCard'
 import { getServerAuthSession } from '../server/common/get-server-auth-session'
 import { trpc } from '../utils/trpc'
+import { Toaster } from 'react-hot-toast'
 
 const Home: NextPage = () => {
 
   const { data: userData } = trpc.user.getUser.useQuery()
 
   const infoCards = [
+    {
+      title: 'KPC 2v2 Tournament',
+      info: 'Sign up for the KPC 2v2 tournament',
+      slug: 'kpc/signup'
+    },
     {
       title: 'Tournaments',
       info: 'View upcoming tournaments.',
@@ -53,6 +59,7 @@ const Home: NextPage = () => {
           </ul>
         </section>
       </main>
+      <Toaster />
     </Layout>
   )
 }

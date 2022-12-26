@@ -1,6 +1,7 @@
 import { GetServerSideProps, NextPage } from 'next'
 import Link from 'next/link'
 import React from 'react'
+import { Toaster } from 'react-hot-toast'
 import KPCSignupForm from '../../components/KPC/SignupForm'
 import Layout from '../../components/Layout'
 import { getServerAuthSession } from '../../server/common/get-server-auth-session'
@@ -15,7 +16,7 @@ const KPCSignupTeam: NextPage = () => {
       {user.data?.role === "ADMIN" ? 
         <main className="container mx-auto flex flex-col justify-start p-4">
           <section>
-            <div className="pt-10">
+            <div className="pt-4">
               <div className="flex flex-col justify-between gap-8 md:flex-row">
                 <h1 className="text-center text-5xl font-semibold md:ml-8 md:text-start">
                   KPC Tournament Signup
@@ -37,6 +38,7 @@ const KPCSignupTeam: NextPage = () => {
         </Link>
       </div>
       }
+      <Toaster />
     </Layout>
   )
 }
