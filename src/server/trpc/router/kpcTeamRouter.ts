@@ -44,5 +44,71 @@ export const kpcTeamRouter = router({
         }
       })
       return team
-    })
+    }),
+  removeTeam: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .mutation(({ ctx, input }) => {
+      const team = ctx.prisma.kPCTeam.delete({
+        where: {
+          id: input.id
+        }
+      })
+      return team
+    }),
+  renameTeam: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        teamName: z.string(),
+      })
+    )
+    .mutation(({ ctx, input }) => {
+      const team = ctx.prisma.kPCTeam.update({
+        where: {
+          id: input.id
+        },
+        data: {
+          teamName: input.teamName
+        }
+      })
+      return team
+    }),
+  validateTeam: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .mutation(({ ctx, input }) => {
+      const team = ctx.prisma.kPCTeam.update({
+        where: {
+          id: input.id
+        },
+        data: {
+          validated: true
+        }
+      })
+      return team
+    }),
+  unvalidateTeam: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .mutation(({ ctx, input }) => {
+      const team = ctx.prisma.kPCTeam.update({
+        where: {
+          id: input.id
+        },
+        data: {
+          validated: false
+        }
+      })
+      return team
+    }),
 });

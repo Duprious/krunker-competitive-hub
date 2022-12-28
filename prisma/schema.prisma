@@ -86,6 +86,7 @@ model KPCTeam {
   ignPlayerTwo String
   captain String @default("Player 1")
   createdAt DateTime @default(now())
+  validated Boolean @default(false)
 }
 
 enum Role {
