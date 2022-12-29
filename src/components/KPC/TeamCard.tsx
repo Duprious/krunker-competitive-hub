@@ -11,10 +11,11 @@ interface TeamCardProps {
   captain: string,
   id: string,
   validated: boolean
+  teamsMenu: boolean
 }
 
 
-const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, discordPlayerOne, discordPlayerTwo, ignPlayerOne, ignPlayerTwo, id, validated}) => {
+const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, discordPlayerOne, discordPlayerTwo, ignPlayerOne, ignPlayerTwo, id, validated, teamsMenu}) => {
   const setModalOpen = useStore(state => state.setModalOpen)
   const setCurrentTeam = useStore(state => state.setCurrentTeam)
   
@@ -47,9 +48,11 @@ const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, discordPlayerOne,
       </div>
       <div className="flex items-center justify-between mt-4">
         <h1 className="text-gray-700 dark:text-gray-200">Captain: <span className='font-medium'>{captain == "P1" ? `${discordPlayerOne}` : `${discordPlayerTwo}`}</span></h1>
-        <button onClick={() => handleModalOpen()} className="px-3 py-1 font-semibold text-gray-100 bg-gray-600 rounded-full dark:bg-red-500/60">
-          Options
-        </button>
+        {teamsMenu && 
+          <button onClick={() => handleModalOpen()} className="px-3 py-1 font-semibold text-gray-100 bg-gray-600 rounded-full dark:bg-red-500/60">
+            Options
+          </button>
+        }
       </div>
     </div>
   )

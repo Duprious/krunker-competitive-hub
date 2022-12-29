@@ -43,6 +43,7 @@ const Teams: NextPage = () => {
                   teamName={team.teamName}
                   id={team.id}
                   validated={team.validated}
+                  teamsMenu={true}
                   />
                 </li>
               ))}

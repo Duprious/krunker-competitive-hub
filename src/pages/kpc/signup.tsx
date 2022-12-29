@@ -7,7 +7,7 @@ import Layout from '../../components/Layout'
 import { getServerAuthSession } from '../../server/common/get-server-auth-session'
 import { trpc } from '../../utils/trpc'
 
-const KPCSignupTeam: NextPage = () => {
+const Signup: NextPage = () => {
 
   const user = trpc.user.getUser.useQuery()
 
@@ -58,4 +58,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 }
 
-export default KPCSignupTeam
+export default Signup
