@@ -30,13 +30,9 @@ export const kpcTeamRouter = router({
         ignPlayerOne: z.string(),
         ignPlayerTwo: z.string(),
         captain: z.string(),
-        admin: z.boolean()
       })
     )
     .mutation(({ ctx, input }) => {
-      if (!input.admin) {
-        throw new Error("You are not authorized to create a team.");
-      }
       const team = ctx.prisma.kPCTeam.create({
         data: {
           teamName: input.teamName,

@@ -1,5 +1,4 @@
 import { GetServerSideProps, NextPage } from 'next'
-import Link from 'next/link'
 import React from 'react'
 import { Toaster } from 'react-hot-toast'
 import TeamCard from '../../components/KPC/TeamCard'
