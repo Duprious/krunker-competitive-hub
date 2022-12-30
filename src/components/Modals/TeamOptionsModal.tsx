@@ -9,6 +9,7 @@ const TeamOptionsModal = () => {
   const closeModal = useStore(state => state.setModalClosed)
   const currentTeam = useStore(state => state.currentTeam)
   const setCurrentTeam = useStore(state => state.setCurrentTeam)
+  const { data: userData } = trpc.user.getUser.useQuery()
   const removeTeamMutation = trpc.kpcTeam.removeTeam.useMutation()
   const renameTeamMutation = trpc.kpcTeam.renameTeam.useMutation()
   const validateTeamMutation = trpc.kpcTeam.validateTeam.useMutation()
@@ -23,7 +24,7 @@ const TeamOptionsModal = () => {
   }
 
   const handleRemove = () => {
-    removeTeamMutation.mutateAsync({id: currentTeam}, {
+    removeTeamMutation.mutateAsync({id: currentTeam, admin: userData?.role === "ADMIN"}, {
       onSuccess: () => {
         handleCloseModal()
         toast.success('Team Removed')
@@ -38,7 +39,7 @@ const TeamOptionsModal = () => {
       toast.error('Team Name Must Be At Least 1 Character')
       return
     }
-    renameTeamMutation.mutateAsync({id: currentTeam, teamName: newName}, {
+    renameTeamMutation.mutateAsync({id: currentTeam, teamName: newName, admin: userData?.role === "ADMIN"}, {
       onSuccess: () => {
         handleCloseModal()
         toast.success('Team Renamed')
@@ -49,7 +50,7 @@ const TeamOptionsModal = () => {
 
   const handleValidate = () => {
     if (getTeam.data?.validated) {
-      unvalidateTeamMutation.mutateAsync({id: currentTeam}, {
+      unvalidateTeamMutation.mutateAsync({id: currentTeam, admin: userData?.role === "ADMIN"}, {
         onSuccess: () => {
           handleCloseModal()
           toast.success('Team Unvalidated')
@@ -57,7 +58,7 @@ const TeamOptionsModal = () => {
         }
       })
     } else {
-      validateTeamMutation.mutateAsync({id: currentTeam}, {
+      validateTeamMutation.mutateAsync({id: currentTeam, admin: userData?.role === "ADMIN"}, {
         onSuccess: () => {
           handleCloseModal()
           toast.success('Team Validated')

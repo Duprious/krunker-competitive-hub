@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import React from 'react'
+import { trpc } from '../../utils/trpc'
 import { useStore } from '../../zustand/store'
 
 interface TeamCardProps {
@@ -18,6 +19,7 @@ interface TeamCardProps {
 const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, discordPlayerOne, discordPlayerTwo, ignPlayerOne, ignPlayerTwo, id, validated, teamsMenu}) => {
   const setModalOpen = useStore(state => state.setModalOpen)
   const setCurrentTeam = useStore(state => state.setCurrentTeam)
+  const { data: userData } = trpc.user.getUser.useQuery() 
   
   const handleModalOpen = () => {
     setModalOpen()
@@ -27,9 +29,11 @@ const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, discordPlayerOne,
   return (
     <div className="p-6 max-w-sm mx-auto hover:shadow-xl transition duration-30 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
       <div className="flex items-center justify-start">
-        <h1 className={`${validated ? `bg-green-700` : `bg-red-700/40`} px-3 py-1 font-semibold text-gray-100 rounded-full bg-gray-700`}>
-          {validated ? "Validated" : "Not Validated"}
-        </h1>
+        {userData?.role == "ADMIN" &&
+          <h1 className={`${validated ? `bg-green-700` : `bg-red-700/40`} px-3 py-1 font-semibold text-gray-100 rounded-full bg-gray-700`}>
+            {validated ? "Validated" : "Not Validated"}
+          </h1>
+        }
       </div>
       <div className="mt-3">
         <div className='flex justify-between'>
@@ -48,7 +52,7 @@ const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, discordPlayerOne,
       </div>
       <div className="flex items-center justify-between mt-4">
         <h1 className="text-gray-700 dark:text-gray-200">Captain: <span className='font-medium'>{captain == "P1" ? `${discordPlayerOne}` : `${discordPlayerTwo}`}</span></h1>
-        {teamsMenu && 
+        {(teamsMenu && userData?.role == "ADMIN") &&
           <button onClick={() => handleModalOpen()} className="px-3 py-1 font-semibold text-gray-100 bg-gray-600 rounded-full dark:bg-red-500/60">
             Options
           </button>

@@ -5,22 +5,22 @@ import { convertTime } from '../../utils/convertTime'
 import { motion } from 'framer-motion'
 
 interface TournamentCardProps {
-  slug: string
   name: string
   startDate: string
   region: string
   type: string
   description: string
   hostName: string
+  id: string
 }
 
-const TournamentCard: NextPage<TournamentCardProps> = ({name, startDate, region, type, description, slug, hostName}) => {
+const TournamentCard: NextPage<TournamentCardProps> = ({name, startDate, region, type, description, hostName, id}) => {
   const router = useRouter()
   
 
   return (
     <motion.div layout animate={{ opacity: 1}} initial={{ opacity: 0}} exit={{ opacity: 0}}>
-      <div onClick={() => router.push(`/tournament/${slug}`)} className="p-6 max-w-sm hover:shadow-xl transition duration-30 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cursor-pointer">
+      <div onClick={() => router.push(`/tournaments/${id}`)} className="p-6 max-w-sm hover:shadow-xl transition duration-30 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cursor-pointer">
         <div className="flex items-center justify-between">
           <span className="text-sm font-light text-gray-500 dark:text-gray-400 max-w-[135px]">
             {convertTime(startDate)}

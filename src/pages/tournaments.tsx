@@ -60,7 +60,7 @@ const Tournaments: NextPage = () => {
                       startDate={tournament.startDate.toString()}
                       type={tournament.type}
                       hostName={tournament.hostName}
-                      slug={tournament.slug}
+                      id={tournament.id}
                       />
                     </li>
                   ) : null

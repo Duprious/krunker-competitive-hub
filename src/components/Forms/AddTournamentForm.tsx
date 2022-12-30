@@ -32,6 +32,7 @@ const AddTournamentForm = () => {
   const router = useRouter()
   const tournamentMutation = trpc.tournament.addTournament.useMutation()
   const { data: tournamentsData } = trpc.tournament.getTournaments.useQuery()
+  const { data: userData } = trpc.user.getUser.useQuery()
 
   const { register, handleSubmit, formState: {errors} } = useForm<AddTournamentSchema>({
     resolver: zodResolver(addTournamentSchema)
@@ -53,6 +54,7 @@ const AddTournamentForm = () => {
       endDate: data.dates.endDate,
       region: data.region.split(" ")[0] || "UKN",
       type: data.type,
+      admin: userData?.role === "ADMIN" ? true : false
     }, {
       onSuccess: () => {
         router.push('/tournaments')

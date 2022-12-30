@@ -8,12 +8,11 @@ import { getServerAuthSession } from '../../server/common/get-server-auth-sessio
 import { trpc } from '../../utils/trpc'
 
 const Signup: NextPage = () => {
-
-  const user = trpc.user.getUser.useQuery()
+  const { data: teamsData } = trpc.kpcTeam.getAllTeams.useQuery()
 
   return (
     <Layout>
-      {user.data?.role === "ADMIN" ? 
+      {teamsData && teamsData.length < 16 ? 
         <main className="container mx-auto flex flex-col justify-start p-4">
           <section>
             <div className="pt-4">
@@ -31,8 +30,8 @@ const Signup: NextPage = () => {
         </main>
       : 
       <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">You are not an admin</h1>
-        <p className="text-gray-500 dark:text-gray-400">You are not authorized to see this page</p>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Tournament full</h1>
+        <p className="text-gray-500 dark:text-gray-400">Max amount of teams have already signed up</p>
         <Link href="/home">
           <p className="text-blue-600 dark:text-blue-500 hover:underline">Return to the homepage</p>
         </Link>

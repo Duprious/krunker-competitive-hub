@@ -30,9 +30,13 @@ export const kpcTeamRouter = router({
         ignPlayerOne: z.string(),
         ignPlayerTwo: z.string(),
         captain: z.string(),
+        admin: z.boolean()
       })
     )
     .mutation(({ ctx, input }) => {
+      if (!input.admin) {
+        throw new Error("You are not authorized to create a team.");
+      }
       const team = ctx.prisma.kPCTeam.create({
         data: {
           teamName: input.teamName,
@@ -49,9 +53,13 @@ export const kpcTeamRouter = router({
     .input(
       z.object({
         id: z.string(),
+        admin: z.boolean()
       })
     )
     .mutation(({ ctx, input }) => {
+      if (!input.admin) {
+        throw new Error("You are not authorized to remove a team.");
+      }
       const team = ctx.prisma.kPCTeam.delete({
         where: {
           id: input.id
@@ -64,9 +72,13 @@ export const kpcTeamRouter = router({
       z.object({
         id: z.string(),
         teamName: z.string(),
+        admin: z.boolean()
       })
     )
     .mutation(({ ctx, input }) => {
+      if (!input.admin) {
+        throw new Error("You are not authorized to rename a team.");
+      }
       const team = ctx.prisma.kPCTeam.update({
         where: {
           id: input.id
@@ -81,9 +93,13 @@ export const kpcTeamRouter = router({
     .input(
       z.object({
         id: z.string(),
+        admin: z.boolean()
       })
     )
     .mutation(({ ctx, input }) => {
+      if (!input.admin) {
+        throw new Error("You are not authorized to validate a team.");
+      }
       const team = ctx.prisma.kPCTeam.update({
         where: {
           id: input.id
@@ -98,9 +114,13 @@ export const kpcTeamRouter = router({
     .input(
       z.object({
         id: z.string(),
+        admin: z.boolean()
       })
     )
     .mutation(({ ctx, input }) => {
+      if (!input.admin) {
+        throw new Error("You are not authorized to unvalidate a team.");
+      }
       const team = ctx.prisma.kPCTeam.update({
         where: {
           id: input.id
