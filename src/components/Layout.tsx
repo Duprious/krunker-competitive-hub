@@ -12,12 +12,20 @@ const Layout: NextPage<LayoutProps> = ({children}) => {
     <>
       <Head>
         <title>Krunker Competitive Hub</title>
-        <meta name='description' content='Krunker Competitive Hub' />
-        <meta property='og:type' content='website' />
-        <meta property='og:url' content='https://kch.vercel.app' />
-        <meta property='og:title' content='Krunker Competitive Hub' />
-        <meta property='og:description' content='Krunker Competitive Hub' />
-        <meta property='og:image:secure_url' content='https://i.postimg.cc/zDTZKqsd/krunkeresports.png' />
+        <meta name="description" content="All info on Competitive Krunker here" />
+        <meta property="og:url" content="https://kch.vercel.app/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Krunker Competitive Hub" />
+        <meta property="og:description" content="All info on Competitive Krunker here" />
+        <meta property="og:image" content="https://i.ibb.co/KLzJbYg/JTz-Oke7a-2x.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="kch.vercel.app" />
+        <meta property="twitter:url" content="https://kch.vercel.app/" />
+        <meta name="twitter:title" content="Krunker Competitive Hub" />
+        <meta name="twitter:description" content="All info on Competitive Krunker here" />
+        <meta name="twitter:image" content="https://i.ibb.co/KLzJbYg/JTz-Oke7a-2x.png" />
+
+        
       </Head>
       <div className='min-h-screen'>
         <Navbar />
