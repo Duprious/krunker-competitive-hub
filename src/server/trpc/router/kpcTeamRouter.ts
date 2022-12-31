@@ -27,8 +27,10 @@ export const kpcTeamRouter = router({
         teamName: z.string(),
         discordPlayerOne: z.string(),
         discordPlayerTwo: z.string(),
+        discordSub: z.string(),
         ignPlayerOne: z.string(),
         ignPlayerTwo: z.string(),
+        ignSub: z.string(),
         captain: z.string(),
       })
     )
@@ -40,7 +42,9 @@ export const kpcTeamRouter = router({
           discordPlayerTwo: input.discordPlayerTwo,
           ignPlayerOne: input.ignPlayerOne,
           ignPlayerTwo: input.ignPlayerTwo,
-          captain: input.captain
+          captain: input.captain,
+          discordSub: input.discordSub,
+          ignSub: input.ignSub,
         }
       })
       return team

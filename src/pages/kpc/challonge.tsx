@@ -88,6 +88,8 @@ const Challonge = () => {
                captain={team.captain}
                 discordPlayerOne={team.discordPlayerOne}
                 discordPlayerTwo={team.discordPlayerTwo}
+                discordSub={team.discordSub}
+                ignSub={team.ignSub}
                 ignPlayerOne={team.ignPlayerOne}
                 ignPlayerTwo={team.ignPlayerTwo}
                 teamName={team.teamName}

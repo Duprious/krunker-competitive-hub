@@ -7,8 +7,10 @@ interface TeamCardProps {
   teamName: string,
   discordPlayerOne: string,
   discordPlayerTwo: string,
+  discordSub: string,
   ignPlayerOne: string,
   ignPlayerTwo: string,
+  ignSub: string,
   captain: string,
   id: string,
   validated: boolean
@@ -16,7 +18,7 @@ interface TeamCardProps {
 }
 
 
-const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, discordPlayerOne, discordPlayerTwo, ignPlayerOne, ignPlayerTwo, id, validated, teamsMenu}) => {
+const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, discordPlayerOne, discordPlayerTwo, ignPlayerOne, ignPlayerTwo, id, validated, teamsMenu, discordSub, ignSub}) => {
   const setModalOpen = useStore(state => state.setModalOpen)
   const setCurrentTeam = useStore(state => state.setCurrentTeam)
   const { data: userData } = trpc.user.getUser.useQuery() 
@@ -48,6 +50,13 @@ const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, discordPlayerOne,
         </p>
         <p className='text-gray-600 dark:text-gray-300 break-words'>
           <span className='font-semibold'>Player 2: </span> {`${discordPlayerTwo} | ${ignPlayerTwo}`}
+        </p>
+        <p className='text-gray-600 dark:text-gray-300 break-words'>
+          {(discordSub !== "/" && ignSub !== "/") ?
+            <span className='font-semibold'>Sub: {`${discordSub} | ${ignSub}`} </span>
+          :
+            <span className='font-semibold'>No Sub </span> 
+          }
         </p>
       </div>
       <div className="flex items-center justify-between mt-4">

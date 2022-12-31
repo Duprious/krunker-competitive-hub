@@ -84,6 +84,8 @@ model KPCTeam {
   discordPlayerTwo String
   ignPlayerOne String
   ignPlayerTwo String
+  discordSub String
+  ignSub String
   captain String @default("Player 1")
   createdAt DateTime @default(now())
   validated Boolean @default(false)

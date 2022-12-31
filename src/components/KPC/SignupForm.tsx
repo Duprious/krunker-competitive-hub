@@ -9,10 +9,12 @@ import { trpc } from '../../utils/trpc'
 const registerTeamSchema = z
   .object({
     teamName: z.string().min(1, {message: "Team name is required"}).max(16, {message: "Team name cannot exceed 16 characters"}),
-    discordPlayerOne: z.string().min(1, {message: "Discord username with tag is required"}).max(32, {message: "Discord name cannot exceed 32 characters"}),
-    discordPlayerTwo: z.string().min(1, {message: "Discord username with tag is required"}).max(32, {message: "Discord name cannot exceed 32 characters"}),
+    discordPlayerOne: z.string().min(1, {message: "Discord username with tag is required"}).max(48, {message: "Discord name cannot exceed 48 characters"}),
+    discordPlayerTwo: z.string().min(1, {message: "Discord username with tag is required"}).max(48, {message: "Discord name cannot exceed 48 characters"}),
     ignPlayerOne: z.string().min(1, {message: "Krunker username is required"}).max(48, {message: "Krunker username cannot exceed 48 characters"}),
     ignPlayerTwo: z.string().min(1, {message: "Krunker username is required"}).max(48, {message: "Krunker username cannot exceed 48 characters"}),
+    discordSub: z.string().min(1, {message: "Write / if you have no sub"}).max(48, {message: "Discord name cannot exceed 48 characters"}),
+    ignSub: z.string().min(1, {message: "Write / if you have no sub"}).max(48, {message: "Krunker username cannot exceed 48 characters"}),
     captain: z.string(),
     terms: z.literal(true, {
       errorMap: () => ({message: "You must accept the tournament rules"})
@@ -50,9 +52,11 @@ const KPCSignupForm = () => {
       ignPlayerOne: data.ignPlayerOne,
       ignPlayerTwo: data.ignPlayerTwo,
       captain: data.captain,
+      discordSub: data.discordSub,
+      ignSub: data.ignSub
     }, {
       onSuccess: () => {
-        router.push('/home')
+        router.push('/kpc/teams')
         toast.success('Succesfully signed up your team')
       },
       onError: () => {
@@ -64,7 +68,7 @@ const KPCSignupForm = () => {
   return (
     <div>
       <section className="bg-gray-50 dark:bg-gray-900">
-        <div className="flex flex-col items-center pl-16 justify-center px-6 py-8 mx-auto md:mt-8 lg:py-0">
+        <div className="flex flex-col items-center pl-16 justify-center px-6 py-8 mx-auto md:mt-12 lg:py-0">
             <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-3xl xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -81,7 +85,7 @@ const KPCSignupForm = () => {
                           )}
                         </div>
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                        Players
+                        Players (if no sub, write / in the sub fields)
                         </h1>
                         <div className='grid grid-cols-2 space-x-8'>
                           <div>
@@ -99,6 +103,13 @@ const KPCSignupForm = () => {
                                 {errors.discordPlayerTwo?.message}
                               </p>
                             )}
+                            <label htmlFor="subDiscord" className="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white">Discord Sub (with #)</label>
+                            <input type="text" id="subDiscord" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='Duprious#1459' {...register("discordSub")} />
+                            {errors.discordSub && (
+                              <p className="text-xs italic text-red-500 mt-2">
+                                {errors.discordSub?.message}
+                              </p>
+                            )}
                           </div>
                           <div>
                             <label htmlFor="playerOneIGN" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">IGN Player 1 (Krunker)</label>
@@ -113,6 +124,13 @@ const KPCSignupForm = () => {
                             {errors.ignPlayerTwo && (
                               <p className="text-xs italic text-red-500 mt-2">
                                 {errors.ignPlayerTwo?.message}
+                              </p>
+                            )}
+                            <label htmlFor="subIGN" className="block mb-2 text-sm font-medium mt-4 text-gray-900 dark:text-white">IGN Sub (Krunker)</label>
+                            <input type="text" id="subIGN" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='flipbait' {...register("ignSub")} />
+                            {errors.ignSub && (
+                              <p className="text-xs italic text-red-500 mt-2">
+                                {errors.ignSub?.message}
                               </p>
                             )}
                           </div>

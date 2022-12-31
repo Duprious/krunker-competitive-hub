@@ -12,7 +12,8 @@ const Navbar = () => {
     { name: 'Home', href: '/home', current: false },
     { name: 'Tournaments', href: '/tournaments', current: false },
     { name: 'Players', href: '/players', current: false },
-    { name: 'KPC', href: '/kpc', current: false },
+    { name: 'EU Tournament Signup', href: '/kpc/signup', current: false },
+    { name: 'Admin KPC', href: '/kpc', current: false },
   ]
 
   function classNames(...classes: string[]) {

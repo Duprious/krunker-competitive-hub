@@ -18,6 +18,7 @@ const Teams: NextPage = () => {
             <div className="flex flex-col justify-between gap-8 md:flex-row">
               <h1 className="text-center text-5xl font-semibold md:ml-8 md:text-start">
                 Signed-Up Teams
+                <p className='text-xl text-red-500 mt-3'>(To remove your team, contact an Admin)</p>
               </h1>
               <div className="md:mr-8 mt-4 text-center text-lg dark:text-teal-500 font-medium text-gray-800">
                 {`Total Teams: ${allTeamsData?.length}`}
@@ -34,6 +35,8 @@ const Teams: NextPage = () => {
                 captain={team.captain}
                 discordPlayerOne={team.discordPlayerOne}
                 discordPlayerTwo={team.discordPlayerTwo}
+                discordSub={team.discordSub}
+                ignSub={team.ignSub}
                 ignPlayerOne={team.ignPlayerOne}
                 ignPlayerTwo={team.ignPlayerTwo}
                 teamName={team.teamName}
