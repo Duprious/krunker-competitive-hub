@@ -21,7 +21,7 @@ const Teams: NextPage = () => {
                 <p className='text-xl text-red-500 mt-3'>(To remove your team, contact an Admin)</p>
               </h1>
               <div className="md:mr-8 mt-4 text-center text-lg dark:text-teal-500 font-medium text-gray-800">
-                {`Total Teams: ${allTeamsData?.length}`}
+                {`Total Teams: ${allTeamsData?.length}/16`}
               </div>
             </div>
             <hr className="mt-10" />
