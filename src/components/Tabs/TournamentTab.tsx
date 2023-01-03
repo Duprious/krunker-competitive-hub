@@ -13,11 +13,10 @@ type TournamentData = {
   region: string | undefined;
   startDate: Date | undefined;
   type: string | undefined;
-  name: string | undefined;
 }
 
 
-const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, name, region, startDate, type}) => {
+const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, region, startDate, type}) => {
   const [categories] = useState(["Info", "Date", "Misc", "Bracket", "Rules"   ])
 
   return (
@@ -56,7 +55,7 @@ const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, nam
             <p className='text-lg'>Host: {hostName}</p>
           </Tab.Panel>
           <Tab.Panel>
-            Doesn't exist yet
+            Doesn&apos;t exist yet
           </Tab.Panel>
           <Tab.Panel>
             Rules coming later

@@ -42,7 +42,6 @@ const TournamentPage: NextPage = () => {
               startDate={tournamentData?.startDate}
               id={tournamentData?.id}
               region={tournamentData?.region}
-              name={tournamentData?.name}
               type={tournamentData?.type}
               />
             {tournamentData?.id === "clc4s54ss0000mi08gdfk1d8j" &&
