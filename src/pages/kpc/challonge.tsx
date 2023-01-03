@@ -42,7 +42,7 @@ const Challonge = () => {
   }
 
   const handleClick = () => {
-    createBracketMutation.mutateAsync({tournamentName: "test_tournament_1", tournamentType: "double elimination", tournamentUrl: "kpc_test_url_12345"}, {
+    createBracketMutation.mutateAsync({tournamentName: "2v2 EU 200$", tournamentType: "double elimination", tournamentUrl: "EU_S2_2v2"}, {
       onSuccess: () => {
         toast.success("Tournament created successfully")
         const participants = seededTeamsState.map(team => {
@@ -51,7 +51,7 @@ const Challonge = () => {
             seed: team.seed
           }
         })
-        addParticipantsMutation.mutateAsync({tournamentUrl: "kpc_test_url_12345", participants}, {
+        addParticipantsMutation.mutateAsync({tournamentUrl: "EU_S2_2v2", participants}, {
           onSuccess: () => {
             toast.success("Participants added successfully")
           },
