@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import Layout from '../../components/Layout'
+import TournamentTab from '../../components/Tabs/TournamentTab'
 import { getServerAuthSession } from '../../server/common/get-server-auth-session'
 import { trpc } from '../../utils/trpc'
 
@@ -33,25 +34,27 @@ const TournamentPage: NextPage = () => {
             <hr className="mt-10" />
           </div>
         </section>
-        <section className='pt-6'>
-          <div className='flex flex-col gap-6 font-md'>
-            <h1 className='text-3xl font-semibold'>Tournament Info</h1>
-            <p className='text-lg'>Tournament ID: {tournamentData?.id}</p>
-            <p className='text-lg'>Tournament Name: {tournamentData?.name}</p>
-            <p className='text-lg'>Tournament Description: {tournamentData?.description}</p>
-            <p className='text-lg'>Tournament Start Date: | {tournamentData?.startDate.toString()} |</p>
-            <p className='text-lg'>Tournament Type: {tournamentData?.type}</p>
-            <p className='text-lg'>Tournament Region: {tournamentData?.region}</p>
-            <p className='text-lg'>Tournament Host: {tournamentData?.hostName}</p>
-
+        <section>
+          <div className='flex flex-col pt-6'>
+            <TournamentTab
+              description={tournamentData?.description}
+              hostName={tournamentData?.hostName}
+              startDate={tournamentData?.startDate}
+              id={tournamentData?.id}
+              region={tournamentData?.region}
+              name={tournamentData?.name}
+              type={tournamentData?.type}
+              />
             {tournamentData?.id === "clc4s54ss0000mi08gdfk1d8j" &&
+            <div className='pt-8'>
               <Link href="/kpc/signup">
                 <button className="text-white mt-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                   Sign Up Here
                 </button>
               </Link>
+            </div>
             }
-        </div>
+          </div>
         </section>
       </main>
     </Layout>
