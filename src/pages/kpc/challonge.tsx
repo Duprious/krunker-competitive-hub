@@ -109,11 +109,12 @@ const Challonge = () => {
           </div>
         </section>
         <section className='flex justify-center pt-12'>
-          <button disabled={seededTeams?.length == 0} onClick={() => handleClick()} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Create Bracket
-          </button>
-          {createBracketMutation.isLoading && <p>Creating tournament...</p>}
-          {addParticipantsMutation.isLoading && <p>Adding participants...</p>}
+          <div className='flex flex-col justify-center items-center'>
+            <button disabled={seededTeams?.length == 0} onClick={() => handleClick()} className="bg-blue-500 disabled:bg-red-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              {seededTeams?.length == 0 ? "No teams" : "Create bracket"}
+            </button>
+            <h1 className='mt-4 text-sm'>On Error, go back to KPC Admin page and Re-enter this page</h1>
+          </div>
         </section>
       </main>
       :
