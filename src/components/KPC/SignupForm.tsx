@@ -104,7 +104,7 @@ const KPCSignupForm = () => {
                               </p>
                             )}
                             <label htmlFor="subDiscord" className="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white">Discord Sub (with #)</label>
-                            <input type="text" id="subDiscord" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='Duprious#1459' {...register("discordSub")} />
+                            <input value="/" type="text" id="subDiscord" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='Duprious#1459' {...register("discordSub")} />
                             {errors.discordSub && (
                               <p className="text-xs italic text-red-500 mt-2">
                                 {errors.discordSub?.message}
@@ -127,7 +127,7 @@ const KPCSignupForm = () => {
                               </p>
                             )}
                             <label htmlFor="subIGN" className="block mb-2 text-sm font-medium mt-4 text-gray-900 dark:text-white">IGN Sub (Krunker)</label>
-                            <input type="text" id="subIGN" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='flipbait' {...register("ignSub")} />
+                            <input value="/" type="text" id="subIGN" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='flipbait' {...register("ignSub")} />
                             {errors.ignSub && (
                               <p className="text-xs italic text-red-500 mt-2">
                                 {errors.ignSub?.message}

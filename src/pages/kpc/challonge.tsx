@@ -42,7 +42,7 @@ const Challonge = () => {
   }
 
   const handleClick = () => {
-    createBracketMutation.mutateAsync({tournamentName: "2v2 EU 200$", tournamentType: "double elimination", tournamentUrl: "EU_S2_2v2"}, {
+    createBracketMutation.mutateAsync({tournamentName: "2v2 EU $200", tournamentType: "double elimination", tournamentUrl: "EU_S2_2v2"}, {
       onSuccess: () => {
         toast.success("Tournament created successfully")
         const participants = seededTeamsState.map(team => {
