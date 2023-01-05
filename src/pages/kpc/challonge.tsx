@@ -75,6 +75,7 @@ const Challonge = () => {
             <div className="flex flex-col justify-between gap-8 md:flex-row">
               <h1 className="text-center text-5xl font-semibold md:ml-8 md:text-start">
                 Seed currently validated teams (Make sure signups are done)
+                <p className='text-xl text-red-500 mt-3'>(Page only made for web)</p>
               </h1>
             </div>
             <hr className="mt-10" />
