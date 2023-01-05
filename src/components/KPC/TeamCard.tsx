@@ -40,7 +40,7 @@ const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, discordPlayerOne,
       <div className="mt-3">
         <div className='flex justify-between'>
           <h1
-            className="text-2xlfont-semibold text-gray-200 hover:text-gray-100"
+            className="text-2xl font-semibold text-gray-200 hover:text-gray-100"
             >
             {teamName}
           </h1>
