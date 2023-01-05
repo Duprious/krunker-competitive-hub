@@ -42,7 +42,7 @@ const Challonge = () => {
   }
 
   const handleClick = () => {
-    createBracketMutation.mutateAsync({tournamentName: "2v2 EU $200", tournamentType: "double elimination", tournamentUrl: "EU_S2_2v2"}, {
+    createBracketMutation.mutateAsync({tournamentName: "2v2 EU $200", tournamentType: "single elimination", tournamentUrl: "EU_S2_2v2"}, {
       onSuccess: () => {
         toast.success("Tournament created successfully")
         const participants = seededTeamsState.map(team => {
@@ -99,7 +99,7 @@ const Challonge = () => {
                />
                 <div className='flex mt-2'>
                   <select onChange={(e) => handleChange(e, team)} id={`team-${index}`} className="block appearance-none w-full bg-slate-800 border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline-blue focus:border-blue-300">
-                    {[...Array(16).keys()].map(number => (
+                    {[...Array(seededTeams.length).keys()].map(number => (
                       <option key={number} value={number + 1}>{number + 1}</option>
                       ))}
                   </select>

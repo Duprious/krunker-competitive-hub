@@ -12,7 +12,7 @@ const Signup: NextPage = () => {
 
   return (
     <Layout>
-      {teamsData && teamsData.length < 16 ? 
+      {teamsData && teamsData.length < 24 ? 
         <main className="container mx-auto flex flex-col justify-start p-4">
           <section>
             <div className="pt-4">
