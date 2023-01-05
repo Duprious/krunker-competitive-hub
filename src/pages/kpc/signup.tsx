@@ -30,10 +30,10 @@ const Signup: NextPage = () => {
         </main>
       : 
       <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Tournament full</h1>
-        <p className="text-gray-500 dark:text-gray-400">Max amount of teams have already signed up</p>
+        <h1 className="text-2xl font-bold text-gray-100">Tournament full</h1>
+        <p className="text-gray-400">Max amount of teams have already signed up</p>
         <Link href="/home">
-          <p className="text-blue-600 dark:text-blue-500 hover:underline">Return to the homepage</p>
+          <p className="text-blue-500 hover:underline">Return to the homepage</p>
         </Link>
       </div>
       }

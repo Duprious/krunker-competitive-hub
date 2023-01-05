@@ -28,7 +28,7 @@ const Login: NextPage = () => {
               width={250}
               height={250}
             />
-            <h2 className="mt-10 mb-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+            <h2 className="mt-10 mb-6 text-center text-3xl font-bold tracking-tighttext-gray-100">
               Sign in to your Discord Account
             </h2>
           </div>

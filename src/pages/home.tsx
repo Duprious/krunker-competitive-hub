@@ -47,7 +47,7 @@ const Home: NextPage = () => {
               <h1 className="text-center text-5xl text-[#DCF2FF] font-semibold md:ml-8 md:text-start">
                 Krunker Competitive Hub
               </h1>
-              <div className="md:mr-8 mt-4 text-center text-lg dark:text-teal-500 font-medium text-gray-800">
+              <div className="md:mr-8 mt-4 text-center text-lg text-teal-500 font-medium">
                 {`${userData?.name || "..."} | ${userData?.role || "..."}`}
               </div>
             </div>
