@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -48,7 +48,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  role          Role    @default(USER)         
+  role          Role      @default(USER)
   accounts      Account[]
   sessions      Session[]
 }
@@ -62,33 +62,65 @@ model VerificationToken {
 }
 
 model Tournament {
-  id          String   @id @default(cuid())
-  name        String
-  region      String
-  type        String
-  slug        String
-  description String
-  hostName    String   @default("Krunker")
-  maxTeams    Int      @default(8)
-  startDate   DateTime @default("2023-11-06T21:54:55Z")
-  endDate     DateTime @default("2024-11-06T21:54:55Z")
-  createdAt   DateTime @default(now())
+  id             String        @id @default(cuid())
+  name           String
+  region         String
+  type           String
+  slug           String
+  description    String
+  hostName       String        @default("Krunker")
+  maxTeams       Int           @default(8)
+  startDate      DateTime      @default("2023-11-06T21:54:55Z")
+  endDate        DateTime      @default("2024-11-06T21:54:55Z")
+  createdAt      DateTime      @default(now())
+  Organization   Organization? @relation(fields: [organizationId], references: [id])
+  organizationId String?
+  teams          Team[]
 
+  @@index([organizationId])
   @@map("Tournaments")
 }
 
+model Organization {
+  id          String       @id @default(cuid())
+  name        String
+  region      String
+  tournaments Tournament[]
+}
+
+model Team {
+  id           String     @id @default(cuid())
+  teamName     String
+  players      Player[]
+  captain      String
+  tournamentId String
+  tournament   Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+
+  @@index([tournamentId])
+}
+
+model Player {
+  id   String @id @default(cuid())
+  discordName String
+  ign String
+  Team   Team?   @relation(fields: [teamId], references: [id])
+  teamId String?
+
+  @@index([teamId])
+}
+
 model KPCTeam {
-  id String @id @default(cuid())
-  teamName String
+  id               String   @id @default(cuid())
+  teamName         String
   discordPlayerOne String
   discordPlayerTwo String
-  ignPlayerOne String
-  ignPlayerTwo String
-  discordSub String
-  ignSub String
-  captain String @default("Player 1")
-  createdAt DateTime @default(now())
-  validated Boolean @default(false)
+  ignPlayerOne     String
+  ignPlayerTwo     String
+  discordSub       String
+  ignSub           String
+  captain          String   @default("Player 1")
+  createdAt        DateTime @default(now())
+  validated        Boolean  @default(false)
 }
 
 enum Role {

@@ -55,7 +55,7 @@ const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, discordPlayerOne,
           {(discordSub !== "/" && ignSub !== "/") ?
             <span className='font-semibold'>Sub: {`${discordSub} | ${ignSub}`} </span>
           :
-            <span className='font-semibold'>No Sub </span> 
+            <span className='font-semibold'>No Sub </span>
           }
         </p>
       </div>
