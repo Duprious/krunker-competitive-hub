@@ -3,12 +3,11 @@ import Link from 'next/link'
 import React from 'react'
 
 interface OrganizationCardProps {
-  id: string
   name: string
   region: string
 }
 
-const OrganizationCard: NextPage<OrganizationCardProps> = ({id, name, region}) => {
+const OrganizationCard: NextPage<OrganizationCardProps> = ({name, region}) => {
   return (
     <Link href={`/admin/organizations/${name}`}>
       <div className="flex flex-col border border-cyan-300/40 justify-between gap-8 p-4 bg-slate-700/60 rounded-lg shadow-lg hover:shadow-2xl transition duration-300">

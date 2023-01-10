@@ -1,5 +1,4 @@
 import { GetServerSideProps, NextPage } from 'next'
-import Link from 'next/link'
 import React from 'react'
 import TournamentCard from '../components/Cards/TournamentCard'
 import Layout from '../components/Layout'
@@ -14,7 +13,6 @@ const Tournaments: NextPage = () => {
 
   const selectedFilter = useStore(state => state.selectedFilter)
   const { data: tournamentData } = trpc.tournament.getTournaments.useQuery()
-  const { data: userData } = trpc.user.getUser.useQuery()
 
   tournamentData?.sort((a, b) => {
     return new Date(a.startDate).valueOf() - new Date(b.startDate).valueOf();

@@ -27,7 +27,7 @@ const OrganizationsPage = () => {
           <ul className="grid gap-4 pt-10 sm:grid-cols-2 lg:grid-cols-3">
             {organizationsData?.map((organization) => (
               <li key={organization.id}>
-                <OrganizationCard id={organization.id} name={organization.name} region={organization.region} />
+                <OrganizationCard name={organization.name} region={organization.region} />
               </li>
             ))}
           </ul>

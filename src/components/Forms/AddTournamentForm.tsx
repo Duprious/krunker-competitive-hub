@@ -33,7 +33,6 @@ const AddTournamentForm = () => {
   const router = useRouter()
   const tournamentMutation = trpc.tournament.addTournament.useMutation()
   const { data: tournamentsData } = trpc.tournament.getTournaments.useQuery()
-  const { data: userData } = trpc.user.getUser.useQuery()
 
   const { register, handleSubmit, formState: {errors} } = useForm<AddTournamentSchema>({
     resolver: zodResolver(addTournamentSchema)
