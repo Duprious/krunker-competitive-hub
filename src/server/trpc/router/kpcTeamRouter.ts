@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { env } from "../../../env/server.mjs";
 import { router, protectedProcedure } from "../trpc";
 
 export const kpcTeamRouter = router({
@@ -46,6 +47,15 @@ export const kpcTeamRouter = router({
           discordSub: input.discordSub,
           ignSub: input.ignSub,
         }
+      })
+      fetch(env.DISCORD_WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          content: `New team added to the tournament: ${input.teamName}`
+        })
       })
       return team
     }),

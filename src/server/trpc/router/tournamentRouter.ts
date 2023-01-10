@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { env } from "../../../env/server.mjs";
 import { router, protectedProcedure, adminProcedure } from "../trpc";
 
 export const tournamentRouter = router({
@@ -53,6 +54,15 @@ export const tournamentRouter = router({
             }
           }
         }
+      })
+      fetch(env.DISCORD_WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          content: `New tournament created: ${input.name}`
+        })
       })
       return tournament;
     })
