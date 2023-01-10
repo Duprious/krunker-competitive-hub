@@ -86,6 +86,8 @@ model Organization {
   name        String
   region      String
   tournaments Tournament[]
+
+  @@unique([name])
 }
 
 model Team {

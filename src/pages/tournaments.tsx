@@ -29,23 +29,13 @@ const Tournaments: NextPage = () => {
               <h1 className="text-center text-5xl font-semibold md:ml-8 md:text-start">
                 Upcoming Krunker Tournaments
               </h1>
-              <div className="md:mr-8 mt-4 flex flex-col text-center text-lg text-teal-500 font-medium">
-                {`${userData?.name} | ${userData?.role}`}
-                {userData?.role === "ADMIN" &&
-                  <Link href={"/admin/tournament/create"}>
-                    <button type="button" className="text-white mt-4 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-blue-800">
-                      Add Tournament
-                    </button>
-                  </Link> 
-                }
+              <div className="md:mr-8 mt-4 flex flex-col text-center text-lg font-medium">
+                <div className='w-32'>
+                  <FilterBox />
+                </div>
               </div>
             </div>
             <hr className="mt-6" />
-          </div>
-          <div className='mt-4 flex justify-center md:justify-end md:mr-12'>
-            <div className='w-32'>
-              <FilterBox />
-            </div>
           </div>
           <motion.div layout>
             <ul className="grid gap-4 pt-10 md:grid-cols-2 xl:grid-cols-3">

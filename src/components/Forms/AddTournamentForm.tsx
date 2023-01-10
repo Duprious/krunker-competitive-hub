@@ -22,6 +22,7 @@ const addTournamentSchema = z
       }, z.date().min(new Date(), {message: "Start date must be in the future"})),
     }).refine(data => data.startDate < data.endDate, {message: "End date must be after the start date"}),
     region: z.string(),
+    organization: z.string(),
     type: z.string(),
   })
 
@@ -54,7 +55,7 @@ const AddTournamentForm = () => {
       endDate: data.dates.endDate,
       region: data.region.split(" ")[0] || "UKN",
       type: data.type,
-      admin: userData?.role === "ADMIN" ? true : false
+      organization: data.organization
     }, {
       onSuccess: () => {
         router.push('/tournaments')
@@ -166,6 +167,20 @@ const AddTournamentForm = () => {
             {errors.region && (
               <p className="text-xs italic text-red-500 mt-2">
                 {errors.region?.message}
+              </p>
+            )}
+          </div>
+          <div className="relative z-0 mb-6 w-full group">
+          <label htmlFor="organization" className="block mb-2 text-sm font-medium text-gray-400">Select Organization</label>
+            <select id="organization" className="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" {...register("organization")} >
+              <option value="clcnvr1df00007klsxzg9xrb0">KPC</option>
+              <option value="clcnvrbfi00027klsbqbey7i8">NACK</option>
+              <option value="clcnvrjdo00047klszi490wob">CKA</option>
+              <option value="clcphm5io00007k70huxdc8lr">OTHER</option>
+            </select>
+            {errors.organization && (
+              <p className="text-xs italic text-red-500 mt-2">
+                {errors.organization?.message}
               </p>
             )}
           </div>

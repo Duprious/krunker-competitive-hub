@@ -5,8 +5,6 @@ import { useStore } from '../../zustand/store'
 const AnnouncementBar = () => {
   const setAnnouncementBarClosed = useStore(state => state.setAnnouncementBarClosed)
   const announcementBarClosed = useStore(state => state.announcementBarClosed)
-
-
   return (
     announcementBarClosed ? null :
     <div className='bg-gray-900 text-white flex justify-between items-center py-2 text-xs '>

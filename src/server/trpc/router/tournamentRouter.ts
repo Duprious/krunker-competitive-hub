@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { router, protectedProcedure } from "../trpc";
+import { router, protectedProcedure, adminProcedure } from "../trpc";
 
 export const tournamentRouter = router({
   getTournaments: protectedProcedure
@@ -21,7 +21,7 @@ export const tournamentRouter = router({
       })
       return tournament;
     }),
-  addTournament: protectedProcedure
+  addTournament: adminProcedure
     .input(
       z.object({
         name: z.string(),
@@ -32,13 +32,10 @@ export const tournamentRouter = router({
         maxTeams: z.number(),
         region: z.string(),
         type: z.string(),
-        admin: z.boolean()
+        organization: z.string()
       })
     )
     .mutation(({ ctx, input }) => {
-      if (!input.admin) {
-        throw new Error("You are not authorized to create a tournament.");
-      }
       const tournament = ctx.prisma.tournament.create({
         data: {
           name: input.name,
@@ -49,7 +46,12 @@ export const tournamentRouter = router({
           hostName: input.hostName,
           maxTeams: input.maxTeams,
           region: input.region,
-          type: input.type
+          type: input.type,
+          Organization: {
+            connect: {
+              id: input.organization
+            }
+          }
         }
       })
       return tournament;

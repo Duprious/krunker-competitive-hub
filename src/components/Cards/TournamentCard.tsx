@@ -37,7 +37,7 @@ const TournamentCard: NextPage<TournamentCardProps> = ({name, startDate, region,
               {name}
             </h1>
           </div>
-          <p className="mt-2 text-gray-300 break-words">
+          <p className="mt-2 text-gray-300 break-words text-ellipsis min-h-[4.5em] max-h-full">
             {description}
           </p>
         </div>
