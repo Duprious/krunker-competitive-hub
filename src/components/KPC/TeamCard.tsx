@@ -48,7 +48,7 @@ const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, discordPlayerOne,
         <p className="mt-2 text-gray-300 break-words">
           <span className='font-semibold'>Player 1: </span>{`${discordPlayerOne} | ${ignPlayerOne}`}
         </p>
-        <p className='text-gray-300 break-words'>
+        <p className='text-gray-300 break-words text-ellipsis min-h-[4.5em] max-h-full'>
           <span className='font-semibold'>Player 2: </span> {`${discordPlayerTwo} | ${ignPlayerTwo}`}
         </p>
         <p className='text-gray-300 break-words'>
