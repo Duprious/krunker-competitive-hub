@@ -7,7 +7,6 @@ import { trpc } from "../utils/trpc";
 
 import "../styles/globals.css";
 import Head from "next/head";
-import AnnouncementBar from "../components/Bars/AnnouncementBar";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,

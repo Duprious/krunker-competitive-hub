@@ -4,11 +4,8 @@ import React from 'react'
 import { Toaster } from 'react-hot-toast'
 import Layout from '../../components/Layout'
 import { getServerAuthSession } from '../../server/common/get-server-auth-session'
-import { trpc } from '../../utils/trpc'
 
 const Signup: NextPage = () => {
-  const { data: teamsData } = trpc.kpcTeam.getAllTeams.useQuery()
-
   return (
     <Layout>
       {/* {teamsData && teamsData.length < 16 ? 

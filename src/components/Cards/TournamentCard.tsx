@@ -30,14 +30,14 @@ const TournamentCard: NextPage<TournamentCardProps> = ({name, startDate, region,
           </span>
         </div>
         <div className="mt-2">
-          <div className='flex justify-between'>
+          <div className='flex justify-between relative'>
             <h1
               className="text-2xl font-semibold text-gray-200 hover:text-gray-100"
               >
               {name}
             </h1>
           </div>
-          <p className="mt-2 text-gray-300 break-words text-ellipsis min-h-[4.5em] max-h-full">
+          <p className="mt-2 text-gray-300 line-clamp-3 leading-7 min-h-[5.25em]">
             {description}
           </p>
         </div>
