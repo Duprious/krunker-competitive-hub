@@ -12,7 +12,7 @@ const Signup: NextPage = () => {
 
   return (
     <Layout>
-      {teamsData && teamsData.length < 16 ? 
+      {/* {teamsData && teamsData.length < 16 ? 
         <main className="container mx-auto flex flex-col justify-start p-4">
           <section>
             <div className="pt-4">
@@ -28,15 +28,15 @@ const Signup: NextPage = () => {
             <KPCSignupForm />
           </section>
         </main>
-      : 
+      :  */}
       <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-2xl font-bold text-gray-100">Tournament full</h1>
-        <p className="text-gray-400">Max amount of teams have already signed up</p>
+        <h1 className="text-2xl font-bold text-gray-100">Signups Closed</h1>
+        <p className="text-gray-400">Signups have been closed and maximum teams have been reached</p>
         <Link href="/home">
           <p className="text-blue-500 hover:underline">Return to the homepage</p>
         </Link>
       </div>
-      }
+      {/* } */}
       <Toaster />
     </Layout>
   )
