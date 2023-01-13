@@ -34,7 +34,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
           <meta name="twitter:image" content="https://i.ibb.co/KLzJbYg/JTz-Oke7a-2x.png" />
         </Head>
         <div className="bg-gray-900 text-white">
-          <AnnouncementBar />
+          {/* <AnnouncementBar /> */}
           <Component {...pageProps} />
         </div>
     </SessionProvider>
