@@ -1,6 +1,5 @@
 import { router } from "../trpc";
 import { authRouter } from "./auth";
-import { challongeBracketRouter } from "./challongeBracketRouter";
 import { kpcTeamRouter } from "./kpcTeamRouter";
 import { organizationsRouter } from "./organizationsRouter";
 import { tournamentRouter } from "./tournamentRouter";
@@ -11,7 +10,6 @@ export const appRouter = router({
   auth: authRouter,
   user: userRouter,
   kpcTeam: kpcTeamRouter,
-  challongeRouter: challongeBracketRouter,
   organizations: organizationsRouter
 });
 

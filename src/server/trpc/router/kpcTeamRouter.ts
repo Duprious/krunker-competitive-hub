@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { env } from "../../../env/server.mjs";
-import { router, protectedProcedure } from "../trpc";
+import { router, protectedProcedure, adminProcedure } from "../trpc";
 
 export const kpcTeamRouter = router({
   getAllTeams: protectedProcedure
@@ -22,7 +22,7 @@ export const kpcTeamRouter = router({
       })
       return team
     }),
-  addTeam: protectedProcedure
+  addTeam: adminProcedure
     .input(
       z.object({
         teamName: z.string(),

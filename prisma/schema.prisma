@@ -76,6 +76,8 @@ model Tournament {
   Organization   Organization? @relation(fields: [organizationId], references: [id])
   organizationId String?
   teams          Team[]
+  signupsClosed  Boolean       @default(false)
+  ended          Boolean       @default(false)
 
   @@index([organizationId])
   @@map("Tournaments")
@@ -102,11 +104,11 @@ model Team {
 }
 
 model Player {
-  id   String @id @default(cuid())
+  id          String  @id @default(cuid())
   discordName String
-  ign String
-  Team   Team?   @relation(fields: [teamId], references: [id])
-  teamId String?
+  ign         String
+  Team        Team?   @relation(fields: [teamId], references: [id])
+  teamId      String?
 
   @@index([teamId])
 }
