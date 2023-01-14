@@ -1,4 +1,5 @@
 import { Tab } from '@headlessui/react'
+import { format } from 'date-fns';
 import { NextPage } from 'next';
 import React, { useState } from 'react'
 
@@ -43,16 +44,16 @@ const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, reg
         </Tab.List>
         <Tab.Panels className="mt-6">
           <Tab.Panel>
-            <p className='text-lg'>ID: {id}</p>
-            <p className='text-lg'>Description: {description}</p>
+            <p className='text-xl'>ID: {id}</p>
+            <p className='text-xl'>Description: {description}</p>
           </Tab.Panel>
           <Tab.Panel>
-            <p className='text-lg'>Start Date: | {startDate?.toString()} |</p>
+            <p className='text-xl'>{startDate ? format(startDate, "EEEE, MMM Do 'at' h:mm a") : "Unknown"}</p>
           </Tab.Panel>
           <Tab.Panel>
-            <p className='text-lg'>Type: {type}</p>
-            <p className='text-lg'>Region: {region}</p>
-            <p className='text-lg'>Host: {hostName}</p>
+            <p className='text-xl'>Type: {type}</p>
+            <p className='text-xl'>Region: {region}</p>
+            <p className='text-xl'>Host: {hostName}</p>
           </Tab.Panel>
           <Tab.Panel>
             Doesn&apos;t exist yet

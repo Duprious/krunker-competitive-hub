@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-import TournamentCard from '../../../components/Cards/TournamentCard'
+import AdminTournamentCard from '../../../components/Cards/AdminTournamentCard'
 import Layout from '../../../components/Layout'
 import { getServerAuthSession } from '../../../server/common/get-server-auth-session'
 import { trpc } from '../../../utils/trpc'
@@ -39,7 +39,7 @@ const OrganizationPage = () => {
           <ul className="grid gap-4 pt-10 sm:grid-cols-2 lg:grid-cols-3">
             {tournamentsData?.tournaments.map((tournament) => (
               <li key={tournament.id}>
-                <TournamentCard
+                <AdminTournamentCard
                   name={tournament.name}
                   description={tournament.description}
                   hostName={tournament.hostName}
@@ -47,6 +47,7 @@ const OrganizationPage = () => {
                   id={tournament.id}
                   region={tournament.region}
                   type={tournament.type}
+                  organization={query}
                 />
               </li>
             ))}
