@@ -11,7 +11,7 @@ import { trpc } from '../../../utils/trpc'
 const Signup: NextPage = () => {
   const router = useRouter()
   const query = router.query.tournamentId as string
-  const { data: tournamentData, error } = trpc.tournament.getTournament.useQuery({id: query})
+  const { data: tournamentData } = trpc.tournament.getTournament.useQuery({id: query})
   
   return (
     <Layout>

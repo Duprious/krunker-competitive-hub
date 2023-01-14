@@ -21,7 +21,7 @@ const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, reg
   const [categories] = useState(["Info", "Date", "Misc", "Bracket", "Rules"   ])
 
   return (
-    <div className="w-full justify max-w-3xl sm:px-0">
+    <div className="w-full justify max-w-full sm:px-0">
       <Tab.Group>
         <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
           {categories.map((category) => (
@@ -56,7 +56,7 @@ const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, reg
             <p className='text-xl'>Host: {hostName}</p>
           </Tab.Panel>
           <Tab.Panel>
-            Doesn&apos;t exist yet
+            {id === "clc4s54ss0000mi08gdfk1d8j" ? <iframe src="https://challonge.com/EU_S2_2v2/module" width="100%" height="625" className='border-0' scrolling="auto" allowTransparency={true}></iframe> : <p className='text-xl'>No bracket available</p>}
           </Tab.Panel>
           <Tab.Panel>
             Rules coming later
