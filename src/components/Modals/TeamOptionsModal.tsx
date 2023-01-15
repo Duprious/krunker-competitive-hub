@@ -10,63 +10,9 @@ const TeamOptionsModal = () => {
   const currentTeam = useStore(state => state.currentTeam)
   const setCurrentTeam = useStore(state => state.setCurrentTeam)
   const { data: userData } = trpc.user.getUser.useQuery()
-  const removeTeamMutation = trpc.kpcTeam.removeTeam.useMutation()
-  const renameTeamMutation = trpc.kpcTeam.renameTeam.useMutation()
-  const validateTeamMutation = trpc.kpcTeam.validateTeam.useMutation()
-  const unvalidateTeamMutation = trpc.kpcTeam.unvalidateTeam.useMutation()
-  const getTeam = trpc.kpcTeam.getTeam.useQuery({id: currentTeam})
   const utils = trpc.useContext()
   const [newName, setNewName] = useState("")
 
-  const handleCloseModal = () => {
-    closeModal()
-    setCurrentTeam('')
-  }
-
-  const handleRemove = () => {
-    removeTeamMutation.mutateAsync({id: currentTeam, admin: userData?.role === "ADMIN"}, {
-      onSuccess: () => {
-        handleCloseModal()
-        toast.success('Team Removed')
-        utils.invalidate()
-      }
-    })
-  }
-
-  const handleRename = () => {
-    setNewName("")
-    if (newName.length < 1) {
-      toast.error('Team Name Must Be At Least 1 Character')
-      return
-    }
-    renameTeamMutation.mutateAsync({id: currentTeam, teamName: newName, admin: userData?.role === "ADMIN"}, {
-      onSuccess: () => {
-        handleCloseModal()
-        toast.success('Team Renamed')
-        utils.invalidate()
-      }
-    })
-  }
-
-  const handleValidate = () => {
-    if (getTeam.data?.validated) {
-      unvalidateTeamMutation.mutateAsync({id: currentTeam, admin: userData?.role === "ADMIN"}, {
-        onSuccess: () => {
-          handleCloseModal()
-          toast.success('Team Unvalidated')
-          utils.invalidate()
-        }
-      })
-    } else {
-      validateTeamMutation.mutateAsync({id: currentTeam, admin: userData?.role === "ADMIN"}, {
-        onSuccess: () => {
-          handleCloseModal()
-          toast.success('Team Validated')
-          utils.invalidate()
-        }
-      })
-    }
-  }
 
   return (
     <>
@@ -107,7 +53,6 @@ const TeamOptionsModal = () => {
                     <div className="flex gap-4 items-center">
                       <button
                         type="button"
-                        onClick={() => handleRemove()}
                         className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       >
                         Remove
@@ -117,17 +62,15 @@ const TeamOptionsModal = () => {
                     <div className="flex gap-4 items-center">
                       <button
                         type="button"
-                        onClick={() => handleValidate()}
                         className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       >
-                        {getTeam.data?.validated ? 'Unvalidate Team' : 'Validate Team'}
+                        {/* {getTeam.data?.validated ? 'Unvalidate Team' : 'Validate Team'} */}
                       </button>
                       <h1 className='text-base font-medium'>After checking accounts on Discord</h1>
                     </div>
                     <div className="flex gap-4 items-center">
                       <button
                         type="button"
-                        onClick={() => handleRename()}
                         className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       >
                         Rename
@@ -140,7 +83,6 @@ const TeamOptionsModal = () => {
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-300 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={() => handleCloseModal()}
                     >
                       Close
                     </button>
