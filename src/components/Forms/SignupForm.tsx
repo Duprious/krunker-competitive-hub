@@ -26,43 +26,12 @@ type RegisterTeamSchema = z.infer<typeof registerTeamSchema>
 const SignupForm = () => {
 
   const router = useRouter()
-  const teamMutation = trpc.kpcTeam.addTeam.useMutation()
-  const { data: allTeamsData } = trpc.kpcTeam.getAllTeams.useQuery()
 
   const { register, handleSubmit, formState: {errors} } = useForm<RegisterTeamSchema>({
     resolver: zodResolver(registerTeamSchema)
   });
 
   const onSubmit: SubmitHandler<RegisterTeamSchema> = (data) => {
-
-    if (allTeamsData?.find(team => team.teamName === data.teamName)) {
-      toast.error("Team with that name already exists")
-      return
-    }
-
-    if ((allTeamsData?.find(team => team.discordPlayerOne === data.discordPlayerOne)) || allTeamsData?.find(team => team.discordPlayerTwo === data.discordPlayerTwo) || allTeamsData?.find(team => team.ignPlayerOne === data.ignPlayerOne) || allTeamsData?.find(team => team.ignPlayerTwo === data.ignPlayerTwo)) {
-      toast.error(`One of the players is already signed up for the tournament`)
-      return
-    }
-
-    teamMutation.mutateAsync({
-      teamName: data.teamName,
-      discordPlayerOne: data.discordPlayerOne,
-      discordPlayerTwo: data.discordPlayerTwo,
-      ignPlayerOne: data.ignPlayerOne,
-      ignPlayerTwo: data.ignPlayerTwo,
-      captain: data.captain,
-      discordSub: data.discordSub,
-      ignSub: data.ignSub
-    }, {
-      onSuccess: () => {
-        router.push('/kpc/teams')
-        toast.success('Succesfully signed up your team')
-      },
-      onError: () => {
-        toast.error("Couldn't sign up your team. Please contact an Admin on Discord")
-      }
-    })
   }
 
   return (
