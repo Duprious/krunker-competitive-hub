@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { env } from "../../../env/server.mjs";
 import { router, protectedProcedure, adminProcedure } from "../trpc";
 
 export const tournamentRouter = router({

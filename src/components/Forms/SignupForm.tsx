@@ -2,9 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { toast } from 'react-hot-toast'
 import { z } from 'zod'
-import { trpc } from '../../utils/trpc'
 
 const registerTeamSchema = z
   .object({
@@ -25,13 +23,12 @@ type RegisterTeamSchema = z.infer<typeof registerTeamSchema>
 
 const SignupForm = () => {
 
-  const router = useRouter()
-
   const { register, handleSubmit, formState: {errors} } = useForm<RegisterTeamSchema>({
     resolver: zodResolver(registerTeamSchema)
   });
 
   const onSubmit: SubmitHandler<RegisterTeamSchema> = (data) => {
+    console.log(data)
   }
 
   return (
