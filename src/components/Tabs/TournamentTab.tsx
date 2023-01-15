@@ -14,10 +14,11 @@ type TournamentData = {
   region: string | undefined;
   startDate: Date | undefined;
   type: string | undefined;
+  bracketLink: string | null | undefined;
 }
 
 
-const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, region, startDate, type}) => {
+const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, region, startDate, type, bracketLink}) => {
   const [categories] = useState(["Info", "Date", "Misc", "Bracket", "Rules"   ])
 
   return (
@@ -56,10 +57,13 @@ const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, reg
             <p className='text-xl'>Host: {hostName}</p>
           </Tab.Panel>
           <Tab.Panel>
-            {id === "clc4s54ss0000mi08gdfk1d8j" ? <iframe src="https://challonge.com/EU_S2_2v2/module" width="100%" height="625" className='border-0' scrolling="auto" allowTransparency={true}></iframe> : <p className='text-xl'>No bracket available</p>}
+            {bracketLink 
+            ? <iframe src={`${bracketLink}/module`} width="100%" height="625" className='border-0 overflow-hidden' allowTransparency={true} />
+            : <p className='text-xl'>No Bracket Added Yet</p>
+            }
           </Tab.Panel>
           <Tab.Panel>
-            Rules coming later
+            Rules added in later update
           </Tab.Panel>
         </Tab.Panels>
       </Tab.Group>

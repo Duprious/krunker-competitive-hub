@@ -55,15 +55,25 @@ export const tournamentRouter = router({
           }
         }
       })
-      fetch(env.DISCORD_WEBHOOK_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
+      return tournament;
+    }),
+    addBracketLink: adminProcedure
+    .input(
+      z.object({
+        tournamentId: z.string(),
+        bracketLink: z.string()
+      })
+    )
+    .mutation(({ ctx, input }) => {
+      const tournament = ctx.prisma.tournament.update({
+        where: {
+          id: input.tournamentId
         },
-        body: JSON.stringify({
-          content: `New tournament created: ${input.name}`
-        })
+        data: {
+          bracketLink: input.bracketLink
+        }
       })
       return tournament;
-    })
+    }
+    ),
 });

@@ -73,11 +73,12 @@ model Tournament {
   startDate      DateTime      @default("2023-11-06T21:54:55Z")
   endDate        DateTime      @default("2024-11-06T21:54:55Z")
   createdAt      DateTime      @default(now())
+  signupsClosed  Boolean       @default(false)
+  ended          Boolean       @default(false)
+  bracketLink    String?
   Organization   Organization? @relation(fields: [organizationId], references: [id])
   organizationId String?
   teams          Team[]
-  signupsClosed  Boolean       @default(false)
-  ended          Boolean       @default(false)
 
   @@index([organizationId])
   @@map("Tournaments")
@@ -95,19 +96,23 @@ model Organization {
 model Team {
   id           String     @id @default(cuid())
   teamName     String
-  players      Player[]
+  players      Player[]   @relation("players")
+  Sub          Player?    @relation("Sub", fields: [playerId], references: [id])
   captain      String
   tournamentId String
   tournament   Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  playerId     String?
 
   @@index([tournamentId])
+  @@index([playerId])
 }
 
 model Player {
   id          String  @id @default(cuid())
   discordName String
   ign         String
-  Team        Team?   @relation(fields: [teamId], references: [id])
+  SubFor      Team[]  @relation("Sub")
+  team        Team[]  @relation("players")
   teamId      String?
 
   @@index([teamId])

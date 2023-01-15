@@ -10,10 +10,10 @@ const AnnouncementBar = () => {
     <div className='bg-gray-900 text-white flex justify-between items-center py-2 text-xs '>
       <Marquee speed={30} gradient={false}>
         <div className='flex items-center mr-8 '>
-          <span className='mr-32'>KPC EU 2v2 Tournament Signups Closing Soon</span>
-          <span className='mr-32'>KPC EU 2v2 Tournament Signups Closing Soon</span>
-          <span className='mr-32'>KPC EU 2v2 Tournament Signups Closing Soon</span>
-          <span className='mr-32'>KPC EU 2v2 Tournament Signups Closing Soon</span>
+          <span className='mr-32'>Congrats to Team 2months for winning the KPC 2v2 Tournament</span>
+          <span className='mr-32'>Congrats to Team 2months for winning the KPC 2v2 Tournament</span>
+          <span className='mr-32'>Congrats to Team 2months for winning the KPC 2v2 Tournament</span>
+          <span className='mr-32'>Congrats to Team 2months for winning the KPC 2v2 Tournament</span>
         </div>
       </Marquee>
       <button onClick={setAnnouncementBarClosed}>
