@@ -12,11 +12,6 @@ const Home: NextPage = () => {
 
   const infoCards = [
     {
-      title: 'EU 2v2 Tournament Teams',
-      info: 'View all teams signed up for the KPC 2v2 tournament',
-      slug: 'kpc/teams'
-    },
-    {
       title: 'Tournaments',
       info: 'View upcoming tournaments.',
       slug: 'tournaments'
