@@ -13,9 +13,10 @@ interface AdminTournamentCardProps {
   hostName: string
   id: string
   organization: string
+  ended: boolean
 }
 
-const AdminTournamentCard: NextPage<AdminTournamentCardProps> = ({name, startDate, region, type, description, hostName, id, organization}) => {
+const AdminTournamentCard: NextPage<AdminTournamentCardProps> = ({name, startDate, region, type, description, hostName, id, organization, ended}) => {
   const router = useRouter()
   
 
@@ -27,7 +28,7 @@ const AdminTournamentCard: NextPage<AdminTournamentCardProps> = ({name, startDat
             {convertTime(startDate)}
           </span>
           <span className="px-2 py-1 font-semibold text-gray-100 rounded-full bg-gray-700">
-            {`${region} / ${type}`} 
+            {`${region} / ${type}`}
           </span>
         </div>
         <div className="mt-2">
@@ -42,7 +43,16 @@ const AdminTournamentCard: NextPage<AdminTournamentCardProps> = ({name, startDat
             {description}
           </p>
         </div>
-        <div className="flex items-center justify-end mt-4">
+        <div className="flex items-center mt-4 justify-between">
+          {ended ?
+          <div className="flex items-center">
+            <h1 className='text-base font-semibold text-red-400'>Ended</h1>
+          </div>
+          :  
+          <div className="flex items-center">
+            <h1 className='text-base font-semibold text-green-400'>Ongoing</h1>
+          </div>
+          }
           <div className="flex items-end">
             <h1 className="text-gray-200">Host: <span className='font-medium'>{hostName}</span></h1>
           </div>

@@ -1,16 +1,15 @@
 import { Dialog, Transition } from '@headlessui/react'
 import React, { Fragment, useState } from 'react'
-import { toast } from 'react-hot-toast'
 import { trpc } from '../../utils/trpc'
 import { useStore } from '../../zustand/store'
 
 const TeamOptionsModal = () => {
   const modalOpen = useStore(state => state.modalOpen)
   const closeModal = useStore(state => state.setModalClosed)
-  const currentTeam = useStore(state => state.currentTeam)
-  const setCurrentTeam = useStore(state => state.setCurrentTeam)
-  const { data: userData } = trpc.user.getUser.useQuery()
-  const utils = trpc.useContext()
+  // const currentTeam = useStore(state => state.currentTeam)
+  // const setCurrentTeam = useStore(state => state.setCurrentTeam)
+  // const { data: userData } = trpc.user.getUser.useQuery()
+  // const utils = trpc.useContext()
   const [newName, setNewName] = useState("")
 
 

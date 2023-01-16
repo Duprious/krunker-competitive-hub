@@ -48,6 +48,7 @@ const OrganizationPage = () => {
                   region={tournament.region}
                   type={tournament.type}
                   organization={query}
+                  ended={tournament.ended}
                 />
               </li>
             ))}

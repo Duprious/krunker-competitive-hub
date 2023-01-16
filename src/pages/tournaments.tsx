@@ -40,6 +40,7 @@ const Tournaments: NextPage = () => {
               <AnimatePresence> 
                 {tournamentData?.map((tournament) => (
                   tournament.region.split(' ')[0] === selectedFilter || selectedFilter === 'ALL' ? (
+                    tournament.ended ? null : (
                     <li key={tournament.id}>
                       <TournamentCard
                       name={tournament.name}
@@ -51,7 +52,7 @@ const Tournaments: NextPage = () => {
                       id={tournament.id}
                       />
                     </li>
-                  ) : null
+                  )) : null
                   ))}
               </AnimatePresence>
             </ul>
