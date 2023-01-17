@@ -26,12 +26,27 @@ type RegisterTeamSchema = z.infer<typeof registerTeamSchema>
 const TwoVsTwoSignupForm = ({tournamentId}: {tournamentId: string}) => {
   const addTwoVsTwoTeam = trpc.teamRouter.addTeam2v2.useMutation()
   const router = useRouter()
+  const {data: tournamentsData} = trpc.tournament.getTournaments.useQuery()
 
   const { register, handleSubmit, formState: {errors} } = useForm<RegisterTeamSchema>({
     resolver: zodResolver(registerTeamSchema)
   });
 
   const onSubmit: SubmitHandler<RegisterTeamSchema> = async (data) => {
+
+    // check duplicate team name
+    const duplicateTeamName = tournamentsData?.find(tournament => tournament.id === tournamentId)?.teams.find(team => team.teamName === data.teamName)
+    if (duplicateTeamName) return toast.error("Team name already exists. Please choose another name.")
+
+    // check duplicate player
+    const duplicatePlayer = tournamentsData?.find(tournament => tournament.id === tournamentId)?.teams.find(team => team.players.find(player => player.discordName === data.discordPlayerOne || player.discordName === data.discordPlayerTwo || player.discordName === data.discordSub))
+    if (duplicatePlayer) return toast.error("One of your players is already registered in another team. Please choose another player.")
+
+    // check duplicate ign
+    const duplicateIgn = tournamentsData?.find(tournament => tournament.id === tournamentId)?.teams.find(team => team.players.find(player => player.ign === data.ignPlayerOne || player.ign === data.ignPlayerTwo || player.ign === data.ignSub))
+    if (duplicateIgn) return toast.error("One of your players is already registered in another team. Please choose another player.")
+
+
     await addTwoVsTwoTeam.mutateAsync({
       tournamentId: tournamentId,
       name: data.teamName,

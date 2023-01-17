@@ -3,11 +3,17 @@ import { router, protectedProcedure, adminProcedure } from "../trpc";
 
 export const tournamentRouter = router({
   getTournaments: protectedProcedure
-    .query(({ ctx }) => {
-      const tournaments = ctx.prisma.tournament.findMany(
+    .query(async({ ctx }) => {
+      const tournaments = await ctx.prisma.tournament.findMany(
         {
           include: {
-            Organization: true
+            Organization: true,
+            teams: {
+              include: {
+                players: true,
+                Sub: true
+              }
+            }
           }
         }
       )
@@ -19,8 +25,8 @@ export const tournamentRouter = router({
         id: z.string(),
       })
     )
-    .query(({ ctx, input }) => {
-      const tournament = ctx.prisma.tournament.findUnique({
+    .query(async({ ctx, input }) => {
+      const tournament = await ctx.prisma.tournament.findUnique({
         where: {
           id: input.id
         },
@@ -50,8 +56,8 @@ export const tournamentRouter = router({
         organization: z.string()
       })
     )
-    .mutation(({ ctx, input }) => {
-      const tournament = ctx.prisma.tournament.create({
+    .mutation(async({ ctx, input }) => {
+      const tournament = await ctx.prisma.tournament.create({
         data: {
           name: input.name,
           slug: input.name.toLowerCase().replace(/ /g, "-"),
@@ -78,8 +84,8 @@ export const tournamentRouter = router({
         bracketLink: z.string()
       })
     )
-    .mutation(({ ctx, input }) => {
-      const tournament = ctx.prisma.tournament.update({
+    .mutation(async({ ctx, input }) => {
+      const tournament = await ctx.prisma.tournament.update({
         where: {
           id: input.tournamentId
         },
@@ -88,6 +94,114 @@ export const tournamentRouter = router({
         }
       })
       return tournament;
-    }
-    ),
+    }),
+    renameTournament: adminProcedure
+    .input(
+      z.object({
+        tournamentId: z.string(),
+        name: z.string()
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const tournament = await ctx.prisma.tournament.update({
+        where: {
+          id: input.tournamentId
+        },
+        data: {
+          name: input.name,
+          slug: input.name.toLowerCase().replace(/ /g, "-")
+        }
+      })
+      return tournament;
+    }),
+    setTournamentDescription: adminProcedure
+    .input(
+      z.object({
+        tournamentId: z.string(),
+        description: z.string()
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const tournament = await ctx.prisma.tournament.update({
+        where: {
+          id: input.tournamentId
+        },
+        data: {
+          description: input.description
+        }
+      })
+      return tournament;
+    }),
+    setTournamentEnded: adminProcedure
+    .input(
+      z.object({
+        tournamentId: z.string(),
+        ended: z.boolean()
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const tournament = await ctx.prisma.tournament.update({
+        where: {
+          id: input.tournamentId
+        },
+        data: {
+          ended: input.ended
+        }
+      })
+      return tournament;
+    }),
+    setSignupsClosed: adminProcedure
+    .input(
+      z.object({
+        tournamentId: z.string(),
+        signupsClosed: z.boolean()
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const tournament = await ctx.prisma.tournament.update({
+        where: {
+          id: input.tournamentId
+        },
+        data: {
+          signupsClosed: input.signupsClosed
+        }
+      })
+      return tournament;
+    }),
+    setType: adminProcedure
+    .input(
+      z.object({
+        tournamentId: z.string(),
+        type: z.string()
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const tournament = await ctx.prisma.tournament.update({
+        where: {
+          id: input.tournamentId
+        },
+        data: {
+          type: input.type
+        }
+      })
+      return tournament;
+    }),
+    setMaxTeams: adminProcedure
+    .input(
+      z.object({
+        tournamentId: z.string(),
+        maxTeams: z.number()
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const tournament = await ctx.prisma.tournament.update({
+        where: {
+          id: input.tournamentId
+        },
+        data: {
+          maxTeams: input.maxTeams
+        }
+      })
+      return tournament;
+    }),
 });
