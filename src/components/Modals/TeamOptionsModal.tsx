@@ -6,12 +6,60 @@ import { useStore } from '../../zustand/store'
 const TeamOptionsModal = () => {
   const modalOpen = useStore(state => state.modalOpen)
   const closeModal = useStore(state => state.setModalClosed)
-  // const currentTeam = useStore(state => state.currentTeam)
-  // const setCurrentTeam = useStore(state => state.setCurrentTeam)
-  // const { data: userData } = trpc.user.getUser.useQuery()
-  // const utils = trpc.useContext()
+  const currentTeam = useStore(state => state.currentTeam)
+  const setCurrentTeam = useStore(state => state.setCurrentTeam)
+  const { data: teamData } = trpc.teamRouter.getTeam.useQuery({ id: currentTeam })
+  const teamRenameMutation = trpc.teamRouter.renameTeam.useMutation()
+  const teamRemoveMutation = trpc.teamRouter.removeTeam.useMutation()
+  const teamValidateMutation = trpc.teamRouter.validateTeam.useMutation()
+  const teamInvalidateMutation = trpc.teamRouter.invalidateTeam.useMutation()
+  const utils = trpc.useContext()
   const [newName, setNewName] = useState("")
 
+  const handleRename = async () => {
+    await teamRenameMutation.mutateAsync({ id: currentTeam, name: newName }, {
+      onSuccess: () => {
+        utils.invalidate()
+        closeModal()
+        setCurrentTeam("")
+      }
+    })
+  }
+
+  const handleClose = () => {
+    closeModal()
+    setCurrentTeam("")
+  }
+
+  const handleRemove = async () => {
+    await teamRemoveMutation.mutateAsync({ id: currentTeam }, {
+      onSuccess: () => {
+        utils.invalidate()
+        closeModal()
+        setCurrentTeam("")
+      }
+    })
+  }
+
+  const handleValidation = async () => {
+    if (teamData?.validated) {
+      await teamInvalidateMutation.mutateAsync({ id: currentTeam }, {
+        onSuccess: () => {
+          utils.invalidate()
+          closeModal()
+          setCurrentTeam("")
+        }
+      })
+    } else {
+      await teamValidateMutation.mutateAsync({ id: currentTeam }, {
+        onSuccess: () => {
+          utils.invalidate()
+          closeModal()
+          setCurrentTeam("")
+        }
+      })
+    }
+  }
 
   return (
     <>
@@ -52,6 +100,7 @@ const TeamOptionsModal = () => {
                     <div className="flex gap-4 items-center">
                       <button
                         type="button"
+                        onClick={() => handleRemove()}
                         className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       >
                         Remove
@@ -61,15 +110,17 @@ const TeamOptionsModal = () => {
                     <div className="flex gap-4 items-center">
                       <button
                         type="button"
+                        onClick={() => handleValidation()}
                         className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       >
-                        {/* {getTeam.data?.validated ? 'Unvalidate Team' : 'Validate Team'} */}
+                        {teamData?.validated ? 'Unvalidate Team' : 'Validate Team'}
                       </button>
                       <h1 className='text-base font-medium'>After checking accounts on Discord</h1>
                     </div>
                     <div className="flex gap-4 items-center">
                       <button
                         type="button"
+                        onClick={() => handleRename()}
                         className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       >
                         Rename
@@ -81,6 +132,7 @@ const TeamOptionsModal = () => {
                   <div className="mt-6">
                     <button
                       type="button"
+                      onClick={() => handleClose()}
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-300 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                     >
                       Close

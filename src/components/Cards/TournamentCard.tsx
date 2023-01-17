@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { convertTime } from '../../utils/convertTime'
 import { motion } from 'framer-motion'
+import { Organization } from '@prisma/client'
 
 interface TournamentCardProps {
   name: string
@@ -12,9 +13,10 @@ interface TournamentCardProps {
   description: string
   hostName: string
   id: string
+  organization: Organization | null
 }
 
-const TournamentCard: NextPage<TournamentCardProps> = ({name, startDate, region, type, description, hostName, id}) => {
+const TournamentCard: NextPage<TournamentCardProps> = ({name, startDate, region, type, description, hostName, id, organization}) => {
   const router = useRouter()
   
 
@@ -43,7 +45,7 @@ const TournamentCard: NextPage<TournamentCardProps> = ({name, startDate, region,
         </div>
         <div className="flex items-center justify-end mt-4">
           <div className="flex items-end">
-            <h1 className="text-gray-200">Host: <span className='font-medium'>{hostName}</span></h1>
+            <h1 className="text-gray-200">Org: <span className='font-medium'>{organization?.name}</span></h1>
           </div>
         </div>
       </div>

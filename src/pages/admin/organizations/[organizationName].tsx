@@ -12,7 +12,17 @@ const OrganizationPage = () => {
   const query = router.query.organizationName as string
   const { data: tournamentsData} = trpc.organizations.getOrganizationTournaments.useQuery({name: query})
   const { data: userData } = trpc.user.getUser.useQuery()
-  
+
+  tournamentsData?.tournaments.sort((a, b) => {
+    if (a.ended && !b.ended) {
+      return 1
+    } else if (!a.ended && b.ended) {
+      return -1
+    } else {
+      return 0
+    }
+  })
+
   return (
     <Layout>
       {userData?.role === "ADMIN" ?

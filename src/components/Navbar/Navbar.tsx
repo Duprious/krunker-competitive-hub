@@ -64,6 +64,17 @@ const Navbar = () => {
                         {item.name}
                       </Link>
                     ))}
+                    {userData?.role === "ADMIN" && (
+                      <Link className={classNames(
+                      'text-gray-300 hover:bg-gray-700 hover:text-white',
+                      'px-3 py-2 rounded-md text-sm font-medium'
+                      )}
+                      key="Admin Panel"
+                      href="/admin/organizations"
+                      >
+                        Admin
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>

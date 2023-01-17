@@ -137,7 +137,6 @@ const AddTournamentForm = () => {
               <option>4v4</option>
               <option>3v3</option>
               <option>2v2</option>
-              <option>1v1</option>
             </select>
             {errors.type && (
               <p className="text-xs italic text-red-500 mt-2">

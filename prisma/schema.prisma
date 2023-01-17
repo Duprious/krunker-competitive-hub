@@ -100,6 +100,7 @@ model Team {
   Sub          Player?    @relation("Sub", fields: [playerId], references: [id])
   captain      String
   tournamentId String
+  validated    Boolean    @default(false)
   tournament   Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
   playerId     String?
 
@@ -116,20 +117,6 @@ model Player {
   teamId      String?
 
   @@index([teamId])
-}
-
-model KPCTeam {
-  id               String   @id @default(cuid())
-  teamName         String
-  discordPlayerOne String
-  discordPlayerTwo String
-  ignPlayerOne     String
-  ignPlayerTwo     String
-  discordSub       String
-  ignSub           String
-  captain          String   @default("Player 1")
-  createdAt        DateTime @default(now())
-  validated        Boolean  @default(false)
 }
 
 enum Role {

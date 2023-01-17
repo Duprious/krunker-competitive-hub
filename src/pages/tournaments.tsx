@@ -44,6 +44,7 @@ const Tournaments: NextPage = () => {
                     <li key={tournament.id}>
                       <TournamentCard
                       name={tournament.name}
+                      organization={tournament.Organization}
                       description={tournament.description}
                       region={tournament.region}
                       startDate={tournament.startDate.toString()}

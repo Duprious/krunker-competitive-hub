@@ -4,7 +4,13 @@ import { router, protectedProcedure, adminProcedure } from "../trpc";
 export const tournamentRouter = router({
   getTournaments: protectedProcedure
     .query(({ ctx }) => {
-      const tournaments = ctx.prisma.tournament.findMany()
+      const tournaments = ctx.prisma.tournament.findMany(
+        {
+          include: {
+            Organization: true
+          }
+        }
+      )
       return tournaments;
     }),
   getTournament: protectedProcedure
@@ -17,6 +23,15 @@ export const tournamentRouter = router({
       const tournament = ctx.prisma.tournament.findUnique({
         where: {
           id: input.id
+        },
+        include: {
+          teams: {
+            include: {
+              players: true,
+              Sub: true
+            }
+          },
+          Organization: true
         }
       })
       return tournament;

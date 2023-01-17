@@ -1,17 +1,22 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { toast } from 'react-hot-toast'
 import { z } from 'zod'
+import { trpc } from '../../utils/trpc'
 
 const registerTeamSchema = z
   .object({
     teamName: z.string().min(1, {message: "Team name is required"}).max(16, {message: "Team name cannot exceed 16 characters"}),
     discordPlayerOne: z.string().min(1, {message: "Discord username with tag is required"}).max(48, {message: "Discord name cannot exceed 48 characters"}),
     discordPlayerTwo: z.string().min(1, {message: "Discord username with tag is required"}).max(48, {message: "Discord name cannot exceed 48 characters"}),
+    discordPlayerThree: z.string().min(1, {message: "Discord username with tag is required"}).max(48, {message: "Discord name cannot exceed 48 characters"}),
     ignPlayerOne: z.string().min(1, {message: "Krunker username is required"}).max(48, {message: "Krunker username cannot exceed 48 characters"}),
     ignPlayerTwo: z.string().min(1, {message: "Krunker username is required"}).max(48, {message: "Krunker username cannot exceed 48 characters"}),
-    discordSub: z.string().min(1, {message: "Write / if you have no sub"}).max(48, {message: "Discord name cannot exceed 48 characters"}),
-    ignSub: z.string().min(1, {message: "Write / if you have no sub"}).max(48, {message: "Krunker username cannot exceed 48 characters"}),
+    ignPlayerThree: z.string().min(1, {message: "Krunker username is required"}).max(48, {message: "Krunker username cannot exceed 48 characters"}),
+    discordSub: z.string().max(48, {message: "Discord name cannot exceed 48 characters"}).optional(),
+    ignSub: z.string().max(48, {message: "Krunker username cannot exceed 48 characters"}).optional(),
     captain: z.string(),
     terms: z.literal(true, {
       errorMap: () => ({message: "You must accept the tournament rules"})
@@ -20,14 +25,36 @@ const registerTeamSchema = z
 
 type RegisterTeamSchema = z.infer<typeof registerTeamSchema>
 
-const SignupForm = () => {
+const ThreeVsThreeSignupForm = ({tournamentId}: {tournamentId: string}) => {
+  const router = useRouter()
+  const addThreeVsThreeTeam = trpc.teamRouter.addTeam3v3.useMutation()
 
   const { register, handleSubmit, formState: {errors} } = useForm<RegisterTeamSchema>({
     resolver: zodResolver(registerTeamSchema)
   });
 
-  const onSubmit: SubmitHandler<RegisterTeamSchema> = (data) => {
-    console.log(data)
+  const onSubmit: SubmitHandler<RegisterTeamSchema> = async (data) => {
+    await addThreeVsThreeTeam.mutateAsync({
+      tournamentId: tournamentId,
+      name: data.teamName,
+      discordPlayerOne: data.discordPlayerOne,
+      discordPlayerTwo: data.discordPlayerTwo,
+      discordPlayerThree: data.discordPlayerThree,
+      ignPlayerOne: data.ignPlayerOne,
+      ignPlayerTwo: data.ignPlayerTwo,
+      ignPlayerThree: data.ignPlayerThree,
+      discordSub: data.discordSub,
+      ignSub: data.ignSub,
+      captain: data.captain,
+    }, {
+      onSuccess: () => {
+        toast.success("Team registered successfully")
+        router.push(`/tournaments/${tournamentId}/teams`)
+      },
+      onError: () => {
+        toast.error("An error occurred while registering your team. Please try again later.")
+      }
+    })
   }
 
   return (
@@ -50,7 +77,7 @@ const SignupForm = () => {
                           )}
                         </div>
                         <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl text-white">
-                        Players (if no sub, write / in the sub fields)
+                        Players (if no sub, leave sub field blank)
                         </h1>
                         <div className='grid grid-cols-2 space-x-8'>
                           <div>
@@ -61,15 +88,22 @@ const SignupForm = () => {
                                 {errors.discordPlayerOne?.message}
                               </p>
                             )}
-                            <label htmlFor="playerTwoDiscord" className="block mb-2 text-sm font-medium mt-4 text-white">Discord Player 2 (with #)</label>
+                            <label htmlFor="playerTwoDiscord" className="block mb-2 text-sm font-medium mt-4 text-white">Discord Player 2</label>
                             <input type="text" id="playerTwoDiscord" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder='flipbait#0001' {...register("discordPlayerTwo")} />
                             {errors.discordPlayerTwo && (
                               <p className="text-xs italic text-red-500 mt-2">
                                 {errors.discordPlayerTwo?.message}
                               </p>
                             )}
-                            <label htmlFor="subDiscord" className="block mb-2 mt-4 text-sm font-medium text-white">Discord Sub (with #)</label>
-                            <input value="/" type="text" id="subDiscord" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder='Duprious#1459' {...register("discordSub")} />
+                            <label htmlFor="playerThreeDiscord" className="block mb-2 text-sm font-medium mt-4 text-white">Discord Player 3</label>
+                            <input type="text" id="playerThreeDiscord" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder='flipbait#0001' {...register("discordPlayerThree")} />
+                            {errors.discordPlayerThree && (
+                              <p className="text-xs italic text-red-500 mt-2">
+                                {errors.discordPlayerThree?.message}
+                              </p>
+                            )}
+                            <label htmlFor="subDiscord" className="block mb-2 mt-4 text-sm font-medium text-white">Discord Sub</label>
+                            <input type="text" id="subDiscord" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder='Duprious#1459' {...register("discordSub")} />
                             {errors.discordSub && (
                               <p className="text-xs italic text-red-500 mt-2">
                                 {errors.discordSub?.message}
@@ -84,15 +118,22 @@ const SignupForm = () => {
                                 {errors.ignPlayerOne?.message}
                               </p>
                             )}
-                            <label htmlFor="playerTwoIGN" className="block mb-2 text-sm font-medium mt-4 text-white">IGN Player 2 (Krunker)</label>
+                            <label htmlFor="playerTwoIGN" className="block mb-2 text-sm font-medium mt-4 text-white">IGN Player 2</label>
                             <input type="text" id="playerTwoIGN" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder='flipbait' {...register("ignPlayerTwo")} />
                             {errors.ignPlayerTwo && (
                               <p className="text-xs italic text-red-500 mt-2">
                                 {errors.ignPlayerTwo?.message}
                               </p>
                             )}
-                            <label htmlFor="subIGN" className="block mb-2 text-sm font-medium mt-4 text-white">IGN Sub (Krunker)</label>
-                            <input value="/" type="text" id="subIGN" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder='flipbait' {...register("ignSub")} />
+                            <label htmlFor="playerThreeIGN" className="block mb-2 text-sm font-medium mt-4 text-white">IGN Player 3</label>
+                            <input type="text" id="playerThreeIGN" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder='flipbait' {...register("ignPlayerThree")} />
+                            {errors.ignPlayerThree && (
+                              <p className="text-xs italic text-red-500 mt-2">
+                                {errors.ignPlayerThree?.message}
+                              </p>
+                            )}
+                            <label htmlFor="subIGN" className="block mb-2 text-sm font-medium mt-4 text-white">IGN Sub</label>
+                            <input type="text" id="subIGN" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder='flipbait' {...register("ignSub")} />
                             {errors.ignSub && (
                               <p className="text-xs italic text-red-500 mt-2">
                                 {errors.ignSub?.message}
@@ -105,6 +146,7 @@ const SignupForm = () => {
                         <select id="teamCaptain" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" {...register("captain")}>
                           <option value="P1">Player 1</option>
                           <option value="P2">Player 2</option>
+                          <option value="P3">Player 3</option>
                         </select>
                         {errors.captain && (
                           <p className="text-xs italic text-red-500 mt-2">
@@ -135,4 +177,4 @@ const SignupForm = () => {
   )
 }
 
-export default SignupForm
+export default ThreeVsThreeSignupForm
