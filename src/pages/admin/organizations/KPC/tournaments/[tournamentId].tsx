@@ -30,7 +30,7 @@ const AdminTournamentPage = () => {
           <ul className="grid gap-4 pt-10 sm:grid-cols-2 lg:grid-cols-3">
             <InfoCard title="Signed Up Teams" info="View all teams signed up for the tournament" slug={`/admin/organizations/KPC/tournaments/${query}/teams`} />
             <InfoCard title="Signup Page" info="View the signup page for the tournament" slug={`/tournaments/signups/${query}`} />
-            <InfoCard title="Edit Tournament" info="Edit the tournament" slug={`/admin/organizations/CKA/tournaments/${query}/edit`} />
+            <InfoCard title="Edit Tournament" info="Edit the tournament" slug={`/admin/organizations/KPC/tournaments/${query}/edit`} />
           </ul>
         </section>
       </main>

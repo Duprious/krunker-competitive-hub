@@ -21,3 +21,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: #a8bbbf;
 }
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
