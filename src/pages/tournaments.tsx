@@ -49,7 +49,6 @@ const Tournaments: NextPage = () => {
                       region={tournament.region}
                       startDate={tournament.startDate.toString()}
                       type={tournament.type}
-                      hostName={tournament.hostName}
                       id={tournament.id}
                       />
                     </li>

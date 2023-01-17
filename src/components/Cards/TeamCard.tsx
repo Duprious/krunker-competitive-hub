@@ -44,7 +44,7 @@ const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, players, Sub, id,
           </h1>
         </div>
         {players.map((player, index) => (
-          <p className="mt-2 text-gray-300 break-words">
+          <p key={index} className="mt-2 text-gray-300 break-words">
             <span className='font-semibold'>Player {index+1}: </span>{`${player.discordName} | ${player.ign}`}
           </p>
         ))}

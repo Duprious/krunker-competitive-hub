@@ -11,12 +11,11 @@ interface TournamentCardProps {
   region: string
   type: string
   description: string
-  hostName: string
   id: string
   organization: Organization | null
 }
 
-const TournamentCard: NextPage<TournamentCardProps> = ({name, startDate, region, type, description, hostName, id, organization}) => {
+const TournamentCard: NextPage<TournamentCardProps> = ({name, startDate, region, type, description, id, organization}) => {
   const router = useRouter()
   
 

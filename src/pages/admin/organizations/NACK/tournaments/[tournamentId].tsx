@@ -7,19 +7,6 @@ import Layout from '../../../../../components/Layout'
 import { getServerAuthSession } from '../../../../../server/common/get-server-auth-session'
 import { trpc } from '../../../../../utils/trpc'
 
-const infoCards = [
-  {
-    title: 'Signed up Teams',
-    info: "View all teams signed up for the tournament",
-    slug: 'teams'
-  },
-  {
-    title: 'Signup Page',
-    info: 'View the signup page for the tournament',
-    slug: 'signup'
-  }
-]
-
 const AdminTournamentPage = () => {
   const router = useRouter()
   const query = router.query.tournamentId as string

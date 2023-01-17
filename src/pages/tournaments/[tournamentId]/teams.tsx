@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import React from 'react'
 import TeamCard from '../../../components/Cards/TeamCard'
 import Layout from '../../../components/Layout'
 import { getServerAuthSession } from '../../../server/common/get-server-auth-session'
