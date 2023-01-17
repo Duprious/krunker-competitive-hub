@@ -15,7 +15,7 @@ const InfoCard: NextPage<InfoCardProps> = ({title, info, slug}) => {
         <div className="flex flex-col justify-between gap-4">
           <div className="flex flex-col justify-between gap-4">
             <h2 className="text-2xl font-semibold">{title}</h2>
-            <p className="text-gray-300">
+            <p className="text-gray-300 line-clamp-3 leading-7 min-h-[3.5em]">
               {info}
             </p>
           </div>

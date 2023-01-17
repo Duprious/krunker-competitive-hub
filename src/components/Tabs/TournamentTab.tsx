@@ -20,7 +20,7 @@ type TournamentData = {
 
 
 const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, region, startDate, type, bracketLink}) => {
-  const [categories] = useState(["Info", "Teams", "Signups", "Date", "Bracket", "Rules"])
+  const [categories] = useState(["Info", "Date", "Bracket", "Rules", "Teams (Link)", "Signups (Link)"])
   const router = useRouter()
 
   return (
@@ -28,7 +28,7 @@ const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, reg
       <Tab.Group>
         <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
           {categories.map((category) => (
-            category === "Teams" ? 
+            category === "Teams (Link)" ? 
               <Tab
                 onClick={() => router.push(`/tournaments/${id}/teams`)}
                 key={category}
@@ -46,7 +46,7 @@ const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, reg
                 {category}
               </Tab>
             :
-            category === "Signups" ?
+            category === "Signups (Link)" ?
             <Tab
                 onClick={() => router.push(`/tournaments/signups/${id}`)}
                 key={category}
@@ -90,12 +90,6 @@ const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, reg
             <p className='text-xl'>Host: {hostName}</p>
           </Tab.Panel>
           <Tab.Panel>
-            
-          </Tab.Panel>
-          <Tab.Panel>
-            
-          </Tab.Panel>
-          <Tab.Panel>
             <p className='text-xl'>{startDate ? format(startDate, "EEEE, MMM Do 'at' h:mm a") : "Unknown"}</p>
           </Tab.Panel>
           <Tab.Panel>
@@ -106,6 +100,12 @@ const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, reg
           </Tab.Panel>
           <Tab.Panel>
             <p className='text-xl'>Rules added later</p>
+          </Tab.Panel>
+          <Tab.Panel>
+            
+          </Tab.Panel>
+          <Tab.Panel>
+            
           </Tab.Panel>
         </Tab.Panels>
       </Tab.Group>
