@@ -99,7 +99,11 @@ const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, reg
             }
           </Tab.Panel>
           <Tab.Panel>
-            <p className='text-xl'>Rules added later</p>
+            <a href='https://docs.google.com/document/d/14aCtb6sgRatySrEVz26iYoQ7jyCh9oPKacy3TtDeB3s' rel="noopener noreferrer" target="_blank">
+              <button type="button" className="text-white w-full mt-4 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-blue-800">
+                Rules
+              </button>
+            </a>
           </Tab.Panel>
           <Tab.Panel>
             

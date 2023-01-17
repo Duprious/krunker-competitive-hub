@@ -173,7 +173,7 @@ const ThreeVsThreeSignupForm = ({tournamentId}: {tournamentId: string}) => {
                               <input id="terms" aria-describedby="terms" type="checkbox" className="w-4 h-4 border rounded focus:ring-3 bg-gray-700 border-gray-600 focus:ring-primary-600 ring-offset-gray-800" {...register("terms")} />
                             </div>
                             <div className="ml-3 text-sm">
-                              <label htmlFor="terms" className="font-light text-gray-300">I agree to the <a className="font-medium hover:underline text-primary-500" rel="noopener noreferrer" target="_blank" href="https://docs.google.com/document/d/1e25it0ihjx2gNli-rVt86f3BfzvFwW6VBPUJPNgyKLQ/edit?usp=sharing">Tournament Rules</a></label>
+                              <label htmlFor="terms" className="font-light text-gray-300">I agree to the <a className="font-medium hover:underline text-primary-500" rel="noopener noreferrer" target="_blank" href="https://docs.google.com/document/d/14aCtb6sgRatySrEVz26iYoQ7jyCh9oPKacy3TtDeB3s">Tournament Rules</a></label>
                               {errors.terms && (
                               <p className="text-xs italic text-red-500 mt-2">
                                 {errors.terms?.message}
