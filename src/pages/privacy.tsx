@@ -1,11 +1,7 @@
 import React from 'react'
-import Layout from '../components/Layout'
-
 
 const PrivacyPolicy = () => {
   return (
-    <Layout>
-
       <div className="flex flex-col items-center justify-center w-full min-h-screen py-2">
         <div className="flex flex-col items-center justify-center w-full max-w-2xl px-4 py-6 space-y-4 text-center">
           <h1 className="text-4xl font-bold">Privacy Policy</h1>
@@ -52,7 +48,6 @@ const PrivacyPolicy = () => {
           </p>
         </div>
       </div>
-    </Layout>
   )
 }
 

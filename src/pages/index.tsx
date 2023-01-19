@@ -5,6 +5,7 @@ import Image from "next/image";
 import krunkerEsportsImage from '../../public/krunkeresports.png'
 import { FaLock, FaDiscord } from 'react-icons/fa'
 import { getServerAuthSession } from "../server/common/get-server-auth-session";
+import Footer from "../components/Bars/Footer/Footer";
 
 const Login: NextPage = () => {
 
@@ -55,6 +56,7 @@ const Login: NextPage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
