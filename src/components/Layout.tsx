@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import React from 'react'
-import Footer from './Bars/Footer/footer'
+import Footer from './Bars/Footer/Footer'
 import Navbar from './Navbar/Navbar'
 
 interface LayoutProps {
