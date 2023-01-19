@@ -1,4 +1,4 @@
-import { MegaphoneIcon, XMarkIcon } from '@heroicons/react/24/outline'
+// import { MegaphoneIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import React from 'react'
 import Marquee from 'react-fast-marquee'
 import { useStore } from '../../zustand/store'

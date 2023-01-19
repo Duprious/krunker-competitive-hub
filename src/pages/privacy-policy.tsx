@@ -1,7 +1,4 @@
 import React from 'react'
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
-import remarkGfm from 'remark-gfm'
-import Layout from '../components/Layout'
 
 
 const PrivacyPolicy = () => {
@@ -23,7 +20,7 @@ const PrivacyPolicy = () => {
             <li>Information you fill in on our website</li>
           </ul>
           <p className="text-lg text-gray-500">
-            We may also collect your data through the use of cookies. Cookies are small files saved to your computer's hard drive that save your authentication data. This allows us to remember you when you return to our website and to keep you logged in.
+            We may also collect your data through the use of cookies. Cookies are small files saved to your computer&apos;s hard drive that save your authentication data. This allows us to remember you when you return to our website and to keep you logged in.
           </p>
           <p className="text-lg text-gray-500">
             You can choose to enable or disable cookies in your web browser. Most web browsers automatically accept cookies, but you can usually modify your browser setting to decline cookies if you prefer. This may prevent you from taking full advantage of the website.
