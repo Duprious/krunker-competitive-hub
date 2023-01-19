@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import React from 'react'
+import Footer from './Bars/Footer/footer'
 import Navbar from './Navbar/Navbar'
 
 interface LayoutProps {
@@ -12,6 +13,9 @@ const Layout: NextPage<LayoutProps> = ({children}) => {
       <div className='min-h-screen'>
         <Navbar />
         {children}
+      </div>
+      <div className='align-bottom'>
+        <Footer />
       </div>
     </>
   )
