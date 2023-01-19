@@ -90,7 +90,7 @@ const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, reg
             <p className='text-xl'>Host: {hostName}</p>
           </Tab.Panel>
           <Tab.Panel>
-            <p className='text-xl'>{startDate ? format(startDate, "EEEE, MMM Do 'at' h:mm a") : "Unknown"}</p>
+            <p className='text-xl'>{startDate ? format(startDate, "EEEE, MMM do 'at' h:mm a") : "Unknown"}</p>
           </Tab.Panel>
           <Tab.Panel>
             {bracketLink 
