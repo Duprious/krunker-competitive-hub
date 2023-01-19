@@ -12,7 +12,7 @@ const Navbar = () => {
     { name: 'Home', href: '/home', current: false },
     { name: 'Tournaments', href: '/tournaments', current: false },
     { name: 'Players', href: '/players', current: false },
-    { name: 'Privacy Policy', href: '/privacy', current: false },
+    { name: 'Privacy', href: '/privacy', current: false },
   ]
 
   function classNames(...classes: string[]) {
