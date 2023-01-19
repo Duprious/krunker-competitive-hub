@@ -135,11 +135,24 @@ const TournamentEditPage = () => {
               </div>
               <div className='flex flex-row gap-4 items-center'>
                 <label className='text-xl font-semibold'>Tournament Type</label>
-                <select value={type} onChange={(e) => setType(e.target.value)} className='border-2 border-gray-300 max-w-xs w-full p-2 rounded-md text-black'>
-                  <option value='2v2' selected={tournamentData?.type === "2v2"}>2v2</option>
-                  <option value='3v3' selected={tournamentData?.type === "3v3"}>3v3</option>
-                  <option value='4v4' selected={tournamentData?.type === "4v4"}>4v4</option>
-                </select>
+                {tournamentData?.type === "2v2"
+                ? <select value={type} onChange={(e) => setType(e.target.value)} className='border-2 border-gray-300 max-w-xs w-full p-2 rounded-md text-black'>
+                    <option value='2v2'>2v2</option>
+                    <option value='3v3'>3v3</option>
+                    <option value='4v4'>4v4</option>
+                  </select>
+                : tournamentData?.type === "3v3"
+                ? <select value={type} onChange={(e) => setType(e.target.value)} className='border-2 border-gray-300 max-w-xs w-full p-2 rounded-md text-black'>
+                    <option value='3v3'>3v3</option>
+                    <option value='2v2'>2v2</option>
+                    <option value='4v4'>4v4</option>
+                  </select>
+                : <select value={type} onChange={(e) => setType(e.target.value)} className='border-2 border-gray-300 max-w-xs w-full p-2 rounded-md text-black'>
+                    <option value='4v4'>4v4</option>
+                    <option value='2v2'>2v2</option>
+                    <option value='3v3'>3v3</option>
+                  </select>
+                }
                 <button onClick={() => handleUpdateType()} className='bg-blue-500 text-white px-4 py-2 rounded-md'>Update</button>
               </div>
               <div>

@@ -41,7 +41,7 @@ const PrivacyPolicy = () => {
             You are free to refuse our request for your data, with the understanding that we are unable to provide you with our services.
           </p>
           <p className="text-lg text-gray-400">
-            Your continued use of our website will be regarded as acceptance of our practices around privacy and personal information. If you have any questions about how we handle user data and personal information, feel free to contact us.
+            Your continued use of our website will be regarded as acceptance of our practices around privacy and personal information. If you have any questions about how we handle user data and personal information, feel free to contact us at <span className='font-semibold text-white'>info@kchub.net</span>.
           </p>
           <p className="text-lg text-gray-400">
             This policy is effective as of January 1st 2023.
