@@ -44,7 +44,7 @@ const TournamentCard: NextPage<TournamentCardProps> = ({name, startDate, region,
         </div>
         <div className="flex items-center justify-end mt-4">
           <div className="flex items-end">
-            <h1 className="text-gray-200">Org: <span className='font-medium'>{organization?.name}</span></h1>
+            <h1 className="text-gray-200 font-medium">{organization?.name}</h1>
           </div>
         </div>
       </div>
