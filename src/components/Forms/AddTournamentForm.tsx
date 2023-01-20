@@ -171,6 +171,7 @@ const AddTournamentForm = () => {
           <div className="relative z-0 mb-6 w-full group">
           <label htmlFor="organization" className="block mb-2 text-sm font-medium text-gray-400">Select Organization</label>
             <select id="organization" className="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" {...register("organization")} >
+              <option value="clcv1ikrt00007ke4zq0wiy6l">KrunkerEsports</option>
               <option value="clcnvr1df00007klsxzg9xrb0">KPC</option>
               <option value="clcnvrbfi00027klsbqbey7i8">NACK</option>
               <option value="clcnvrjdo00047klszi490wob">CKA</option>

@@ -29,6 +29,7 @@ const TournamentEditPage = () => {
     await renameTournamentMutation.mutateAsync({tournamentId: query, name: name}, {
       onSuccess: () => {
         toast.success("Successfully updated tournament name")
+        setName("")
       },
     })
     utils.invalidate()
@@ -39,6 +40,7 @@ const TournamentEditPage = () => {
     await updateDescriptionMutation.mutateAsync({tournamentId: query, description: description}, {
       onSuccess: () => {
         toast.success("Successfully updated tournament description")
+        setDescription("")
       },
     })
     utils.invalidate()
