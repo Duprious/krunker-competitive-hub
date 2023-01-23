@@ -93,7 +93,7 @@ const TeamOptionsModal = () => {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Team Options (In Development)
+                    Team Options
                   </Dialog.Title>
                   <hr className='my-4' />
                   <div className='flex flex-col gap-4'>
