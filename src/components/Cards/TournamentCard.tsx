@@ -1,5 +1,4 @@
 import { NextPage } from 'next'
-import { useRouter } from 'next/router'
 import React from 'react'
 import { convertTime } from '../../utils/convertTime'
 import { motion } from 'framer-motion'
@@ -18,9 +17,6 @@ interface TournamentCardProps {
 }
 
 const TournamentCard: NextPage<TournamentCardProps> = ({name, startDate, region, type, description, id, organization, signupsClosed}) => {
-  const router = useRouter()
-  
-
   return (
     <motion.div layout animate={{ opacity: 1}} initial={{ opacity: 0}} exit={{ opacity: 0}}>
       <Link href={`/tournaments/${id}`}>
@@ -46,18 +42,26 @@ const TournamentCard: NextPage<TournamentCardProps> = ({name, startDate, region,
             </p>
           </div>
           <div className="flex items-center justify-between mt-4">
-            {!signupsClosed ?
-            <Link href={`/tournaments/signups/${id}`}>
-              <div className="flex items-center">
-                <span className="px-3 py-2 font-semibold text-white rounded-full bg-green-400">
-                  Signups
+            <div className="flex items-center">
+              {!signupsClosed ?
+              <Link href={`/tournaments/signups/${id}`}>
+                
+                  <span className="px-3 py-2 font-semibold text-white rounded-full bg-green-400 hover:bg-green-400/60 transition duration-150">
+                    Signups
+                  </span>
+              </Link>
+              :
+              <div />
+            }
+            <div className="flex items-center ml-4">
+              <Link href={`/tournaments/${id}/teams`}>
+                <span className="px-3 py-2 font-semibold text-white rounded-full bg-blue-400 hover:bg-blue-400/60 transition duration-150">
+                  Teams
                 </span>
-              </div>
-            </Link>
-            :
-            <div />
+              </Link>
+            </div>
             
-          }
+            </div>
             <div className="flex items-end">
               <h1 className="text-gray-200 font-medium">{organization?.name}</h1>
             </div>

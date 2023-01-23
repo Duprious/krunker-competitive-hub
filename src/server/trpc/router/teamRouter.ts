@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { env } from "../../../env/server.mjs";
 import { router, publicProcedure, adminProcedure } from "../trpc";
 
 export const teamRouter = router({
@@ -48,6 +49,45 @@ export const teamRouter = router({
             }
           },
         })
+
+        const tournamentName = await ctx.prisma.tournament.findUnique({
+          where: {
+            id: input.tournamentId,
+          },
+          select: {
+            name: true,
+            Organization: {
+              select: {
+                name: true,
+              }
+            }
+          }
+        })
+
+        if(tournamentName?.Organization?.name === "KrunkerEsports") {
+          await fetch(env.DISCORD_WEBHOOK_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              embeds: [
+                {
+                  title: `New team in: ${tournamentName?.name}`,
+                  description: `Team Name: ${input.name},
+                  Captain: ${input.captain === "P1" ? "Player One" : input.captain === "P2" ? "Player Two" : input.captain === "P3" ? "Player Three" : input.captain === "P4" ? "Player Four" : "Sub"}
+                  Player One: ${input.discordPlayerOne} - ${input.ignPlayerOne}
+                  Player Two: ${input.discordPlayerTwo} - ${input.ignPlayerTwo}
+                  Sub: ${input.discordSub} - ${input.ignSub}`,
+                  color: 0x00ff00,
+                  url: `https://kchub.net/admin/organizations/KrunkerEsports/tournaments/${input.tournamentId}/teams`,
+                },
+              ],
+            }),
+          })
+        }
+
+
         return team
       } else if (!input.discordSub && !input.ignSub) {
 
@@ -74,6 +114,43 @@ export const teamRouter = router({
             }
           },
         })
+
+        const tournamentName = await ctx.prisma.tournament.findUnique({
+          where: {
+            id: input.tournamentId,
+          },
+          select: {
+            name: true,
+            Organization: {
+              select: {
+                name: true,
+              }
+            }
+          }
+        })
+
+        if(tournamentName?.Organization?.name === "KrunkerEsports") {
+          await fetch(env.DISCORD_WEBHOOK_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              embeds: [
+                {
+                  title: `New team in: ${tournamentName?.name}`,
+                  description: `Team Name: ${input.name},
+                  Captain: ${input.captain === "P1" ? "Player One" : input.captain === "P2" ? "Player Two" : input.captain === "P3" ? "Player Three" : input.captain === "P4" ? "Player Four" : "Sub"}
+                  Player One: ${input.discordPlayerOne} - ${input.ignPlayerOne}
+                  Player Two: ${input.discordPlayerTwo} - ${input.ignPlayerTwo}`,
+                  color: 0x00ff00,
+                  url: `https://kchub.net/admin/organizations/KrunkerEsports/tournaments/${input.tournamentId}/teams`,
+                },
+              ],
+            }),
+          })
+        }
+
         return team
       } else {
         throw new Error("You must provide both a discord name and ign for your sub")
@@ -133,6 +210,43 @@ export const teamRouter = router({
           },
         })
         
+        const tournamentName = await ctx.prisma.tournament.findUnique({
+          where: {
+            id: input.tournamentId,
+          },
+          select: {
+            name: true,
+            Organization: {
+              select: {
+                name: true,
+              }
+            }
+          }
+        })
+
+        if(tournamentName?.Organization?.name === "KrunkerEsports") {
+          await fetch(env.DISCORD_WEBHOOK_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              embeds: [
+                {
+                  title: `New team in: ${tournamentName?.name}`,
+                  description: `Team Name: ${input.name},
+                  Captain: ${input.captain === "P1" ? "Player One" : input.captain === "P2" ? "Player Two" : input.captain === "P3" ? "Player Three" : input.captain === "P4" ? "Player Four" : "Sub"}
+                  Player One: ${input.discordPlayerOne} - ${input.ignPlayerOne}
+                  Player Two: ${input.discordPlayerTwo} - ${input.ignPlayerTwo}
+                  Player Three: ${input.discordPlayerThree} - ${input.ignPlayerThree}
+                  Sub: ${input.discordSub} - ${input.ignSub}`,
+                  color: 0x00ff00,
+                  url: `https://kchub.net/admin/organizations/KrunkerEsports/tournaments/${input.tournamentId}/teams`,
+                },
+              ],
+            }),
+          })
+        }
         
         return team
       } else if (!input.discordSub && !input.ignSub) {
@@ -164,6 +278,44 @@ export const teamRouter = router({
             }
           },
         })
+
+        const tournamentName = await ctx.prisma.tournament.findUnique({
+          where: {
+            id: input.tournamentId,
+          },
+          select: {
+            name: true,
+            Organization: {
+              select: {
+                name: true,
+              }
+            }
+          }
+        })
+
+        if(tournamentName?.Organization?.name === "KrunkerEsports") {
+          await fetch(env.DISCORD_WEBHOOK_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              embeds: [
+                {
+                  title: `New team in: ${tournamentName?.name}`,
+                  description: `Team Name: ${input.name},
+                  Captain: ${input.captain === "P1" ? "Player One" : input.captain === "P2" ? "Player Two" : input.captain === "P3" ? "Player Three" : input.captain === "P4" ? "Player Four" : "Sub"}
+                  Player One: ${input.discordPlayerOne} - ${input.ignPlayerOne}
+                  Player Two: ${input.discordPlayerTwo} - ${input.ignPlayerTwo}
+                  Player Three: ${input.discordPlayerThree} - ${input.ignPlayerThree}`,
+                  color: 0x00ff00,
+                  url: `https://kchub.net/admin/organizations/KrunkerEsports/tournaments/${input.tournamentId}/teams`,
+                },
+              ],
+            }),
+          })
+        }
+
         return team
       } else {
         throw new Error("You must provide both a discord name and ign for your sub")
@@ -228,6 +380,45 @@ export const teamRouter = router({
           },
         })
 
+        const tournamentName = await ctx.prisma.tournament.findUnique({
+          where: {
+            id: input.tournamentId,
+          },
+          select: {
+            name: true,
+            Organization: {
+              select: {
+                name: true,
+              }
+            }
+          }
+        })
+
+        if(tournamentName?.Organization?.name === "KrunkerEsports") {
+          await fetch(env.DISCORD_WEBHOOK_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              embeds: [
+                {
+                  title: `New team in: ${tournamentName?.name}`,
+                  description: `Team Name: ${input.name},
+                  Captain: ${input.captain === "P1" ? "Player One" : input.captain === "P2" ? "Player Two" : input.captain === "P3" ? "Player Three" : input.captain === "P4" ? "Player Four" : "Sub"}
+                  Player One: ${input.discordPlayerOne} - ${input.ignPlayerOne}
+                  Player Two: ${input.discordPlayerTwo} - ${input.ignPlayerTwo}
+                  Player Three: ${input.discordPlayerThree} - ${input.ignPlayerThree}
+                  Player Four: ${input.discordPlayerFour} - ${input.ignPlayerFour}
+                  Sub: ${input.discordSub} - ${input.ignSub}`,
+                  color: 0x00ff00,
+                  url: `https://kchub.net/admin/organizations/KrunkerEsports/tournaments/${input.tournamentId}/teams`,
+                },
+              ],
+            }),
+          })
+        }
+
         return team
       } else if (!input.discordSub && !input.ignSub) {
         
@@ -262,6 +453,44 @@ export const teamRouter = router({
             }
           },
         })
+
+        const tournamentName = await ctx.prisma.tournament.findUnique({
+          where: {
+            id: input.tournamentId,
+          },
+          select: {
+            name: true,
+            Organization: {
+              select: {
+                name: true,
+              }
+            }
+          }
+        })
+
+        if(tournamentName?.Organization?.name === "KrunkerEsports") {
+          await fetch(env.DISCORD_WEBHOOK_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              embeds: [
+                {
+                  title: `New team in: ${tournamentName?.name}`,
+                  description: `Team Name: ${input.name},
+                  Captain: ${input.captain === "P1" ? "Player One" : input.captain === "P2" ? "Player Two" : input.captain === "P3" ? "Player Three" : input.captain === "P4" ? "Player Four" : "Sub"}
+                  Player One: ${input.discordPlayerOne} - ${input.ignPlayerOne}
+                  Player Two: ${input.discordPlayerTwo} - ${input.ignPlayerTwo}
+                  Player Three: ${input.discordPlayerThree} - ${input.ignPlayerThree}
+                  Player Four: ${input.discordPlayerFour} - ${input.ignPlayerFour}`,
+                  color: 0x00ff00,
+                  url: `https://kchub.net/admin/organizations/KrunkerEsports/tournaments/${input.tournamentId}/teams`,
+                },
+              ],
+            }),
+          })
+        }
 
         return team
       } else {
