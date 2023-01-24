@@ -10,13 +10,18 @@ interface LayoutProps {
 const Layout: NextPage<LayoutProps> = ({children}) => {
   return (
     <>
-      <div className='min-h-screen'>
-        <Navbar />
-        {children}
+      <div className='min-h-screen relative'>
+        <div className='pb-[4.25rem]'>
+          <Navbar />
+          {children}
+        </div>
+        <footer className='absolute bottom-0 w-full h-[4.25rem]'>
+          <Footer />
+        </footer>
       </div>
-      <div className='align-bottom'>
+      {/* <div className='absolute bottom-0 w-full h-10'>
         <Footer />
-      </div>
+      </div> */}
     </>
   )
 }
