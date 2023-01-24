@@ -20,7 +20,7 @@ const TournamentCard: NextPage<TournamentCardProps> = ({name, startDate, region,
   return (
     <motion.div layout animate={{ opacity: 1}} initial={{ opacity: 0}} exit={{ opacity: 0}}>
       <Link href={`/tournaments/${id}`}>
-        <div className="p-6 max-w-sm hover:shadow-xl transition duration-30 rounded-lg border shadow-md bg-gray-800 border-gray-700 cursor-pointer">
+        <div className="p-6 max-w-sm lg:mx-0 hover:shadow-xl transition duration-30 rounded-lg border shadow-md bg-gray-800 border-gray-700 cursor-pointer">
           <div className="flex items-center justify-between">
             <span className="text-sm font-light text-gray-400 max-w-[135px]">
               {convertTime(startDate)}

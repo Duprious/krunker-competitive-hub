@@ -22,10 +22,10 @@ const Navbar = () => {
   const {data: userData} = trpc.user.getUser.useQuery();
 
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-gray-800 sticky w-full top-0 z-50">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
@@ -146,6 +146,20 @@ const Navbar = () => {
                   </Disclosure.Button>
                 </Link>
               ))}
+              {userData?.role === "ADMIN" && (
+                <Link href={`/admin/organizations`}>
+                <Disclosure.Button
+                  as="a"
+                  className={classNames(
+                    'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    'block px-3 py-2 rounded-md text-base font-medium cursor-pointer'
+                    )}
+                    aria-current={undefined}
+                    >
+                  {`Admin`}
+                </Disclosure.Button>
+              </Link>
+              )}
             </div>
           </Disclosure.Panel>
         </>
