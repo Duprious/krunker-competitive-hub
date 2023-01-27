@@ -29,7 +29,7 @@ const TournamentPage: NextPage = () => {
               <div className="md:mr-8 mt-4 text-center text-lg text-teal-500 font-medium">
                 {userData?.role === "ADMIN" &&
                   <button onClick={toggleBracketLinkModal} type="button" className="text-white mt-4 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-blue-800">
-                    Add Bracket (if it exists)
+                    Add Bracket
                   </button>
                 }
               </div>

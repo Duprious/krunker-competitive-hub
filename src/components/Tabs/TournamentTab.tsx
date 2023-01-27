@@ -99,11 +99,12 @@ const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, reg
             }
           </Tab.Panel>
           <Tab.Panel>
-            <a href='https://docs.google.com/document/d/14aCtb6sgRatySrEVz26iYoQ7jyCh9oPKacy3TtDeB3s' rel="noopener noreferrer" target="_blank">
-              <button type="button" className="text-white w-full mt-4 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-blue-800">
+            <div className='flex items-center justify-center'>
+              <iframe className='hidden lg:block' width="75%" height="625" src="https://docs.google.com/document/d/e/2PACX-1vSUh-bcA07ZxO1Isfe3xVZRZKrrpovQUZQ3HYN7VLcJiOIND6dDembQGQQhU4q9EKUjZmYo43mRsjx9/pub?embedded=true" />
+              <button className="lg:hidden text-white w-full focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-blue-800">
                 Rules
               </button>
-            </a>
+            </div>
           </Tab.Panel>
           <Tab.Panel>
             

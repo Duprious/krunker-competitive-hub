@@ -74,7 +74,7 @@ const PlayersPage: NextPage = () => {
               <AnimatePresence>
                 {searchData?.map((player) => (
                   <li key={player.id}>
-                    <PlayerCard name={player.name} role={player.role} image={player.image?.toString()} id={player.id} />
+                    <PlayerCard name={player.name} role={player.role} id={player.id} />
                   </li>
                 ))}
               </AnimatePresence>
