@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import discordImage from '../../../public/discord.png'
 import discordImage2 from '../../../public/greendiscord.png'

@@ -10,7 +10,6 @@ const Navbar = () => {
 
   const navigation = [
     { name: 'Home', href: '/home', current: false },
-    { name: 'Tournaments', href: '/tournaments', current: false },
     { name: 'Players', href: '/players', current: false },
     { name: 'Privacy', href: '/privacy', current: false },
   ]

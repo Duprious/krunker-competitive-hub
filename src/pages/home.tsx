@@ -1,57 +1,63 @@
-import React from 'react'
-import Layout from '../components/Layout'
 import { GetServerSideProps, NextPage } from 'next'
-import InfoCard from '../components/Cards/InfoCard'
+import React from 'react'
+import TournamentCard from '../components/Cards/TournamentCard'
+import Layout from '../components/Layout'
 import { getServerAuthSession } from '../server/common/get-server-auth-session'
 import { trpc } from '../utils/trpc'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Toaster } from 'react-hot-toast'
+import FilterBox from '../components/Boxes/FilterBox'
+import { useStore } from '../zustand/store'
 
-const Home: NextPage = () => {
+const Tournaments: NextPage = () => {
 
-  const { data: userData } = trpc.user.getUser.useQuery()
+  const selectedFilter = useStore(state => state.selectedFilter)
+  const { data: tournamentData } = trpc.tournament.getTournaments.useQuery()
 
-  const infoCards = [
-    {
-      title: 'Tournaments',
-      info: 'View upcoming tournaments.',
-      slug: 'tournaments'
-    },
-    {
-      title: 'Players',
-      info: 'View all players',
-      slug: 'players'
-    },
-    {
-      title: 'Profile',
-      info: 'View your profile and edit your information.',
-      slug: `player/${userData?.id}`
-    }
-  ]
+  tournamentData?.sort((a, b) => {
+    return new Date(a.startDate).valueOf() - new Date(b.startDate).valueOf();
+  });
 
   return (
-    <Layout>
+    <Layout>  
       <main className="container mx-auto flex flex-col justify-start p-4">
         <section>
           <div className="pt-10">
             <div className="flex flex-col justify-between gap-8 md:flex-row">
-              <h1 className="text-center text-5xl text-[#DCF2FF] font-semibold md:ml-8 md:text-start">
-                Krunker Competitive Hub
+              <h1 className="text-center text-5xl font-semibold md:ml-8 md:text-start">
+                Upcoming Krunker Tournaments
               </h1>
-              <div className="md:mr-8 mt-4 text-center text-lg text-teal-500 font-medium">
-                {`${userData?.name || "..."} | ${userData?.role || "..."}`}
+              <div className="md:mr-8 mt-4 flex flex-col text-center text-lg font-medium">
+                <div className='w-32'>
+                  <FilterBox />
+                </div>
               </div>
             </div>
-            <hr className="mt-10" />
+            <hr className="mt-6" />
           </div>
-        </section>
-        <section>
-          <ul className="grid gap-4 pt-10 sm:grid-cols-2 lg:grid-cols-3">
-            {infoCards.map((infoCard) => (
-              <li key={infoCard.title}>
-                <InfoCard title={infoCard.title} info={infoCard.info} slug={infoCard.slug} />
-              </li>
-            ))}
-          </ul>
+          <motion.div layout>
+            <ul className="grid gap-4 pt-10 md:grid-cols-2 xl:grid-cols-3">
+              <AnimatePresence> 
+                {tournamentData?.map((tournament) => (
+                  tournament.region.split(' ')[0] === selectedFilter || selectedFilter === 'ALL' ? (
+                    tournament.ended ? null : (
+                    <li key={tournament.id}>
+                      <TournamentCard
+                      name={tournament.name}
+                      organization={tournament.Organization}
+                      description={tournament.description}
+                      region={tournament.region}
+                      startDate={tournament.startDate.toString()}
+                      type={tournament.type}
+                      id={tournament.id}
+                      signupsClosed={tournament.signupsClosed}
+                      />
+                    </li>
+                  )) : null
+                  ))}
+              </AnimatePresence>
+            </ul>
+          </motion.div>
         </section>
       </main>
       <Toaster />
@@ -74,4 +80,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 }
 
-export default Home
+export default Tournaments
