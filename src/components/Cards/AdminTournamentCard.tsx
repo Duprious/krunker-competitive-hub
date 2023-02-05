@@ -3,7 +3,6 @@ import React from 'react'
 import { convertTime } from '../../utils/convertTime'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Roboto_Condensed } from '@next/font/google'
 import krunkerImage from '../../../public/krunkeresportssquare.jpg'
 
 interface TournamentCardProps {
@@ -15,17 +14,11 @@ interface TournamentCardProps {
   hostName: string
   id: string
   organization: string
-  signupsClosed: boolean
   teamsLength: number
   ended: boolean
 }
 
-const roboto = Roboto_Condensed({
-  subsets: ['latin'],
-  weight: '700'
-})
-
-const AdminTournamentCard: NextPage<TournamentCardProps> = ({name, startDate, region, type, hostName, description, ended, id, organization, signupsClosed, teamsLength}) => {
+const AdminTournamentCard: NextPage<TournamentCardProps> = ({name, startDate, region, type, hostName, description, ended, id, organization, teamsLength}) => {
   return (
     <motion.div layout animate={{ opacity: 1}} initial={{ opacity: 0}} exit={{ opacity: 0}}>
       <Link href={`/admin/organizations/${organization}/tournaments/${id}`}>
