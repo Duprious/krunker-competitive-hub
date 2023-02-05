@@ -56,7 +56,6 @@ const OrganizationPage = () => {
                   region={tournament.region}
                   type={tournament.type}
                   organization={query}
-                  signupsClosed={tournament.signupsClosed}
                   teamsLength={tournament.teams.length}
                   ended={tournament.ended}
                   hostName={tournament.hostName}
