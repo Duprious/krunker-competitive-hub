@@ -25,7 +25,6 @@ const Teams = () => {
                 {`Total Teams: ${tournamentData?.teams.length}/${tournamentData?.maxTeams}`}
               </div>
             </div>
-            <hr className="mt-10" />
           </div>
         </section>
         <section>

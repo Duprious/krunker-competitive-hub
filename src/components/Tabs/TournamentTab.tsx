@@ -26,7 +26,7 @@ const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, reg
   return (
     <div className="w-full justify max-w-full sm:px-0">
       <Tab.Group>
-        <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
+        <Tab.List className="flex space-x-1 rounded-xl dark:bg-blue-900/20 bg-blue-900/40 p-1">
           {categories.map((category) => (
             category === "Teams (Link)" ? 
               <Tab
@@ -35,7 +35,7 @@ const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, reg
                 className={({ selected }) =>
                 
                   classNames(
-                    'w-full py-2.5 text-sm font-medium text-white rounded-xl',
+                    'w-full py-2.5 text-sm font-medium dark:text-white rounded-xl',
                     'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-900 ring-white ring-opacity-60',
                     selected
                       ? 'bg-blue-900/20 text-white'
@@ -53,7 +53,7 @@ const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, reg
                 className={({ selected }) =>
                 
                   classNames(
-                    'w-full py-2.5 text-sm font-medium text-white rounded-xl',
+                    'w-full py-2.5 text-sm font-medium dark:text-white text-gray-900 rounded-xl',
                     'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-900 ring-white ring-opacity-60',
                     selected
                       ? 'bg-blue-900/20 text-white'
@@ -69,7 +69,7 @@ const TournamentTab: NextPage<TournamentData> = ({description, hostName, id, reg
               className={({ selected }) =>
               
                 classNames(
-                  'w-full py-2.5 text-sm font-medium text-white rounded-xl',
+                  'w-full py-2.5 text-sm font-medium dark:text-white text-gray-900 rounded-xl',
                   'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-900 ring-white ring-opacity-60',
                   selected
                     ? 'bg-blue-900/20 text-white'

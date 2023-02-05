@@ -1,10 +1,12 @@
 import { NextPage } from 'next'
-import { useRouter } from 'next/router'
 import React from 'react'
 import { convertTime } from '../../utils/convertTime'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { Roboto_Condensed } from '@next/font/google'
+import krunkerImage from '../../../public/krunkeresportssquare.jpg'
 
-interface AdminTournamentCardProps {
+interface TournamentCardProps {
   name: string
   startDate: string
   region: string
@@ -13,53 +15,77 @@ interface AdminTournamentCardProps {
   hostName: string
   id: string
   organization: string
+  signupsClosed: boolean
+  teamsLength: number
   ended: boolean
 }
 
-const AdminTournamentCard: NextPage<AdminTournamentCardProps> = ({name, startDate, region, type, description, hostName, id, organization, ended}) => {
-  const router = useRouter()
-  
+const roboto = Roboto_Condensed({
+  subsets: ['latin'],
+  weight: '700'
+})
 
+const AdminTournamentCard: NextPage<TournamentCardProps> = ({name, startDate, region, type, hostName, description, ended, id, organization, signupsClosed, teamsLength}) => {
   return (
     <motion.div layout animate={{ opacity: 1}} initial={{ opacity: 0}} exit={{ opacity: 0}}>
-      <div onClick={() => router.push(`/admin/organizations/${organization}/tournaments/${id}`)} className="p-6 max-w-sm hover:shadow-xl transition duration-30 rounded-lg border shadow-md bg-gray-800 border-gray-700 cursor-pointer">
-        <div className="flex items-center justify-between">
-          <span className="text-sm font-light text-gray-400 max-w-[135px]">
-            {convertTime(startDate)}
-          </span>
-          <span className="px-2 py-1 font-semibold text-gray-100 rounded-full bg-gray-700">
-            {`${region} / ${type}`}
-          </span>
+      <Link href={`/admin/organizations/${organization}/tournaments/${id}`}>
+        <div className="p-6 max-w-6xl lg:mx-0 rounded-md shadow-xl dark:bg-gray-800 bg-white cursor-pointer relative">
+          <div className='flex justify-start gap-8'>
+            <div className='flex items-center min-w-fit'>
+              <img
+                src={krunkerImage.src}
+                alt="Krunker Esports Logo"
+                className='rounded-full md:w-32 md:h-32 hidden md:block'
+              />
+            </div>
+            <div className='w-full'>
+              <div className="flex items-center justify-between">
+                <h1 className="dark:text-gray-200 text-gray-600 font-medium">{organization}</h1>
+                <div className='flex flex-col sm:flex-row gap-4 '>
+                  <span className="px-2 py-1 font-semibold hidden sm:block rounded-sm dark:text-gray-100 dark:bg-gray-700 text-gray-500 bg-gray-200">
+                    {ended 
+                    ? <span className='text-red-400'>ENDED</span>
+                    : <span>{teamsLength} Teams</span>
+                    }
+                  </span>
+                  <span className="px-2 py-1 font-semibold rounded-sm dark:text-gray-100 dark:bg-gray-700 text-gray-500 bg-gray-200">
+                    {`${region} | ${type}`}
+                  </span>
+                </div>
+              </div>
+              <div className="mt-4">
+                <div className='flex justify-between'>
+                  <h1
+                    className="text-2xl font-semibold dark:text-gray-200 dark:hover:text-gray-100 text-gray-600 hover:text-gray-500"
+                    >
+                    {name}
+                  </h1>
+                </div>
+                <p className="mt-2 dark:text-gray-300 text-gray-700 line-clamp-2 max-w-xl break-words">
+                  {description}
+                </p>
+              </div>
+              <div className="sm:flex sm:items-center sm:justify-between sm:mt-4 hidden">
+                <div className="flex items-center mt-4 sm:mt-0">
+                  <div className="flex items-center">
+                    <span className="dark:text-gray-200 text-gray-600 font-medium">
+                      {hostName}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center mt-4">
+                  <div className="flex items-center">
+                    <span className="dark:text-gray-200 text-gray-600 font-medium">
+                      {convertTime(startDate)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="mt-2">
-          <div className='flex justify-between relative'>
-            <h1
-              className="text-2xl font-semibold text-gray-200 hover:text-gray-100"
-              >
-              {name}
-            </h1>
-          </div>
-          <p className="mt-2 text-gray-300 line-clamp-3 leading-7 min-h-[5.25em]">
-            {description}
-          </p>
-        </div>
-        <div className="flex items-center mt-4 justify-between">
-          {ended ?
-          <div className="flex items-center">
-            <h1 className='text-base font-semibold text-red-400'>Ended</h1>
-          </div>
-          :  
-          <div className="flex items-center">
-            <h1 className='text-base font-semibold text-green-400'>Ongoing</h1>
-          </div>
-          }
-          <div className="flex items-end">
-            <h1 className="text-gray-200">Host: <span className='font-medium'>{hostName}</span></h1>
-          </div>
-        </div>
-      </div>
+      </Link>
     </motion.div>
-
   )
 }
 

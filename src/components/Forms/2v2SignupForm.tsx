@@ -70,44 +70,44 @@ const TwoVsTwoSignupForm = ({tournamentId}: {tournamentId: string}) => {
 
   return (
     <div>
-      <section className="bg-gray-900">
+      <section className="dark:bg-gray-900 bg-[#E7E7E7]">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:mt-12 lg:py-0">
-            <div className="w-full rounded-lg shadow border md:mt-0 sm:max-w-5xl xl:p-0 bg-gray-800 border-gray-700">
+            <div className="w-full rounded-lg shadow-xl md:mt-0 sm:max-w-5xl xl:p-0 dark:bg-gray-800 bg-stone-50 mb-8">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                    <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl text-white">
+                    <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl dark:text-white text-gray-800">
                         General Info
                     </h1>
                     <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit(onSubmit)}>
                         <div>
                           <label htmlFor="teamName" className="block mb-2 text-sm font-mediumtext-white">Team Name</label>
-                          <input type="teamName" id="teamName" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Krunker" {...register("teamName")} />
+                          <input type="teamName" id="teamName" className="border sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 bg-stone-100 border-gray-600 placeholder-gray-400 dark:text-white text-gray-800 focus:ring-blue-500 focus:border-blue-500" placeholder="Krunker" {...register("teamName")} />
                           {errors.teamName && (
                             <p className="text-xs italic text-red-500 mt-2">
                               {errors.teamName?.message}
                             </p>
                           )}
                         </div>
-                        <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl text-white">
+                        <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl dark:text-white text-gray-800">
                         Players (if no sub, leave sub field blank)
                         </h1>
                         <div className='grid grid-cols-2 space-x-8'>
                           <div>
-                            <label htmlFor="playerOneDiscord" className="block mb-2 text-sm font-medium text-white">Discord Player 1 (with #)</label>
-                            <input type="text" id="playerOneDiscord" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder='Duprious#1459' {...register("discordPlayerOne")} />
+                            <label htmlFor="playerOneDiscord" className="block mb-2 text-sm font-medium dark:text-white text-gray-800">Discord Player 1 (with #)</label>
+                            <input type="text" id="playerOneDiscord" className="border sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 bg-stone-100 border-gray-600 placeholder-gray-400 dark:text-white text-gray-800 focus:ring-blue-500 focus:border-blue-500" placeholder='Duprious#1459' {...register("discordPlayerOne")} />
                             {errors.discordPlayerOne && (
                               <p className="text-xs italic text-red-500 mt-2">
                                 {errors.discordPlayerOne?.message}
                               </p>
                             )}
-                            <label htmlFor="playerTwoDiscord" className="block mb-2 text-sm font-medium mt-4 text-white">Discord Player 2</label>
-                            <input type="text" id="playerTwoDiscord" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder='flipbait#0001' {...register("discordPlayerTwo")} />
+                            <label htmlFor="playerTwoDiscord" className="block mb-2 text-sm font-medium mt-4 dark:text-white text-gray-800">Discord Player 2</label>
+                            <input type="text" id="playerTwoDiscord" className="border sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 bg-stone-100 border-gray-600 placeholder-gray-400 dark:text-white text-gray-800 focus:ring-blue-500 focus:border-blue-500" placeholder='flipbait#0001' {...register("discordPlayerTwo")} />
                             {errors.discordPlayerTwo && (
                               <p className="text-xs italic text-red-500 mt-2">
                                 {errors.discordPlayerTwo?.message}
                               </p>
                             )}
-                            <label htmlFor="subDiscord" className="block mb-2 mt-4 text-sm font-medium text-white">Discord Sub</label>
-                            <input type="text" id="subDiscord" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder='Duprious#1459' {...register("discordSub")} />
+                            <label htmlFor="subDiscord" className="block mb-2 mt-4 text-sm font-medium dark:text-white text-gray-800">Discord Sub</label>
+                            <input type="text" id="subDiscord" className="border sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 bg-stone-100 border-gray-600 placeholder-gray-400 dark:text-white text-gray-800 focus:ring-blue-500 focus:border-blue-500" placeholder='Duprious#1459' {...register("discordSub")} />
                             {errors.discordSub && (
                               <p className="text-xs italic text-red-500 mt-2">
                                 {errors.discordSub?.message}
@@ -115,22 +115,22 @@ const TwoVsTwoSignupForm = ({tournamentId}: {tournamentId: string}) => {
                             )}
                           </div>
                           <div>
-                            <label htmlFor="playerOneIGN" className="block mb-2 text-sm font-medium text-white">IGN Player 1 (Krunker)</label>
-                            <input type="text" id="playerOneIGN" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder='Duprious' {...register("ignPlayerOne")} />
+                            <label htmlFor="playerOneIGN" className="block mb-2 text-sm font-medium dark:text-white text-gray-800">IGN Player 1 (Krunker)</label>
+                            <input type="text" id="playerOneIGN" className="border sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 bg-stone-100 border-gray-600 placeholder-gray-400 dark:text-white text-gray-800 focus:ring-blue-500 focus:border-blue-500" placeholder='Duprious' {...register("ignPlayerOne")} />
                             {errors.ignPlayerOne && (
                               <p className="text-xs italic text-red-500 mt-2">
                                 {errors.ignPlayerOne?.message}
                               </p>
                             )}
-                            <label htmlFor="playerTwoIGN" className="block mb-2 text-sm font-medium mt-4 text-white">IGN Player 2</label>
-                            <input type="text" id="playerTwoIGN" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder='flipbait' {...register("ignPlayerTwo")} />
+                            <label htmlFor="playerTwoIGN" className="block mb-2 text-sm font-medium mt-4 dark:text-white text-gray-800">IGN Player 2</label>
+                            <input type="text" id="playerTwoIGN" className="border sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 bg-stone-100 border-gray-600 placeholder-gray-400 dark:text-white text-gray-800 focus:ring-blue-500 focus:border-blue-500" placeholder='flipbait' {...register("ignPlayerTwo")} />
                             {errors.ignPlayerTwo && (
                               <p className="text-xs italic text-red-500 mt-2">
                                 {errors.ignPlayerTwo?.message}
                               </p>
                             )}
-                            <label htmlFor="subIGN" className="block mb-2 text-sm font-medium mt-4 text-white">IGN Sub</label>
-                            <input type="text" id="subIGN" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder='flipbait' {...register("ignSub")} />
+                            <label htmlFor="subIGN" className="block mb-2 text-sm font-medium mt-4 dark:text-white text-gray-800">IGN Sub</label>
+                            <input type="text" id="subIGN" className="border sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 bg-stone-100 border-gray-600 placeholder-gray-400 dark:text-white text-gray-800 focus:ring-blue-500 focus:border-blue-500" placeholder='flipbait' {...register("ignSub")} />
                             {errors.ignSub && (
                               <p className="text-xs italic text-red-500 mt-2">
                                 {errors.ignSub?.message}
@@ -139,8 +139,8 @@ const TwoVsTwoSignupForm = ({tournamentId}: {tournamentId: string}) => {
                           </div>
                         </div>
                         <div>
-                        <label htmlFor="teamCaptain" className="block mb-2 text-sm font-medium text-white">Select the team captain</label>
-                        <select id="teamCaptain" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" {...register("captain")}>
+                        <label htmlFor="teamCaptain" className="block mb-2 text-sm font-medium dark:text-white text-gray-800">Select the team captain</label>
+                        <select id="teamCaptain" className="border sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 bg-stone-100 border-gray-600 placeholder-gray-400 dark:text-white text-gray-800 focus:ring-blue-500 focus:border-blue-500" {...register("captain")}>
                           <option value="P1">Player 1</option>
                           <option value="P2">Player 2</option>
                         </select>
@@ -152,10 +152,10 @@ const TwoVsTwoSignupForm = ({tournamentId}: {tournamentId: string}) => {
                         </div>
                         <div className="flex items-start">
                             <div className="flex items-center h-5">
-                              <input id="terms" aria-describedby="terms" type="checkbox" className="w-4 h-4 border rounded focus:ring-3 bg-gray-700 border-gray-600 focus:ring-primary-600 ring-offset-gray-800" {...register("terms")} />
+                              <input id="terms" aria-describedby="terms" type="checkbox" className="w-4 h-4 border rounded focus:ring-3 dark:bg-gray-700 bg-stone-100 border-gray-600 focus:ring-primary-600 ring-offset-gray-800" {...register("terms")} />
                             </div>
                             <div className="ml-3 text-sm">
-                              <label htmlFor="terms" className="font-light text-gray-300">I agree to the <a className="font-medium hover:underline text-primary-500" rel="noopener noreferrer" target="_blank" href="https://docs.google.com/document/d/14aCtb6sgRatySrEVz26iYoQ7jyCh9oPKacy3TtDeB3s">Tournament Rules</a></label>
+                              <label htmlFor="terms" className="font-light dark:text-gray-300 text-gray-800">I agree to the <a className="font-medium hover:underline text-primary-500" rel="noopener noreferrer" target="_blank" href="https://docs.google.com/document/d/14aCtb6sgRatySrEVz26iYoQ7jyCh9oPKacy3TtDeB3s">Tournament Rules</a></label>
                               {errors.terms && (
                               <p className="text-xs italic text-red-500 mt-2">
                                 {errors.terms?.message}

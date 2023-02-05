@@ -29,8 +29,8 @@ const Signup: NextPage = () => {
       :
       (tournamentData?.signupsClosed) || (tournamentData?.ended) || (tournamentData?.teams ? tournamentData?.teams.length >= tournamentData.maxTeams : null )  ?
         <div className="flex flex-col items-center justify-center h-screen">
-          <h1 className="text-2xl font-bold text-gray-100">Signups Closed</h1>
-          <p className="text-gray-400">Signups have been closed because maximum amount of teams have signed up or the Tournament has ended.</p>
+          <h1 className="text-2xl font-bold dark:text-gray-100 text-gray-800">Signups Closed</h1>
+          <p className="dark:text-gray-400 text-gray-600">Signups have been closed because the maximum amount of teams have been reached or the Tournament has ended.</p>
           <Link href="/home">
             <p className="text-blue-500 hover:underline">Return to the homepage</p>
           </Link>
@@ -44,7 +44,6 @@ const Signup: NextPage = () => {
                   {tournamentData?.name} Signups
                 </h1>
               </div>
-              <hr className="mt-10" />
             </div>
           </section>
           <section>

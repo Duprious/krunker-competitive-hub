@@ -19,7 +19,11 @@ export const organizationsRouter = router({
           name: input.name
         },
         include: {
-          tournaments: true
+          tournaments: {
+            include: {
+              teams: true,
+            }
+          }
         }
       })
       return organizationTournaments;

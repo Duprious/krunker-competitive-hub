@@ -33,10 +33,9 @@ const Tournaments: NextPage = () => {
                 </div>
               </div>
             </div>
-            <hr className="mt-6" />
           </div>
           <motion.div layout>
-            <ul className="grid gap-4 pt-10 md:grid-cols-2 xl:grid-cols-3">
+            <ul className="grid gap-4 pt-10">
               <AnimatePresence> 
                 {tournamentData?.map((tournament) => (
                   tournament.region.split(' ')[0] === selectedFilter || selectedFilter === 'ALL' ? (
@@ -51,6 +50,7 @@ const Tournaments: NextPage = () => {
                       type={tournament.type}
                       id={tournament.id}
                       signupsClosed={tournament.signupsClosed}
+                      teamsLength={tournament.teams.length}
                       />
                     </li>
                   )) : null

@@ -57,7 +57,7 @@ const AddTournamentForm = () => {
       organization: data.organization
     }, {
       onSuccess: () => {
-        router.push('/tournaments')
+        router.push('/')
         toast.success("Tournament created")
       },
       onError: () => {

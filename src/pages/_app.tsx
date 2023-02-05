@@ -7,12 +7,14 @@ import { trpc } from "../utils/trpc";
 
 import "../styles/globals.css";
 import Head from "next/head";
+import { useStore } from "../zustand/store";
 // import AnnouncementBar from "../components/Bars/AnnouncementBar";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
+  const theme = useStore((state) => state.theme);
   return (
     <SessionProvider session={session}>
       <NextNProgress options={{ showSpinner: false, easing: 'ease'}} />
@@ -33,7 +35,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
           <meta name="twitter:description" content="All info on Competitive Krunker here" />
           <meta name="twitter:image" content="https://i.ibb.co/KLzJbYg/JTz-Oke7a-2x.png" />
         </Head>
-        <div className="bg-gray-900 text-white">
+        <div className={`${theme === "light" ? "bg-[#E7E7E7] text-gray-900" : "dark bg-gray-900 text-white"}`}>
           {/* <AnnouncementBar /> */}
           <Component {...pageProps} />
         </div>

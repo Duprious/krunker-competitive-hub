@@ -20,7 +20,6 @@ const OrganizationsPage = () => {
                 Organizations
               </h1>
             </div>
-            <hr className="mt-10" />
           </div>
         </section>
         <section>

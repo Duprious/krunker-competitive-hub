@@ -24,7 +24,7 @@ const PlayerCard: NextPage<PlayerCardProps> = ({ name, role, id}) => {
 
   return (
     <motion.div layout animate={{ opacity: 1}} initial={{ opacity: 0 }} exit={{ opacity: 0}}>
-      <div onClick={() => router.push(`/player/${id}`)} className="flex items-center bg-gray-800 hover:shadow-xl transition duration-30 rounded-lg overflow-hidden cursor-pointer">
+      <div onClick={() => router.push(`/player/${id}`)} className="flex items-center dark:bg-gray-800 bg-white shadow-xl rounded-lg overflow-hidden cursor-pointer">
         <div className="p-4">
           <div className="flex items-center">
             <div className="flex-shrink-0">
@@ -34,10 +34,10 @@ const PlayerCard: NextPage<PlayerCardProps> = ({ name, role, id}) => {
               }
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-gray-100">
+              <p className="text-sm font-medium dark:text-gray-100 text-gray-500">
                 {name}
               </p>
-              <div className="flex space-x-1 text-sm text-gray-400">
+              <div className="flex space-x-1 text-sm dark:text-gray-400 text-gray-800 font-medium">
                 {role === "ADMIN"
                 ? <p className='text-green-600 font-semibold'>{role}</p>
                 : <p>{role}</p>

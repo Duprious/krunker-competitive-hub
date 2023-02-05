@@ -23,7 +23,7 @@ const AdminTournamentPage = () => {
                 {tournamentData?.name}
               </h1>
             </div>
-            <hr className="mt-10" />
+            <hr className="mt-10 dark:border-white border-gray-900" />
           </div>
         </section>
         <section>

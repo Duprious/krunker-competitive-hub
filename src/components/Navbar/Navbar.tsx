@@ -5,13 +5,21 @@ import React, { Fragment } from 'react'
 import Link from 'next/link'
 import { trpc } from '../../utils/trpc'
 import { signOut } from 'next-auth/react'
+import { BsMoonFill, BsSunFill } from 'react-icons/bs'
+import { useStore } from '../../zustand/store'
+import { Roboto_Condensed } from '@next/font/google'
 
-const Navbar = () => {
+const roboto = Roboto_Condensed({
+  subsets: ['latin'],
+  weight: '700'
+})
+
+const Navbar = ({activeRoute}: {activeRoute: string}) => {
 
   const navigation = [
-    { name: 'Home', href: '/home', current: false },
-    { name: 'Players', href: '/players', current: false },
-    { name: 'Privacy', href: '/privacy', current: false },
+    { name: 'HOME', href: '/home', current: activeRoute.startsWith('/home')},
+    { name: 'PLAYERS', href: '/players', current: activeRoute.startsWith('/players') || activeRoute.startsWith('/player')},
+    { name: 'PRIVACY', href: '/privacy', current: activeRoute.startsWith('/privacy')},
   ]
 
   function classNames(...classes: string[]) {
@@ -19,9 +27,11 @@ const Navbar = () => {
   }
 
   const {data: userData} = trpc.user.getUser.useQuery();
+  const theme = useStore((state) => state.theme);
+  const toggleTheme = useStore((state) => state.toggleTheme);
 
   return (
-    <Disclosure as="nav" className="bg-gray-800 sticky w-full top-0 z-50">
+    <Disclosure as="nav" className="dark:bg-gray-800 bg-[#FFD449] sticky w-full top-0 z-50">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -54,8 +64,10 @@ const Navbar = () => {
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <Link className={classNames(
-                      item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                      'px-3 py-2 rounded-md text-sm font-medium'
+                      item.current 
+                      ? `${theme === "dark" ? `${roboto.className} text-gray-300 hover:text-bg-700 hover:text-white underline underline-offset-8`: `${roboto.className} text-gray-900 hover:text-gray-500 underline underline-offset-8`}`
+                      : `${theme === "dark" ? `${roboto.className} text-gray-300 hover:text-bg-700 hover:text-white`: `${roboto.className} text-gray-900 hover:text-gray-500`}`,
+                      'px-3 py-2 rounded-md font-semibold text-xl'
                       )}
                       aria-current={item.current ? 'page' : undefined}
                       key={item.name} 
@@ -66,13 +78,13 @@ const Navbar = () => {
                     ))}
                     {userData?.role === "ADMIN" && (
                       <Link className={classNames(
-                      'text-gray-300 hover:bg-gray-700 hover:text-white',
-                      'px-3 py-2 rounded-md text-sm font-medium'
+                      `${theme === "dark" ? `${roboto.className} text-gray-300 hover:text-bg-700 hover:text-white ${activeRoute.startsWith('/admin') ? "underline underline-offset-4" : ""}` : `${roboto.className} text-gray-900 hover:text-gray-500 ${activeRoute.startsWith('/admin') ? "underline underline-offset-4" : ""}`}`,
+                      'px-3 py-2 rounded-md font-semibold text-xl'
                       )}
                       key="Admin Panel"
                       href="/admin/organizations"
                       >
-                        Admin
+                        ADMIN
                       </Link>
                     )}
                   </div>
@@ -81,8 +93,21 @@ const Navbar = () => {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
-                  <div>
-                    <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                  <div className='flex justify-between items-center gap-4'>
+                    {theme === 'dark' ? 
+                    <button onClick={toggleTheme} className='flex items-center justify-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
+                      <span className='sr-only'>Toggle Theme</span>
+                      <BsSunFill className='h-6 w-6 text-yellow-300' />
+                    </button>
+                    :
+                    <button onClick={toggleTheme} className='flex items-center justify-center rounded-full bg-[#fed549] text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
+                      <span className='sr-only'>Toggle Theme</span>
+                      <BsMoonFill className='h-6 w-6 text-slate-700' />
+                    </button>
+
+                    }
+
+                    <Menu.Button className="flex rounded-full dark:bg-gray-800 bg-[#FFD449] text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
@@ -136,7 +161,7 @@ const Navbar = () => {
                   <Disclosure.Button
                     as="a"
                     className={classNames(
-                      item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                      `${roboto.className} text-gray-900 hover:text-gray-500`,
                       'block px-3 py-2 rounded-md text-base font-medium cursor-pointer'
                       )}
                       aria-current={item.current ? 'page' : undefined}
@@ -150,12 +175,12 @@ const Navbar = () => {
                 <Disclosure.Button
                   as="a"
                   className={classNames(
-                    'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    `${roboto.className} text-gray-900 hover:text-gray-500`,
                     'block px-3 py-2 rounded-md text-base font-medium cursor-pointer'
                     )}
                     aria-current={undefined}
                     >
-                  {`Admin`}
+                  {`ADMIN`}
                 </Disclosure.Button>
               </Link>
               )}

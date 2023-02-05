@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import React from 'react'
 import Footer from './Bars/Footer/Footer'
 import Navbar from './Navbar/Navbar'
@@ -8,11 +9,15 @@ interface LayoutProps {
 }
 
 const Layout: NextPage<LayoutProps> = ({children}) => {
+  const router = useRouter()
+  const activeRoute = router.pathname
   return (
     <>
       <div className='min-h-screen relative'>
         <div className='pb-[4.25rem]'>
-          <Navbar />
+          <Navbar
+            activeRoute={activeRoute}
+          />
           {children}
         </div>
         <footer className='absolute bottom-0 w-full h-[4.25rem]'>

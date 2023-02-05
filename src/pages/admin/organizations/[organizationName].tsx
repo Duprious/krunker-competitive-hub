@@ -42,23 +42,24 @@ const OrganizationPage = () => {
                 </Link> 
               </div>
             </div>
-            <hr className="mt-6" />
           </div>
         </section>
         <section>
-          <ul className="grid gap-4 pt-10 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid gap-4 pt-10 ">
             {tournamentsData?.tournaments.map((tournament) => (
               <li key={tournament.id}>
                 <AdminTournamentCard
                   name={tournament.name}
                   description={tournament.description}
-                  hostName={tournament.hostName}
                   startDate={tournament.startDate.toLocaleString()}
                   id={tournament.id}
                   region={tournament.region}
                   type={tournament.type}
                   organization={query}
+                  signupsClosed={tournament.signupsClosed}
+                  teamsLength={tournament.teams.length}
                   ended={tournament.ended}
+                  hostName={tournament.hostName}
                 />
               </li>
             ))}
