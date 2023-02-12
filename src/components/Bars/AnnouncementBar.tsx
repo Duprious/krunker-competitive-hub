@@ -44,10 +44,11 @@ const AnnouncementBar = () => {
       <Marquee speed={30} gradient={false}>
         <div className='flex items-center mr-8 '>
           <span className='mr-32'>Congrats to TON-618 for winning the NA Major</span>
+          <span className='mr-32'>Congrats to 2 months for winning the EU Major</span>
           <span className='mr-32'>Congrats to TON-618 for winning the NA Major</span>
+          <span className='mr-32'>Congrats to 2 months for winning the EU Major</span>
           <span className='mr-32'>Congrats to TON-618 for winning the NA Major</span>
-          <span className='mr-32'>Congrats to TON-618 for winning the NA Major</span>
-          <span className='mr-32'>Congrats to TON-618 for winning the NA Major</span>
+          <span className='mr-32'>Congrats to 2 months for winning the EU Major</span>
         </div>
       </Marquee>
       <button onClick={setAnnouncementBarClosed}>
