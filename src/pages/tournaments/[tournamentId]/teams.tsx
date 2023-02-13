@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import TeamCard from '../../../components/Cards/TeamCard'
 import Layout from '../../../components/Layout'
+import ChangeTeamModal from '../../../components/Modals/ChangeTeamModal'
 import { getServerAuthSession } from '../../../server/common/get-server-auth-session'
 import { trpc } from '../../../utils/trpc'
 
@@ -40,12 +41,14 @@ const Teams = () => {
                   validated={team.validated}
                   tournamentType={tournamentData?.type}
                   adminMenu={false}
+                  owner={team.owner}
                 />
               </li>
             )}
           </ul>
         </section>
       </main>
+      <ChangeTeamModal />
     </Layout>
   )
 }

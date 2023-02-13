@@ -24,6 +24,11 @@ export const teamRouter = router({
           data: {
             teamName: input.name,
             captain: input.captain,
+            owner: {
+              connect: {
+                id: ctx.session?.user?.id,
+              },
+            },
             players: {
               create: [
                 {
@@ -95,6 +100,11 @@ export const teamRouter = router({
           data: {
             teamName: input.name,
             captain: input.captain,
+            owner: {
+              connect: {
+                id: ctx.session?.user?.id,
+              },
+            },
             players: {
               create: [
                 {
@@ -180,6 +190,11 @@ export const teamRouter = router({
           data: {
             teamName: input.name,
             captain: input.captain,
+            owner: {
+              connect: {
+                id: ctx.session?.user?.id,
+              },
+            },
             players: {
               create: [
                 {
@@ -255,6 +270,11 @@ export const teamRouter = router({
           data: {
             teamName: input.name,
             captain: input.captain,
+            owner: {
+              connect: {
+                id: ctx.session?.user?.id,
+              },
+            },
             players: {
               create: [
                 {
@@ -346,6 +366,11 @@ export const teamRouter = router({
           data: {
             teamName: input.name,
             captain: input.captain,
+            owner: {
+              connect: {
+                id: ctx.session?.user?.id,
+              },
+            },
             players: {
               create: [
                 {
@@ -426,6 +451,11 @@ export const teamRouter = router({
           data: {
             teamName: input.name,
             captain: input.captain,
+            owner: {
+              connect: {
+                id: ctx.session?.user?.id,
+              },
+            },
             players: {
               create: [
                 {

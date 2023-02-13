@@ -51,6 +51,7 @@ model User {
   role          Role      @default(USER)
   accounts      Account[]
   sessions      Session[]
+  Team          Team[]
 }
 
 model VerificationToken {
@@ -103,9 +104,12 @@ model Team {
   validated    Boolean    @default(false)
   tournament   Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
   playerId     String?
+  owner        User       @relation(fields: [userId], references: [id])
+  userId       String
 
   @@index([tournamentId])
   @@index([playerId])
+  @@index([userId])
 }
 
 model Player {

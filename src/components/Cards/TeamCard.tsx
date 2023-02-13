@@ -1,4 +1,4 @@
-import { Player } from '@prisma/client'
+import { Player, User } from '@prisma/client'
 import { NextPage } from 'next'
 import React from 'react'
 import { trpc } from '../../utils/trpc'
@@ -13,16 +13,23 @@ interface TeamCardProps {
   id: string,
   validated: boolean
   tournamentType: string
+  owner: User
 }
 
 
-const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, players, Sub, id, validated, tournamentType, adminMenu}) => {
+const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, players, Sub, id, validated, tournamentType, adminMenu, owner}) => {
   const setModalOpen = useStore(state => state.setModalOpen)
+  const toggleChangeTeamModal = useStore(state => state.toggleChangeTeamModal)
   const setCurrentTeam = useStore(state => state.setCurrentTeam)
   const { data: userData } = trpc.user.getUser.useQuery() 
   
   const handleModalOpen = () => {
     setModalOpen()
+    setCurrentTeam(id)
+  }
+
+  const handleTeamChangeModalOpen = () => {
+    toggleChangeTeamModal()
     setCurrentTeam(id)
   }
 
@@ -33,6 +40,11 @@ const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, players, Sub, id,
           <h1 className={`${validated ? `bg-green-700` : `bg-red-700/40`} px-3 py-1 font-semibold text-gray-100 rounded-full`}>
             {validated ? "Validated" : "Not Validated"}
           </h1>
+        }
+        {owner.id === userData?.id &&
+          <button onClick={() => handleTeamChangeModalOpen()} className="px-3 py-1 font-semibold text-gray-100 rounded-md dark:bg-green-500/60 bg-green-500">
+            Change Team
+          </button>
         }
       </div>
       <div className="mt-3">
