@@ -35,7 +35,7 @@ const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, players, Sub, id,
 
   return (
     <div className="p-6 max-w-sm h-full mx-auto shadow-xl rounded-md dark:bg-gray-800 bg-stone-50">
-      <div className="flex items-center justify-start">
+      <div className="flex items-center justify-start gap-2">
         {adminMenu && userData?.role == "ADMIN" &&
           <h1 className={`${validated ? `bg-green-700` : `bg-red-700/40`} px-3 py-1 font-semibold text-gray-100 rounded-full`}>
             {validated ? "Validated" : "Not Validated"}
