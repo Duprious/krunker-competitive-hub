@@ -45,6 +45,7 @@ const AdminTeamsPage = () => {
                   validated={team.validated}
                   tournamentType={tournamentData?.type}
                   adminMenu={true}
+                  owner={team.owner}
                 />
               </li>
             )}
