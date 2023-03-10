@@ -8,6 +8,7 @@ import { trpc } from "../utils/trpc";
 import "../styles/globals.css";
 import Head from "next/head";
 import { useStore } from "../zustand/store";
+import { useEffect } from "react";
 // import AnnouncementBar from "../components/Bars/AnnouncementBar";
 
 const MyApp: AppType<{ session: Session | null }> = ({
@@ -15,6 +16,21 @@ const MyApp: AppType<{ session: Session | null }> = ({
   pageProps: { session, ...pageProps },
 }) => {
   const theme = useStore((state) => state.theme);
+  const setLightTheme = useStore((state) => state.setLightTheme)
+  const setDarkTheme = useStore((state) => state.setDarkTheme)
+  
+  useEffect(() => {
+    const preferredTheme = localStorage.getItem("preferredTheme")
+    if (!preferredTheme) {
+      localStorage.setItem("preferredTheme", "light")
+      setLightTheme()
+    } else if (preferredTheme === "light") {
+      setLightTheme()
+    } else {
+      setDarkTheme()
+    }
+  }, [])
+
   return (
     <SessionProvider session={session}>
       <NextNProgress options={{ showSpinner: false, easing: 'ease'}} />

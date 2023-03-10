@@ -16,6 +16,8 @@ interface Store {
   setAnnouncementBarClosed: () => void;
   toggleBracketLinkModal: () => void;
   toggleTheme: () => void;
+  setDarkTheme: () => void;
+  setLightTheme: () => void;
 }
 
 export const useStore = create<Store>((set) => ({
@@ -34,4 +36,6 @@ export const useStore = create<Store>((set) => ({
   setAnnouncementBarClosed: () => set({ announcementBarClosed: true }),
   toggleBracketLinkModal: () => set((state) => ({ bracketLinkModalOpen: !state.bracketLinkModalOpen })),
   toggleTheme: () => set((state) => ({ theme: state.theme === "light" ? "dark" : "light" })),
+  setLightTheme: () => set({ theme: "light"}),
+  setDarkTheme: () => set({ theme: "dark"})
 }));

@@ -30,6 +30,18 @@ const Navbar = ({activeRoute}: {activeRoute: string}) => {
   const theme = useStore((state) => state.theme);
   const toggleTheme = useStore((state) => state.toggleTheme);
 
+  const handleToggleTheme = () => {
+    if (theme === "dark") {
+      localStorage.setItem("preferredTheme", "light")
+    }
+
+    if (theme === "light") {
+      localStorage.setItem("preferredTheme", "dark")
+    }
+
+    toggleTheme()
+  }
+
   return (
     <Disclosure as="nav" className="dark:bg-gray-800 bg-[#FFD449] sticky w-full top-0 z-50">
       {({ open }) => (
@@ -95,12 +107,12 @@ const Navbar = ({activeRoute}: {activeRoute: string}) => {
                 <Menu as="div" className="relative ml-3">
                   <div className='flex justify-between items-center gap-4'>
                     {theme === 'dark' ? 
-                    <button onClick={toggleTheme} className='flex items-center justify-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
+                    <button onClick={() => handleToggleTheme()} className='flex items-center justify-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
                       <span className='sr-only'>Toggle Theme</span>
                       <BsSunFill className='h-6 w-6 text-yellow-300' />
                     </button>
                     :
-                    <button onClick={toggleTheme} className='flex items-center justify-center rounded-full bg-[#fed549] text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
+                    <button onClick={() => handleToggleTheme()} className='flex items-center justify-center rounded-full bg-[#fed549] text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
                       <span className='sr-only'>Toggle Theme</span>
                       <BsMoonFill className='h-6 w-6 text-slate-700' />
                     </button>
