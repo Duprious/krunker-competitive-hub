@@ -8,12 +8,12 @@ Website that shows all info surrounding the Krunker Competitive Scene made by [D
 - [x] Allow Admins to change Tournament Info
 - [x] Allow Admins to remove, rename and validate teams
 - [x] Make Tournaments Page More Accessible
-- [ ] Dark/Light Mode (**In Progress**)
+- [x] Dark/Light Mode
+- [x] Allow Team Captains to make changes to their team's info
+- [ ] Allow Admins to change players in a team directly
 - [ ] Allow unauthorized users to view teams and Tournament info
-- [ ] Allow Team Captains to make changes to their team's info
 - [ ] Fix Some UI Issues
 - [ ] Fix Some Responsiveness Issues (Mobile)
-- [ ] Allow Admins to change players in a team directly
 - [ ] Teams Info Page 
 - [ ] Player Info Page
 
