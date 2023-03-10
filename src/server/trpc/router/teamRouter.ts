@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { env } from "../../../env/server.mjs";
-import { router, publicProcedure, adminProcedure } from "../trpc";
+import { router, publicProcedure, adminProcedure, protectedProcedure } from "../trpc";
 
 export const teamRouter = router({
   addTeam2v2: publicProcedure
@@ -541,6 +541,13 @@ export const teamRouter = router({
         include: {
           players: true,
           Sub: true,
+          owner: {
+            select: {
+              id: true,
+              name: true,
+              role: true,
+            }
+          }
         },
       })
       return team
@@ -611,4 +618,84 @@ export const teamRouter = router({
       })
       return team
     }),
+    changePlayer: protectedProcedure
+    .input(
+      z.object({
+        ownerId: z.string(),
+        playerId: z.string(),
+        newDiscordName: z.string(),
+        newIGN: z.string(),
+        teamId: z.string()
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+
+      if (ctx.session.user.id !== input.ownerId) {
+        throw new Error("You are not the one who signed up this team")
+      }
+
+      const team = await ctx.prisma.team.update({
+        where: {
+          id: input.teamId,
+        },
+        data: {
+          players: {
+            update: {
+              where: {
+                id: input.playerId
+              },
+              data: {
+                discordName: input.newDiscordName,
+                ign: input.newIGN
+              }
+            }
+          }
+        }
+      })
+      return team
+    }),
+    playerDeleteTeam: protectedProcedure
+    .input(
+      z.object({
+        ownerId: z.string(),
+        teamId: z.string()
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      if (ctx.session.user.id !== input.ownerId) {
+        throw new Error("You are not the one who signed up this team")
+      }
+
+      const team = await ctx.prisma.team.delete({
+        where: {
+          id: input.teamId
+        },
+      })
+      return team
+    }),
+    playerRemoveSub: protectedProcedure
+    .input(
+      z.object({
+        ownerId: z.string(),
+        teamId: z.string(),
+        subId: z.string()
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      if (ctx.session.user.id !== input.ownerId) {
+        throw new Error("You are not the one who signed up this team")
+      }
+
+      const team = await ctx.prisma.team.update({
+        where: {
+          id: input.teamId
+        },
+        data: {
+          Sub: {
+            delete: true
+          }
+        }
+      })
+      return team
+    })
 });

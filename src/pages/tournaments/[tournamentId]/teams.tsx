@@ -1,6 +1,7 @@
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
+import { Toaster } from 'react-hot-toast'
 import TeamCard from '../../../components/Cards/TeamCard'
 import Layout from '../../../components/Layout'
 import ChangeTeamModal from '../../../components/Modals/ChangeTeamModal'
@@ -48,7 +49,8 @@ const Teams = () => {
           </ul>
         </section>
       </main>
-      <ChangeTeamModal />
+      <ChangeTeamModal tournamentId={tournamentData?.id} />
+      <Toaster />
     </Layout>
   )
 }

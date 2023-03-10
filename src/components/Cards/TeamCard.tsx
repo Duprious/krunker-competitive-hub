@@ -41,7 +41,7 @@ const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, players, Sub, id,
             {validated ? "Validated" : "Not Validated"}
           </h1>
         }
-        {owner.id === userData?.id &&
+        {((owner.id === userData?.id) && (!adminMenu)) &&
           <button onClick={() => handleTeamChangeModalOpen()} className="px-3 py-1 font-semibold text-gray-100 rounded-md dark:bg-green-500/60 bg-green-500">
             Change Team
           </button>
