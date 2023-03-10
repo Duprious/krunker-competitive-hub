@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { prisma } from '../../../server/db/client'
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const organization =  async (req: NextApiRequest, res: NextApiResponse) => {
   const name = req.query.organizationName as string
   
   const organizationData = await prisma.organization.findUnique({
@@ -18,3 +18,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
   res.status(200).json(organizationData)
 }
+
+export default organization

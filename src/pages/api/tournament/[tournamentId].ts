@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { prisma } from '../../../server/db/client'
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const tournament =  async (req: NextApiRequest, res: NextApiResponse) => {
   const id = req.query.tournamentId as string
   const tournamentData = await prisma.tournament.findUnique({
     where: {
@@ -23,3 +23,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
   res.status(200).json(tournamentData)
 }
+
+export default tournament

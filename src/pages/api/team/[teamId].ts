@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { prisma } from '../../../server/db/client'
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const team = async (req: NextApiRequest, res: NextApiResponse) => {
   const id = req.query.teamId as string
   
   const teamData = await prisma.team.findUnique({
@@ -20,3 +20,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
   res.status(200).json(teamData)
 }
+
+export default team
