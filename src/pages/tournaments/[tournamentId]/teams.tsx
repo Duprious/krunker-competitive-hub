@@ -21,7 +21,7 @@ const Teams = () => {
             <div className="flex flex-col justify-between gap-8 md:flex-row">
               <h1 className="text-center text-5xl font-semibold md:ml-8 md:text-start">
                 Signed-Up Teams
-                <p className='text-xl text-red-500 mt-3'>(To remove your team, contact an Admin)</p>
+                {/* <p className='text-xl text-red-500 mt-3'>(To remove your team, contact an Admin)</p> */}
               </h1>
               <div className="md:mr-8 mt-4 text-center text-lg text-teal-500 font-medium">
                 {`Total Teams: ${tournamentData?.teams.length}/${tournamentData?.maxTeams}`}
