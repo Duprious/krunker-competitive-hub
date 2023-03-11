@@ -10,6 +10,11 @@ const PlayersPage: NextPage = () => {
   
   const { data: playersData } = trpc.user.getAllUsers.useQuery()
   const [searchData, setSearchData] = useState(playersData)
+  const [numToShow, setNumToShow] = useState(40);
+
+  const showMore = () => {
+    setNumToShow(numToShow + 40);
+  };
 
   useEffect(() => {
     playersData?.sort((a, b) => {
@@ -74,13 +79,20 @@ const PlayersPage: NextPage = () => {
           <motion.div layout>
             <ul className="grid gap-4 pt-10 sm:grid-cols-2 lg:grid-cols-3">
               <AnimatePresence>
-                {searchData?.map((player) => (
+                {searchData?.slice(0, numToShow).map((player) => (
                   <li key={player.id}>
                     <PlayerCard name={player.name} role={player.role} id={player.id} />
                   </li>
                 ))}
               </AnimatePresence>
             </ul>
+            <div className='flex justify-center items-center pt-4'>
+              {numToShow < (searchData?.length as number) && (
+                <button className="my-4 p-2 border rounded" onClick={showMore}>
+                  Show More
+                </button>
+              )}
+            </div>
           </motion.div>
         </section>
       </main>
