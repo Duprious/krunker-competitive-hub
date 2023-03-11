@@ -6,6 +6,10 @@ import { Organization } from '@prisma/client'
 import Link from 'next/link'
 import { Roboto_Condensed } from '@next/font/google'
 import krunkerImage from '../../../public/krunkeresportssquare.jpg'
+import kpcImage from '../../../public/kpc.jpg'
+import nackImage from '../../../public/nack.png'
+import ckaImage from '../../../public/cka.png'
+import krunkerImageOther from '../../../public/krunker.png'
 
 interface TournamentCardProps {
   name: string
@@ -30,11 +34,38 @@ const TournamentCard: NextPage<TournamentCardProps> = ({name, startDate, region,
       <div className="p-6 max-w-6xl lg:mx-0 rounded-md shadow-xl dark:bg-gray-800 bg-white relative">
         <div className='flex justify-start gap-8'>
           <div className='flex items-center min-w-fit'>
-            <img
-              src={krunkerImage.src}
-              alt="Krunker Esports Logo"
-              className='rounded-full md:w-32 md:h-32 hidden md:block'
-            />
+            {
+              organization?.name === "KrunkerEsports" ?
+                <img
+                  src={krunkerImage.src}
+                  alt="Krunker Esports Logo"
+                  className='rounded-full md:w-32 md:h-32 hidden md:block'
+                />
+              : organization?.name === "KPC" ?
+                <img
+                  src={kpcImage.src}
+                  alt="Krunker Pro Circuit Logo"
+                  className='rounded-full md:w-32 md:h-32 hidden md:block'
+                />
+              : organization?.name === "NACK" ?
+                <img
+                  src={nackImage.src}
+                  alt="NA Competitive Krunker Logo"
+                  className='rounded-full md:w-32 md:h-32 hidden md:block'
+                />
+              : organization?.name === "CKA" ?
+                <img
+                  src={ckaImage.src}
+                  alt="Competitive Krunker Asia Logo"
+                  className='rounded-full md:w-32 md:h-32 hidden md:block'
+                />
+              : 
+              <img
+                src={krunkerImageOther.src}
+                alt="Other Logo"
+                className='rounded-full md:w-32 md:h-32 hidden md:block'
+              />
+            }
           </div>
           <div className='w-full'>
             <div className="flex items-center justify-between">
