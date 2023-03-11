@@ -29,7 +29,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
     } else {
       setDarkTheme()
     }
-  }, [])
+  }, [setDarkTheme, setLightTheme])
 
   return (
     <SessionProvider session={session}>

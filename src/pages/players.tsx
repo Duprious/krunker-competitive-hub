@@ -88,7 +88,7 @@ const PlayersPage: NextPage = () => {
             </ul>
             <div className='flex justify-center items-center pt-4'>
               {numToShow < (searchData?.length as number) && (
-                <button className="my-4 p-2 border rounded" onClick={showMore}>
+                <button className="my-4 p-2 border border-gray-600 dark:border-gray-400 rounded" onClick={showMore}>
                   Show More
                 </button>
               )}
