@@ -2,6 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-::-webkit-calendar-picker-indicator {
-  filter: invert(1);
+@layer utilities {
+  .calendar-white::-webkit-calendar-picker-indicator {
+    filter: invert(1)
+  }
+}
+
+body {
+  overflow: overlay;
+}
+
+::-webkit-scrollbar {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.5);
+  border: none;
+  border-radius: 0.625rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 100, 100, 0.7);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: rgba(100, 100, 100, 0.9);
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  border: none;
+  border-radius: 0.625rem;
+}
+
+::-webkit-scrollbar-track:hover {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track:active {
+  background-color: transparent;
 }
