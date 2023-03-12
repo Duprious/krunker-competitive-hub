@@ -43,12 +43,12 @@ const AnnouncementBar = () => {
     <div className='dark:bg-gray-900 bg-stone-300 text-gray-900 dark:text-white flex justify-between items-center py-2 text-xs '>
       <Marquee speed={30} gradient={false}>
         <div className='flex items-center mr-8 '>
-          <span className='mr-32'>Congrats to TON-618 for winning the NA Major</span>
-          <span className='mr-32'>Congrats to 2 months for winning the EU Major</span>
-          <span className='mr-32'>Congrats to TON-618 for winning the NA Major</span>
-          <span className='mr-32'>Congrats to 2 months for winning the EU Major</span>
-          <span className='mr-32'>Congrats to TON-618 for winning the NA Major</span>
-          <span className='mr-32'>Congrats to 2 months for winning the EU Major</span>
+          <span className='mr-32'>Congrats to #FreeHeaven for winning the NACK 2v2</span>
+          <span className='mr-32'>Congrats to #FreeHeaven for winning the NACK 2v2</span>
+          <span className='mr-32'>Congrats to #FreeHeaven for winning the NACK 2v2</span>
+          <span className='mr-32'>Congrats to #FreeHeaven for winning the NACK 2v2</span>
+          <span className='mr-32'>Congrats to #FreeHeaven for winning the NACK 2v2</span>
+          <span className='mr-32'>Congrats to #FreeHeaven for winning the NACK 2v2</span>
         </div>
       </Marquee>
       <button onClick={setAnnouncementBarClosed}>
