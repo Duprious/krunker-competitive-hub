@@ -33,7 +33,8 @@ const Teams = () => {
           <ul className="grid gap-4 pt-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {tournamentData?.teams.map((team) =>
               <li key={team.id}>
-                <TeamCard 
+                <TeamCard
+                  tournamentId={tournamentData.id}
                   captain={team.captain}
                   teamName={team.teamName}
                   id={team.id}
@@ -49,7 +50,7 @@ const Teams = () => {
           </ul>
         </section>
       </main>
-      <ChangeTeamModal tournamentId={tournamentData?.id} />
+      <ChangeTeamModal />
       <Toaster />
     </Layout>
   )
