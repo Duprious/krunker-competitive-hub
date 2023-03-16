@@ -11,18 +11,16 @@ interface TeamCardProps {
   captain: string,
   adminMenu: boolean,
   id: string,
-  tournamentId: string,
   validated: boolean
   tournamentType: string
   owner: User
 }
 
 
-const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, players, Sub, id, tournamentId, validated, tournamentType, adminMenu, owner}) => {
+const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, players, Sub, id, validated, tournamentType, adminMenu, owner}) => {
   const setModalOpen = useStore(state => state.setModalOpen)
   const toggleChangeTeamModal = useStore(state => state.toggleChangeTeamModal)
   const setCurrentTeam = useStore(state => state.setCurrentTeam)
-  const setCurrentTournament = useStore(state => state.setCurrentTournament)
   const { data: userData } = trpc.user.getUser.useQuery() 
   
   const handleModalOpen = () => {
@@ -33,7 +31,6 @@ const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, players, Sub, id,
   const handleTeamChangeModalOpen = () => {
     toggleChangeTeamModal()
     setCurrentTeam(id)
-    setCurrentTournament(tournamentId)
   }
 
   return (

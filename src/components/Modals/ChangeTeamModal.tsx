@@ -4,11 +4,10 @@ import { toast } from 'react-hot-toast'
 import { trpc } from '../../utils/trpc'
 import { useStore } from '../../zustand/store'
 
-const ChangeTeamModal = () => {
+const ChangeTeamModal = (props: {tournamentId: string | undefined}) => {
   const changeTeamModalOpen = useStore(state => state.changeTeamModalOpen)
   const toggleChangeTeamModal = useStore(state => state.toggleChangeTeamModal)
   const currentTeam = useStore(state => state.currentTeam)
-  const currentTournament = useStore(state => state.currentTournament)
 
   const { data: teamData, isLoading: teamDataLoading } = trpc.teamRouter.getTeam.useQuery({ id: currentTeam })
   const { data: tournamentsData } = trpc.tournament.getTournaments.useQuery()
@@ -48,7 +47,7 @@ const ChangeTeamModal = () => {
       return
     }
 
-    const currentTournamentDataTeams = tournamentsData?.find(tournament => tournament.id === currentTournament)?.teams
+    const currentTournamentDataTeams = tournamentsData?.find(tournament => tournament.id === props.tournamentId)?.teams
     
     if (currentTournamentDataTeams) {
       for (const team of currentTournamentDataTeams) {
