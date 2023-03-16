@@ -8,7 +8,6 @@ const ChangeTeamModal = (props: {tournamentId: string | undefined}) => {
   const changeTeamModalOpen = useStore(state => state.changeTeamModalOpen)
   const toggleChangeTeamModal = useStore(state => state.toggleChangeTeamModal)
   const currentTeam = useStore(state => state.currentTeam)
-
   const { data: teamData, isLoading: teamDataLoading } = trpc.teamRouter.getTeam.useQuery({ id: currentTeam })
   const { data: tournamentsData } = trpc.tournament.getTournaments.useQuery()
   const playerChangeMutation = trpc.teamRouter.changePlayer.useMutation()
@@ -47,17 +46,11 @@ const ChangeTeamModal = (props: {tournamentId: string | undefined}) => {
       return
     }
 
-    const currentTournamentDataTeams = tournamentsData?.find(tournament => tournament.id === props.tournamentId)?.teams
-    
-    if (currentTournamentDataTeams) {
-      for (const team of currentTournamentDataTeams) {
-        if (team.teamName === teamData?.teamName) continue
-        if (team.players.find(player => player.discordName === changedDiscordName) || team.players.find(player => player.ign === changedIGN)) {
-          toast.error("One of your players is already registered in another team. Please choose another player.")
-          return
-        }
-      }
-    }
+    const duplicatePlayer = tournamentsData?.find(tournament => tournament.id === props.tournamentId)?.teams.find(team => team.players.find(player => player.discordName === changedDiscordName))
+    if (duplicatePlayer) return toast.error("One of your players is already registered in another team. Please choose another player.")
+
+    const duplicateIgn = tournamentsData?.find(tournament => tournament.id === props.tournamentId)?.teams.find(team => team.players.find(player => player.ign === changedIGN))
+    if (duplicateIgn) return toast.error("One of your players is already registered in another team. Please choose another player.")
 
     playerChangeMutation.mutateAsync({
       teamId: teamData?.id as string,
