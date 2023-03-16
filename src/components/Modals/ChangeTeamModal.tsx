@@ -48,12 +48,10 @@ const ChangeTeamModal = () => {
       return
     }
 
-    const activeTournamentsData = tournamentsData?.filter(tournament => !tournament.ended);
-
-    const duplicatePlayer = activeTournamentsData?.find(tournament => tournament.id === currentTournament)?.teams.find(team => team.players.find(player => player.discordName === changedDiscordName))
+    const duplicatePlayer = tournamentsData?.find(tournament => tournament.id === currentTournament)?.teams.find(team => team.players.find(player => player.discordName === changedDiscordName))
     if (duplicatePlayer) return toast.error("One of your players is already registered in another team. Please choose another player.")
 
-    const duplicateIgn = activeTournamentsData?.find(tournament => tournament.id === currentTournament)?.teams.find(team => team.players.find(player => player.ign === changedIGN))
+    const duplicateIgn = tournamentsData?.find(tournament => tournament.id === currentTournament)?.teams.find(team => team.players.find(player => player.ign === changedIGN))
     if (duplicateIgn) return toast.error("One of your players is already registered in another team. Please choose another player.")
 
     playerChangeMutation.mutateAsync({
