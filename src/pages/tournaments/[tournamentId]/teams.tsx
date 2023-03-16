@@ -49,7 +49,7 @@ const Teams = () => {
           </ul>
         </section>
       </main>
-      <ChangeTeamModal />
+      <ChangeTeamModal tournamentId={tournamentData?.id} />
       <Toaster />
     </Layout>
   )
