@@ -35,7 +35,13 @@ export const tournamentRouter = router({
             include: {
               players: true,
               Sub: true,
-              owner: true,
+              owner: {
+                select: {
+                  id: true,
+                  role: true,
+                  name: true,
+                }
+              }
             }
           },
           Organization: true
