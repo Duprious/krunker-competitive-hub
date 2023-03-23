@@ -1,4 +1,4 @@
-import { Player, User } from '@prisma/client'
+import { Player, Role, User } from '@prisma/client'
 import { NextPage } from 'next'
 import React from 'react'
 import { trpc } from '../../utils/trpc'
@@ -13,7 +13,11 @@ interface TeamCardProps {
   id: string,
   validated: boolean
   tournamentType: string
-  owner: User
+  owner: {
+    id: string;
+    name: string | null;
+    role: Role;
+  }
 }
 
 
