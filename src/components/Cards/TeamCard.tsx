@@ -1,4 +1,4 @@
-import { Player, Role, User } from '@prisma/client'
+import { Player, Role } from '@prisma/client'
 import { NextPage } from 'next'
 import React from 'react'
 import { trpc } from '../../utils/trpc'

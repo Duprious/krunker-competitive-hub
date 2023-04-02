@@ -1,9 +1,11 @@
-import { router, protectedProcedure } from "../trpc";
+import { Role } from "@prisma/client";
+import { router, protectedProcedure, publicProcedure } from "../trpc";
+
 
 export const userRouter = router({
-  getUser: protectedProcedure
+  getUser: publicProcedure
     .query(({ ctx }) => {
-      const userId = ctx.session.user.id;
+      const userId = ctx.session?.user?.id || "";
       const user = ctx.prisma.user.findUnique({
         where: {
           id: userId

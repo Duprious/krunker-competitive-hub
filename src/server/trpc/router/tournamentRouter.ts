@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { router, protectedProcedure, adminProcedure, publicProcedure } from "../trpc";
+import { router, adminProcedure, publicProcedure } from "../trpc";
 
 export const tournamentRouter = router({
   getTournaments: publicProcedure

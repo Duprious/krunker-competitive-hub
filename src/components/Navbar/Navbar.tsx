@@ -26,7 +26,7 @@ const Navbar = ({activeRoute}: {activeRoute: string}) => {
     return classes.filter(Boolean).join(' ')
   }
 
-  const {data: userData, error, isLoading} = trpc.user.getUser.useQuery();
+  const {data: userData} = trpc.user.getUser.useQuery();
   const theme = useStore((state) => state.theme);
   const toggleTheme = useStore((state) => state.toggleTheme);
 
