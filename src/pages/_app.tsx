@@ -9,7 +9,7 @@ import "../styles/globals.css";
 import Head from "next/head";
 import { useStore } from "../zustand/store";
 import { useEffect } from "react";
-import AnnouncementBar from "../components/Bars/AnnouncementBar";
+// import AnnouncementBar from "../components/Bars/AnnouncementBar";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -52,7 +52,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
           <meta name="twitter:image" content="https://i.ibb.co/KLzJbYg/JTz-Oke7a-2x.png" />
         </Head>
         <div className={`${theme === "light" ? "bg-[#E7E7E7] text-gray-900" : "dark bg-gray-900 text-white"}`}>
-          <AnnouncementBar />
+          {/* <AnnouncementBar /> */}
           <Component {...pageProps} />
         </div>
     </SessionProvider>

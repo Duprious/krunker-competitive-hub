@@ -1,11 +1,9 @@
-import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { Toaster } from 'react-hot-toast'
 import TeamCard from '../../../components/Cards/TeamCard'
 import Layout from '../../../components/Layout'
 import ChangeTeamModal from '../../../components/Modals/ChangeTeamModal'
-import { getServerAuthSession } from '../../../server/common/get-server-auth-session'
 import { trpc } from '../../../utils/trpc'
 
 const Teams = () => {
@@ -53,21 +51,6 @@ const Teams = () => {
       <Toaster />
     </Layout>
   )
-}
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getServerAuthSession(context)
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-  return {
-    props: { session },
-  };
 }
 
 export default Teams

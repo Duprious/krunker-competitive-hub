@@ -1,10 +1,9 @@
-import { GetServerSideProps, NextPage } from 'next'
+import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
 import Layout from '../../components/Layout'
 import BracketLinkModal from '../../components/Modals/BracketLinkModal'
 import TournamentTab from '../../components/Tabs/TournamentTab'
-import { getServerAuthSession } from '../../server/common/get-server-auth-session'
 import { trpc } from '../../utils/trpc'
 import { useStore } from '../../zustand/store'
 
@@ -27,11 +26,13 @@ const TournamentPage: NextPage = () => {
                 {tournamentData?.name}
               </h1>
               <div className="md:mr-8 mt-4 text-center text-lg text-teal-500 font-medium">
-                {userData?.role === "ADMIN" &&
+                {userData && userData?.role === "ADMIN" ?
                   <button onClick={toggleBracketLinkModal} type="button" className="text-white mt-4 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-blue-800">
                     Add Bracket
                   </button>
-                }
+                :
+                null  
+              }
               </div>
             </div>
           </div>
@@ -52,21 +53,6 @@ const TournamentPage: NextPage = () => {
       </main>
     </Layout>
   )
-}
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getServerAuthSession(context)
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-  return {
-    props: { session },
-  };
 }
 
 export default TournamentPage

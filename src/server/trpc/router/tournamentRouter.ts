@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { router, protectedProcedure, adminProcedure } from "../trpc";
+import { router, protectedProcedure, adminProcedure, publicProcedure } from "../trpc";
 
 export const tournamentRouter = router({
-  getTournaments: protectedProcedure
+  getTournaments: publicProcedure
     .query(async({ ctx }) => {
       const tournaments = await ctx.prisma.tournament.findMany(
         {
@@ -19,7 +19,7 @@ export const tournamentRouter = router({
       )
       return tournaments;
     }),
-  getTournament: protectedProcedure
+  getTournament: publicProcedure
     .input(
       z.object({
         id: z.string(),
