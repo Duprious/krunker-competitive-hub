@@ -1,4 +1,3 @@
-import { Role } from "@prisma/client";
 import { router, protectedProcedure, publicProcedure } from "../trpc";
 
 

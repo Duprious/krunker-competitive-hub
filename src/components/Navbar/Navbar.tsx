@@ -125,20 +125,13 @@ const Navbar = ({activeRoute}: {activeRoute: string}) => {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pt-2 pb-3">
-              {navigation.map((item) => (
-                <Link key={item.name} href={item.href}>
-                  <Disclosure.Button
-                    as="a"
-                    className={classNames(
-                      `${roboto.className} text-gray-900 hover:text-gray-500`,
-                      'block px-3 py-2 rounded-md text-base font-medium cursor-pointer'
-                      )}
-                      aria-current={item.current ? 'page' : undefined}
-                      >
-                    {item.name}
-                  </Disclosure.Button>
-                </Link>
-              ))}
+            <Link
+            href={'/'}>
+              <Disclosure.Button
+                className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+              Sign in
+              </Disclosure.Button>
+            </Link>
             </div>
           </Disclosure.Panel>
         </>
