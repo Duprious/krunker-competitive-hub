@@ -77,7 +77,7 @@ const Tournaments: NextPage = () => {
           <motion.div layout>
             <ul className="grid gap-4 pt-10">
               <AnimatePresence> 
-                {tournamentData?.slice(0, numToShow).map((tournament) => (
+                {tournamentData?.reverse().slice(0, numToShow).map((tournament) => (
                   tournament.region.split(' ')[0] === selectedFilter || selectedFilter === 'ALL' ? (
                     !tournament.ended ? null : (
                     <li key={tournament.id}>
