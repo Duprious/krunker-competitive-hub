@@ -3,17 +3,21 @@ import React from 'react'
 import { Toaster } from 'react-hot-toast'
 import TeamCard from '../../../components/Cards/TeamCard'
 import Layout from '../../../components/Layout'
+import LoadingAnim from '../../../components/Loading/LoadingAnim'
 import ChangeTeamModal from '../../../components/Modals/ChangeTeamModal'
 import { trpc } from '../../../utils/trpc'
 
 const Teams = () => {
   const router = useRouter()
   const query = router.query.tournamentId as string
-  const { data: tournamentData } = trpc.tournament.getTournament.useQuery({id: query});
+  const { data: tournamentData, isLoading } = trpc.tournament.getTournament.useQuery({id: query});
   
   return (
     <Layout>
-      <main className="container mx-auto flex flex-col justify-start p-4">
+      {
+        isLoading ? <LoadingAnim />
+        :
+        <main className="container mx-auto flex flex-col justify-start p-4">
         <section>
           <div className="pt-10">
             <div className="flex flex-col justify-between gap-8 md:flex-row">
@@ -41,12 +45,13 @@ const Teams = () => {
                   tournamentType={tournamentData?.type}
                   adminMenu={false}
                   owner={team.owner}
-                />
+                  />
               </li>
             )}
           </ul>
         </section>
       </main>
+      }
       <ChangeTeamModal tournamentId={tournamentData?.id} />
       <Toaster />
     </Layout>

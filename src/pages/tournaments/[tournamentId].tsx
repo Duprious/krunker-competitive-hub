@@ -2,6 +2,7 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
 import Layout from '../../components/Layout'
+import LoadingAnim from '../../components/Loading/LoadingAnim'
 import BracketLinkModal from '../../components/Modals/BracketLinkModal'
 import TournamentTab from '../../components/Tabs/TournamentTab'
 import { trpc } from '../../utils/trpc'
@@ -10,14 +11,17 @@ import { useStore } from '../../zustand/store'
 const TournamentPage: NextPage = () => {
   const router = useRouter()
   const query = router.query.tournamentId as string
-  const { data: userData} = trpc.user.getUser.useQuery()
-  const { data: tournamentData } = trpc.tournament.getTournament.useQuery({id: query})
+  const { data: userData } = trpc.user.getUser.useQuery()
+  const { data: tournamentData, isLoading } = trpc.tournament.getTournament.useQuery({id: query})
   const toggleBracketLinkModal = useStore(state => state.toggleBracketLinkModal)
 
 
   return (
     <Layout>
-      <BracketLinkModal tournamentId={query} />
+        <BracketLinkModal tournamentId={query} />
+      {
+      isLoading ? <LoadingAnim />
+      :
       <main className="container mx-auto flex flex-col justify-start p-4">
         <section>
           <div className="pt-10">
@@ -51,6 +55,7 @@ const TournamentPage: NextPage = () => {
           </div>
         </section>
       </main>
+      }
     </Layout>
   )
 }

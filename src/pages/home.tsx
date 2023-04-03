@@ -7,11 +7,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Toaster } from 'react-hot-toast'
 import FilterBox from '../components/Boxes/FilterBox'
 import { useStore } from '../zustand/store'
+import LoadingAnim from '../components/Loading/LoadingAnim'
 
 const Tournaments: NextPage = () => {
 
   const selectedFilter = useStore(state => state.selectedFilter)
-  const { data: tournamentData } = trpc.tournament.getTournaments.useQuery()
+  const { data: tournamentData, isLoading } = trpc.tournament.getTournaments.useQuery()
 
   tournamentData?.sort((a, b) => {
     return new Date(a.startDate).valueOf() - new Date(b.startDate).valueOf();
@@ -23,9 +24,14 @@ const Tournaments: NextPage = () => {
     setNumToShow(numToShow + 3);
   };
 
+  const endedTournaments = tournamentData?.filter(tournament => tournament.ended === true)
+
   return (
-    <Layout>  
-      <main className="container mx-auto flex flex-col justify-start p-4">
+    <Layout>
+      {
+        isLoading ? <LoadingAnim />
+        :
+        <main className="container mx-auto flex flex-col justify-start p-4">
         <section>
           <div className="pt-10">
             <div className="flex flex-col justify-between gap-8 md:flex-row">
@@ -45,7 +51,7 @@ const Tournaments: NextPage = () => {
                 {tournamentData?.map((tournament) => (
                   tournament.region.split(' ')[0] === selectedFilter || selectedFilter === 'ALL' ? (
                     tournament.ended ? null : (
-                    <li key={tournament.id}>
+                      <li key={tournament.id}>
                       <TournamentCard
                       name={tournament.name}
                       organization={tournament.Organization}
@@ -77,10 +83,10 @@ const Tournaments: NextPage = () => {
           <motion.div layout>
             <ul className="grid gap-4 pt-10">
               <AnimatePresence> 
-                {tournamentData?.reverse().slice(0, numToShow).map((tournament) => (
+                {endedTournaments?.reverse().slice(0, numToShow).map((tournament) => (
                   tournament.region.split(' ')[0] === selectedFilter || selectedFilter === 'ALL' ? (
                     !tournament.ended ? null : (
-                    <li key={tournament.id}>
+                      <li key={tournament.id}>
                       <TournamentCard
                       name={tournament.name}
                       organization={tournament.Organization}
@@ -98,7 +104,7 @@ const Tournaments: NextPage = () => {
               </AnimatePresence>
             </ul>
             <div className='flex justify-center items-center pt-4'>
-              {numToShow < (tournamentData?.length as number) && (
+              {numToShow < (endedTournaments?.length as number) && (
                 <button className="my-4 p-2 border border-gray-600 dark:border-gray-400 rounded" onClick={showMore}>
                   Show More
                 </button>
@@ -107,13 +113,14 @@ const Tournaments: NextPage = () => {
           </motion.div>
         </section>
       </main>
+      }
       <Toaster />
     </Layout>
   )
 }
 
 // export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const session = await getServerAuthSession(context)
+  //   const session = await getServerAuthSession(context)
 //   if (!session) {
 //     return {
 //       redirect: {
