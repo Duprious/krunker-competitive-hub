@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion'
+import krunkerImage from '../../../public/krunkericon.png'
 
 import React from 'react'
 
 const LoadingAnim = () => {
   return (
       <div className='flex justify-center items-center h-screen'>
-        <motion.div
-          className="w-32 h-32 dark:bg-gray-200 bg-stone-400"
+        <motion.img
+          src={krunkerImage.src}
+          className="w-32 h-32 bg-transparent"
           animate={{
             scale: [1, 2, 2, 1, 1],
             rotate: [0, 0, 180, 180, 0],

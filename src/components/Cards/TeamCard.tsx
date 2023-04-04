@@ -3,6 +3,7 @@ import { NextPage } from 'next'
 import React from 'react'
 import { trpc } from '../../utils/trpc'
 import { useStore } from '../../zustand/store'
+import { motion } from 'framer-motion'
 
 interface TeamCardProps {
   teamName: string,
@@ -38,7 +39,7 @@ const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, players, Sub, id,
   }
 
   return (
-    <div className="p-6 max-w-sm h-full mx-auto shadow-xl rounded-md dark:bg-gray-800 bg-stone-50">
+    <motion.div whileHover={{scale: 1.05}} className="p-6 max-w-sm h-full mx-auto shadow-xl rounded-md hover:cursor-pointer dark:bg-gray-800 bg-stone-50">
       <div className="flex items-center justify-start gap-2">
         {adminMenu && userData?.role == "ADMIN" &&
           <h1 className={`${validated ? `bg-green-700` : `bg-red-700/40`} px-3 py-1 font-semibold text-gray-100 rounded-full`}>
@@ -54,7 +55,8 @@ const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, players, Sub, id,
       <div className="mt-3">
         <div className='flex justify-between'>
           <h1
-            className="text-2xl font-semibold dark:text-gray-200 dark:hover:text-gray-100 text-gray-600 hover:text-gray-500"
+            className="text-2xl text-shad font-semibold drop-shadow-md dark:text-gray-200 text-gray-600"
+            style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.3)' }}
             >
             {teamName}
           </h1>
@@ -90,7 +92,7 @@ const TeamCard: NextPage<TeamCardProps> = ({teamName, captain, players, Sub, id,
           </button>
         }
       </div>
-    </div>
+    </motion.div>
   )
 }
 
