@@ -8,6 +8,7 @@ import { signOut } from 'next-auth/react'
 import { BsMoonFill, BsSunFill } from 'react-icons/bs'
 import { useStore } from '../../zustand/store'
 import { Roboto_Condensed } from '@next/font/google'
+import iconImage from '../../../public/icon.png'
 
 const roboto = Roboto_Condensed({
   subsets: ['latin'],
@@ -19,6 +20,7 @@ const Navbar = ({activeRoute}: {activeRoute: string}) => {
   const navigation = [
     { name: 'HOME', href: '/home', current: activeRoute.startsWith('/home')},
     { name: 'PLAYERS', href: '/players', current: activeRoute.startsWith('/players') || activeRoute.startsWith('/player')},
+    { name: 'STRATS', href: '/strats', current: activeRoute.startsWith('/strats')},
     { name: 'PRIVACY', href: '/privacy', current: activeRoute.startsWith('/privacy')},
   ]
 
@@ -218,7 +220,7 @@ const Navbar = ({activeRoute}: {activeRoute: string}) => {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src={userData?.image?.toString() || krunkerIcon.src}
+                        src={iconImage.src}
                         alt="User Image"
                         referrerPolicy='no-referrer'
                       />
