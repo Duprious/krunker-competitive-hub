@@ -654,6 +654,39 @@ export const teamRouter = router({
       })
       return team
     }),
+    changeSub: protectedProcedure
+    .input(
+      z.object({
+        ownerId: z.string(),
+        playerId: z.string(),
+        newDiscordName: z.string(),
+        newIGN: z.string(),
+        teamId: z.string()
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+
+      if (ctx.session.user.id !== input.ownerId) {
+        throw new Error("You are not the one who signed up this team")
+      }
+      const team = await ctx.prisma.team.update({
+        where: {
+          id: input.teamId
+        },
+        data: {
+          Sub: {
+            update: {
+              discordName: input.newDiscordName,
+              id: input.playerId,
+              ign: input.newIGN
+            }
+          }
+        }
+      })
+      return team 
+    }),
+
+
     playerDeleteTeam: protectedProcedure
     .input(
       z.object({

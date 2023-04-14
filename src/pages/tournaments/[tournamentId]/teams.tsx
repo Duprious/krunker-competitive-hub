@@ -10,7 +10,7 @@ import { trpc } from '../../../utils/trpc'
 const Teams = () => {
   const router = useRouter()
   const query = router.query.tournamentId as string
-  const { data: tournamentData, isLoading } = trpc.tournament.getTournament.useQuery({id: query});
+  const { data: tournamentData, isLoading } = trpc.tournament.getTournament.useQuery({id: query || ""});
   
   return (
     <Layout>
