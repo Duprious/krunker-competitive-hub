@@ -32,14 +32,6 @@ const ChangeTeamModal = (props: { tournamentId: string | undefined }) => {
     toggleChangeTeamModal()
   }
 
-  useEffect(() => {
-    if (!changeTeamModal) {
-      setCurrentIGN(teamData?.players[0]?.ign)
-      setCurrentDiscordName(teamData?.players[0]?.discordName)
-      setCurrentID({id: teamData?.players[0]?.id, sub: false})
-    }
-  }, [changeTeamModal])
-
   const changeSelectPlayer = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const userArr = e.target.value.split("|")
     const discordName = userArr[0]
@@ -64,6 +56,8 @@ const ChangeTeamModal = (props: { tournamentId: string | undefined }) => {
 
     const duplicateIgn = tournamentsData?.find(tournament => tournament.id === props.tournamentId)?.teams.find(team => team.players.find(player => player.ign === changedIGN))
     if (duplicateIgn) return toast.error("One of your players is already registered in another team. Please choose another player.")
+
+
 
     if (currentID.sub) {
 
@@ -90,6 +84,7 @@ const ChangeTeamModal = (props: { tournamentId: string | undefined }) => {
       return
 
     } else {
+
       playerChangeMutation.mutateAsync({
         teamId: teamData?.id as string,
         ownerId: teamData?.owner.id as string,
@@ -157,6 +152,14 @@ const ChangeTeamModal = (props: { tournamentId: string | undefined }) => {
     setCurrentIGN(teamData?.players[0]?.ign)
     setCurrentID({id: teamData?.players[0]?.id, sub: false})
   }, [teamData])
+
+  useEffect(() => {
+    if (!changeTeamModal) {
+      setCurrentIGN(teamData?.players[0]?.ign)
+      setCurrentDiscordName(teamData?.players[0]?.discordName)
+      setCurrentID({id: teamData?.players[0]?.id, sub: false})
+    }
+  }, [changeTeamModal, teamData])
 
   return (
     <>
