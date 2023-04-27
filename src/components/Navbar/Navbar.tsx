@@ -20,7 +20,7 @@ const Navbar = ({activeRoute}: {activeRoute: string}) => {
   const navigation = [
     { name: 'HOME', href: '/home', current: activeRoute.startsWith('/home')},
     { name: 'PLAYERS', href: '/players', current: activeRoute.startsWith('/players') || activeRoute.startsWith('/player')},
-    { name: 'STRATS', href: '/strats', current: activeRoute.startsWith('/strats')},
+    // { name: 'STRATS', href: '/strats', current: activeRoute.startsWith('/strats')},
     { name: 'PRIVACY', href: '/privacy', current: activeRoute.startsWith('/privacy')},
   ]
 
